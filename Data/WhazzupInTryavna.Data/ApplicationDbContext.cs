@@ -1,4 +1,6 @@
-﻿namespace WhazzupInTryavna.Data
+﻿using WhazzupInTryavna.Data.Models.Activities;
+
+namespace WhazzupInTryavna.Data
 {
     using System;
     using System.Linq;
@@ -23,6 +25,14 @@
             : base(options)
         {
         }
+
+        public DbSet<Activity> Activities { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<UserActivity> UserActivities { get; set; }
+
+        public DbSet<Vote> Votes { get; set; }
 
         public DbSet<Setting> Settings { get; set; }
 

@@ -1,4 +1,7 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
+
+using WhazzupInTryavna.Data.Models.Activities;
+
 namespace WhazzupInTryavna.Data.Models
 {
     using System;
@@ -33,5 +36,9 @@ namespace WhazzupInTryavna.Data.Models
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        public virtual ICollection<Vote> Votes { get; set; } = new HashSet<Vote>();
+
+        public virtual ICollection<UserActivity> UserActivities { get; set; } = new HashSet<UserActivity>();
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace WhazzupInTryavna.Web
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace WhazzupInTryavna.Web
 {
     using System.Reflection;
 
