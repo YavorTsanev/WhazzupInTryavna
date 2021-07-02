@@ -1,4 +1,6 @@
-﻿namespace WhazzupInTryavna.Data.Seeding
+﻿using Microsoft.Extensions.Configuration;
+
+namespace WhazzupInTryavna.Data.Seeding
 {
     using System;
     using System.Collections.Generic;
@@ -9,6 +11,13 @@
 
     public class ApplicationDbContextSeeder : ISeeder
     {
+        private readonly IConfiguration configuration;
+
+        public ApplicationDbContextSeeder(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext == null)
@@ -27,6 +36,7 @@
                           {
                               new RolesSeeder(),
                               new SettingsSeeder(),
+                              new AdminUserSeeder(this.configuration),
                           };
 
             foreach (var seeder in seeders)

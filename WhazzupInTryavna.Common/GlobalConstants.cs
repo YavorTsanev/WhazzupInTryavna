@@ -9,5 +9,9 @@
         public const string EmailForContact = "yavor.tsanev.1@gmail.com";
 
         public const string SiteUrl = "SiteUrl";
+
+        public const string AdminUsername = "Yavor";
+
+        public const string AdminEmail = "onq_koi_e@abv.bg";
     }
 }
