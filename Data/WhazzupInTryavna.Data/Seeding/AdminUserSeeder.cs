@@ -32,6 +32,7 @@ namespace WhazzupInTryavna.Data.Seeding
             {
                 Email = AdminEmail,
                 UserName = AdminUsername,
+                EmailConfirmed = true,
             };
 
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
