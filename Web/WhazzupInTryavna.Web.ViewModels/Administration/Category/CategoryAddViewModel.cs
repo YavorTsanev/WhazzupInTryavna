@@ -4,15 +4,17 @@
 
     using WhazzupInTryavna.Services.Mapping;
 
+    using static WhazzupInTryavna.Common.GlobalConstants;
+
     public class CategoryAddViewModel : IMapFrom<Data.Models.Activities.Category>
     {
         [Required]
-        [MinLength(3)]
-        [MaxLength(20)]
+        [MinLength(CategoryNameMinLength)]
+        [MaxLength(CategoryNameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [RegularExpression(@"(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?", ErrorMessage = "Only Image files allowed.")]
+        [RegularExpression(CategoryImageRegEx, ErrorMessage = "Only Image files allowed.")]
         public string Image { get; set; }
     }
 }

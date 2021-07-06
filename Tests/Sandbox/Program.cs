@@ -5,6 +5,11 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
     using WhazzupInTryavna.Data;
     using WhazzupInTryavna.Data.Common;
     using WhazzupInTryavna.Data.Common.Repositories;
@@ -13,13 +18,6 @@
     using WhazzupInTryavna.Data.Seeding;
     using WhazzupInTryavna.Services.Data;
     using WhazzupInTryavna.Services.Messaging;
-
-    using CommandLine;
-
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
 
     public static class Program
     {

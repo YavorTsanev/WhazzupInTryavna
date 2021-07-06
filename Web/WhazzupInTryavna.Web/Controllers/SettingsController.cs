@@ -3,12 +3,11 @@
     using System;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Mvc;
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Services.Data;
     using WhazzupInTryavna.Web.ViewModels.Settings;
-
-    using Microsoft.AspNetCore.Mvc;
 
     public class SettingsController : BaseController
     {

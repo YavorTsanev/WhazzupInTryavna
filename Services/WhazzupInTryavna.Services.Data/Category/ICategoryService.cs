@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace WhazzupInTryavna.Services.Data.Category
+﻿namespace WhazzupInTryavna.Services.Data.Category
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using WhazzupInTryavna.Web.ViewModels.Administration.Category;

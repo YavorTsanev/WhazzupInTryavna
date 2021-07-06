@@ -1,8 +1,8 @@
 ﻿namespace WhazzupInTryavna.Data.Configurations
 {
-    using WhazzupInTryavna.Data.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using WhazzupInTryavna.Data.Models;
 
     public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {

@@ -3,12 +3,15 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using WhazzupInTryavna.Data.Common.Models;
+
+    using static WhazzupInTryavna.Common.GlobalConstants;
 
     public class Activity : BaseDeletableModel<int>
     {
         [Required]
-        [MaxLength(20)]
+        [MaxLength(ActivityNameMaxLength)]
         public string Name { get; set; }
 
         public int CategoryId { get; set; }
@@ -18,7 +21,7 @@
         public string Description { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(ActivityNameMaxLength)]
         public string Location { get; set; }
 
         public DateTime StartTime { get; set; }

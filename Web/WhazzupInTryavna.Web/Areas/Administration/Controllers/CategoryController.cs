@@ -6,11 +6,11 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using WhazzupInTryavna.Common;
-    using WhazzupInTryavna.Web.Controllers;
-    using WhazzupInTryavna.Web.ViewModels.Administration.Category;
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Data.Category;
+    using WhazzupInTryavna.Web.Controllers;
+    using WhazzupInTryavna.Web.ViewModels.Administration.Category;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     [Area("Administration")]

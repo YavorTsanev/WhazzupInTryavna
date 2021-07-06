@@ -4,15 +4,12 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.EntityFrameworkCore;
+    using Moq;
     using WhazzupInTryavna.Data;
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Data.Repositories;
-
-    using Microsoft.EntityFrameworkCore;
-
-    using Moq;
-
     using Xunit;
 
     public class SettingsServiceTests

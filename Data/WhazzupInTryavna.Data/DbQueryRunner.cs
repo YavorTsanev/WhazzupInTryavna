@@ -3,9 +3,8 @@
     using System;
     using System.Threading.Tasks;
 
-    using WhazzupInTryavna.Data.Common;
-
     using Microsoft.EntityFrameworkCore;
+    using WhazzupInTryavna.Data.Common;
 
     public class DbQueryRunner : IDbQueryRunner
     {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 
 [assembly: HostingStartup(typeof(WhazzupInTryavna.Web.Areas.Identity.IdentityHostingStartup))]
+
 namespace WhazzupInTryavna.Web.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup

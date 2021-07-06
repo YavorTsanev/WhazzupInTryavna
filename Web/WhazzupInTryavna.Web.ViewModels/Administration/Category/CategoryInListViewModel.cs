@@ -2,8 +2,8 @@
 {
     using System;
 
+    using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Mapping;
-    using Data.Models.Activities;
 
     public class CategoryInListViewModel : IMapFrom<Category>
     {

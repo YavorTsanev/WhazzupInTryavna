@@ -1,9 +1,8 @@
 ﻿namespace WhazzupInTryavna.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

@@ -2,9 +2,8 @@
 {
     using System.Linq;
 
-    using WhazzupInTryavna.Data.Common.Models;
-
     using Microsoft.EntityFrameworkCore;
+    using WhazzupInTryavna.Data.Common.Models;
 
     internal static class EntityIndexesConfiguration
     {

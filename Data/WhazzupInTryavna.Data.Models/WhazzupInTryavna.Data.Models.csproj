@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\WhazzupInTryavna.Common\WhazzupInTryavna.Common.csproj" />
     <ProjectReference Include="..\WhazzupInTryavna.Data.Common\WhazzupInTryavna.Data.Common.csproj" />
   </ItemGroup>
   

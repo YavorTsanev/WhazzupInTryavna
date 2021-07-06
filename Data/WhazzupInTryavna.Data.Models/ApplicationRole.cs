@@ -3,9 +3,8 @@ namespace WhazzupInTryavna.Data.Models
 {
     using System;
 
-    using WhazzupInTryavna.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using WhazzupInTryavna.Data.Common.Models;
 
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
     {

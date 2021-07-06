@@ -5,14 +5,15 @@
 
     using WhazzupInTryavna.Data.Common.Models;
 
+    using static WhazzupInTryavna.Common.GlobalConstants;
+
     public class Category : BaseDeletableModel<int>
     {
         [Required]
-        [MaxLength(20)]
+        [MaxLength(CategoryNameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [RegularExpression(@"(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?", ErrorMessage = "Only Image files allowed.")]
         public string Image { get; set; }
 
         public virtual ICollection<Activity> Activities { get; set; } = new HashSet<Activity>();

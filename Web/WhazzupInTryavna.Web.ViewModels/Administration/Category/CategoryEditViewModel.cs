@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using WhazzupInTryavna.Services.Mapping;
-
-namespace WhazzupInTryavna.Web.ViewModels.Administration.Category
+﻿namespace WhazzupInTryavna.Web.ViewModels.Administration.Category
 {
+    using System.ComponentModel.DataAnnotations;
+
+    using WhazzupInTryavna.Services.Mapping;
+
+    using static WhazzupInTryavna.Common.GlobalConstants;
+
     public class CategoryEditViewModel : IMapFrom<Data.Models.Activities.Category>
     {
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MinLength(CategoryNameMinLength)]
+        [MaxLength(CategoryNameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [RegularExpression(@"(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?", ErrorMessage = "Only Image files allowed.")]
+        [RegularExpression(CategoryImageRegEx, ErrorMessage = "Only Image files allowed.")]
         public string Image { get; set; }
     }
 }

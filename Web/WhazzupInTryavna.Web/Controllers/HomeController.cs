@@ -2,9 +2,8 @@
 {
     using System.Diagnostics;
 
-    using WhazzupInTryavna.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+    using WhazzupInTryavna.Web.ViewModels;
 
     public class HomeController : BaseController
     {
