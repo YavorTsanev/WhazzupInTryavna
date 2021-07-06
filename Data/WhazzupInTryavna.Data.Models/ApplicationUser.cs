@@ -1,15 +1,13 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
 
-using WhazzupInTryavna.Data.Models.Activities;
-
 namespace WhazzupInTryavna.Data.Models
 {
     using System;
     using System.Collections.Generic;
 
-    using WhazzupInTryavna.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using WhazzupInTryavna.Data.Common.Models;
+    using WhazzupInTryavna.Data.Models.Activities;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {

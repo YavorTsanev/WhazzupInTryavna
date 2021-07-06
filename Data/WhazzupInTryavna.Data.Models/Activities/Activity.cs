@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using WhazzupInTryavna.Data.Common.Models;
-
-namespace WhazzupInTryavna.Data.Models.Activities
+﻿namespace WhazzupInTryavna.Data.Models.Activities
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using WhazzupInTryavna.Data.Common.Models;
+
     public class Activity : BaseDeletableModel<int>
     {
         [Required]

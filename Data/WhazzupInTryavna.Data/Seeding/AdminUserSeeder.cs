@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using WhazzupInTryavna.Common;
-using WhazzupInTryavna.Data.Models;
-using static WhazzupInTryavna.Common.GlobalConstants;
-
-namespace WhazzupInTryavna.Data.Seeding
+﻿namespace WhazzupInTryavna.Data.Seeding
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using WhazzupInTryavna.Common;
+    using WhazzupInTryavna.Data.Models;
+
+    using static WhazzupInTryavna.Common.GlobalConstants;
+
     public class AdminUserSeeder : ISeeder
     {
         private readonly IConfiguration configuration;

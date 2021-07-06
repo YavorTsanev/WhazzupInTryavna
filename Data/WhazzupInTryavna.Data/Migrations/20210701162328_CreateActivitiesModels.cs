@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace WhazzupInTryavna.Data.Migrations
+﻿namespace WhazzupInTryavna.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class CreateActivitiesModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

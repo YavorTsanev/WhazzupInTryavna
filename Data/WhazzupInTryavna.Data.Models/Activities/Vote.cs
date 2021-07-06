@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WhazzupInTryavna.Data.Common.Models;
-
-namespace WhazzupInTryavna.Data.Models.Activities
+﻿namespace WhazzupInTryavna.Data.Models.Activities
 {
+
+    using WhazzupInTryavna.Data.Common.Models;
+
     public class Vote : BaseDeletableModel<int>
     {
         public int ActivityId { get; set; }

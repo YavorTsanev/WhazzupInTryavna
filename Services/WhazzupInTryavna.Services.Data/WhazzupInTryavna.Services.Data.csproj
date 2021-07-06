@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\WhazzupInTryavna.Data.Common\WhazzupInTryavna.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\WhazzupInTryavna.Data.Models\WhazzupInTryavna.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\WhazzupInTryavna.Web.ViewModels\WhazzupInTryavna.Web.ViewModels.csproj" />
     <ProjectReference Include="..\WhazzupInTryavna.Services.Mapping\WhazzupInTryavna.Services.Mapping.csproj" />
   </ItemGroup>
 

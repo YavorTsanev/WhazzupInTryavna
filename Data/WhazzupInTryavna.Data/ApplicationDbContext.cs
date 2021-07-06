@@ -1,6 +1,4 @@
-﻿using WhazzupInTryavna.Data.Models.Activities;
-
-namespace WhazzupInTryavna.Data
+﻿namespace WhazzupInTryavna.Data
 {
     using System;
     using System.Linq;
@@ -8,11 +6,11 @@ namespace WhazzupInTryavna.Data
     using System.Threading;
     using System.Threading.Tasks;
 
-    using WhazzupInTryavna.Data.Common.Models;
-    using WhazzupInTryavna.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using WhazzupInTryavna.Data.Common.Models;
+    using WhazzupInTryavna.Data.Models;
+    using WhazzupInTryavna.Data.Models.Activities;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {

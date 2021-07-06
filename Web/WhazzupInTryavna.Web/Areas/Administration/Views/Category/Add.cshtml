@@ -1,0 +1,32 @@
+﻿@model WhazzupInTryavna.Web.ViewModels.Administration.Category.CategoryAddViewModel;
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<section>
+    <h1 class="text-center">Add New category</h1>
+
+    <div id="card" class="card col-6 col-lg-3 game-card h-100 m-auto">
+        <img id="card-image"
+             src="https://i.vimeocdn.com/portrait/1274237_300x300.jpg"
+             class="card-img-top img-fluid card-image">
+
+    </div>
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Image">Image URL</label>
+            <input asp-for="Image" type="text" class="form-control" id="image-input">
+            <span asp-validation-for="Image" class="text-danger"></span>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</section>

@@ -1,19 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace WhazzupInTryavna.Web
+﻿namespace WhazzupInTryavna.Web
 {
     using System.Reflection;
-
-    using WhazzupInTryavna.Data;
-    using WhazzupInTryavna.Data.Common;
-    using WhazzupInTryavna.Data.Common.Repositories;
-    using WhazzupInTryavna.Data.Models;
-    using WhazzupInTryavna.Data.Repositories;
-    using WhazzupInTryavna.Data.Seeding;
-    using WhazzupInTryavna.Services.Data;
-    using WhazzupInTryavna.Services.Mapping;
-    using WhazzupInTryavna.Services.Messaging;
-    using WhazzupInTryavna.Web.ViewModels;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -23,6 +10,17 @@ namespace WhazzupInTryavna.Web
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using WhazzupInTryavna.Data;
+    using WhazzupInTryavna.Data.Common;
+    using WhazzupInTryavna.Data.Common.Repositories;
+    using WhazzupInTryavna.Data.Models;
+    using WhazzupInTryavna.Data.Repositories;
+    using WhazzupInTryavna.Data.Seeding;
+    using WhazzupInTryavna.Services.Data;
+    using WhazzupInTryavna.Services.Data.Category;
+    using WhazzupInTryavna.Services.Mapping;
+    using WhazzupInTryavna.Services.Messaging;
+    using WhazzupInTryavna.Web.ViewModels;
 
     public class Startup
     {
@@ -67,6 +65,14 @@ namespace WhazzupInTryavna.Web
             // Application services
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+
+            // Authentication
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = this.configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = this.configuration["Authentication:Facebook:AppSecret"];
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
