@@ -48,6 +48,8 @@
 
             await this.activityService.CreateAsync(userid, model);
 
+            this.TempData["AddedActivity"] = "Activity added successfully";
+
             return this.Redirect("/Activities/Index");
         }
     }

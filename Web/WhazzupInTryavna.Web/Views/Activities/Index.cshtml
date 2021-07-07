@@ -2,8 +2,21 @@
     ViewData["Title"] = "Activities";
 }
 
-<partial name="_HeroNavMenu"/>
+@if (TempData.ContainsKey("AddedActivity"))
+{
+    <div id="succsesAlert" class="alert alert-success">@this.TempData["AddedActivity"]</div>
+}
+
+<partial name="_HeroNavMenu" />
 <div class="text-center">
     <h1>Activities</h1>
     <a asp-controller="Activities" asp-action="Add" class="btn btn-info">Add Activity</a>
 </div>
+
+@section Scripts
+{
+    <script>
+        let el = document.getElementById("succsesAlert");
+        setTimeout(function () { el.hidden = true }, 2000)
+    </script>
+}
