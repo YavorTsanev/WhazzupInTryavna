@@ -18,5 +18,7 @@
         Task Delete(int id);
 
         bool IsIdExist(int id);
+
+        IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
     }
 }

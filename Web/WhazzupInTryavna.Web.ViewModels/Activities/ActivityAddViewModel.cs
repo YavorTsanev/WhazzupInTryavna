@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-
-namespace WhazzupInTryavna.Web.ViewModels.Activities
+﻿namespace WhazzupInTryavna.Web.ViewModels.Activities
 {
     using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     using static WhazzupInTryavna.Common.GlobalConstants;
@@ -18,6 +17,7 @@ namespace WhazzupInTryavna.Web.ViewModels.Activities
         [DisplayName("Category")]
         public int CategoryId { get; set; }
 
+        [DisplayName("Description   (optional)")]
         public string Description { get; set; }
 
         [Required]

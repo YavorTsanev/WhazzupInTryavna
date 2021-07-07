@@ -17,6 +17,7 @@
     using WhazzupInTryavna.Data.Repositories;
     using WhazzupInTryavna.Data.Seeding;
     using WhazzupInTryavna.Services.Data;
+    using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
     using WhazzupInTryavna.Services.Mapping;
     using WhazzupInTryavna.Services.Messaging;
@@ -66,6 +67,7 @@
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IActivityService, ActivityService>();
 
             // Authentication
             services.AddAuthentication().AddFacebook(facebookOptions =>

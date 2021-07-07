@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Category Administration";
 }
+<partial name="_HeroNavMenu" />
 
 <div class="card-body text-center">
     <a class="btn btn-info" asp-area="Administration" asp-controller="Category" asp-action="Add">Add Category</a>
@@ -12,42 +13,43 @@
     @if (Model.Categories.Any())
     {
         <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Created On
-            </th>
-            <th>
-                Modified On
-            </th>
-            <th></th>
-        </tr>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Created On
+                </th>
+                <th>
+                    Modified On
+                </th>
+                <th></th>
+            </tr>
         </thead>
-    }  
-    <tbody>
-    @foreach (var item in Model.Categories) {
-        <tr>
-            <td>
-                @item.Name
-            </td>
-            <td>
-                @item.CreatedOn.ToLocalTime().ToString("g")
-            </td>
-            <td>
-                @if (item.ModifiedOn != null)
-                {
-                    @item.ModifiedOn.Value.ToLocalTime().ToString("g")
-                }
-            </td>
-            <td>
-                <div class="text-center">
-                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </div>
-            </td>
-        </tr>
     }
+    <tbody>
+        @foreach (var item in Model.Categories)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.CreatedOn.ToLocalTime().ToString("g")
+                </td>
+                <td>
+                    @if (item.ModifiedOn != null)
+                    {
+                        @item.ModifiedOn.Value.ToLocalTime().ToString("g")
+                    }
+                </td>
+                <td>
+                    <div class="text-center">
+                        <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

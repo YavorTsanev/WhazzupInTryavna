@@ -1,9 +1,8 @@
-﻿using System.ComponentModel;
-
-namespace WhazzupInTryavna.Data.Models.Activities
+﻿namespace WhazzupInTryavna.Data.Models.Activities
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     using WhazzupInTryavna.Data.Common.Models;

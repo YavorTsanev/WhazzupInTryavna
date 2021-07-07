@@ -62,6 +62,12 @@
             return this.categoryRepository.All().Any(x => x.Id == id);
         }
 
+        public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
+        {
+            return this.categoryRepository.All().Select(x => new {x.Id, x.Name}).OrderBy(x => x.Name).ToList()
+                .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+        }
+
         private Category GetById(int id)
         {
            return this.categoryRepository.All().FirstOrDefault(x => x.Id == id);
