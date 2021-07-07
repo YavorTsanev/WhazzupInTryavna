@@ -1,39 +1,35 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
-namespace WhazzupInTryavna.Data.Models.Activities
+namespace WhazzupInTryavna.Web.ViewModels.Activities
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
-    using WhazzupInTryavna.Data.Common.Models;
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 
-    public class Activity : BaseDeletableModel<int>
+    public class ActivityAddViewModel
     {
         [Required]
+        [MinLength(ActivityNameMinLength)]
         [MaxLength(ActivityNameMaxLength)]
         public string Name { get; set; }
 
+        [DisplayName("Category")]
         public int CategoryId { get; set; }
-
-        public virtual Category Category { get; set; }
 
         public string Description { get; set; }
 
         [Required]
+        [MinLength(ActivityLocationMinLength)]
         [MaxLength(ActivityLocationMaxLength)]
         public string Location { get; set; }
 
+        [DisplayName("Start Time")]
         public DateTime StartTime { get; set; }
 
         public string AddedByUserId { get; set; }
 
-        public virtual ApplicationUser AddedByUser { get; set; }
-
-        public virtual ICollection<Vote> Votes { get; set; } = new HashSet<Vote>();
-
-        public virtual ICollection<UserActivity> UserActivities { get; set; } = new HashSet<UserActivity>();
+        public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
     }
 }

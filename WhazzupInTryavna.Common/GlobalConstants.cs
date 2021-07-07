@@ -17,7 +17,9 @@
             @"(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?";
 
         ////Activity
+        public const int ActivityNameMinLength = 3;
         public const int ActivityNameMaxLength = 20;
+        public const int ActivityLocationMinLength = 4;
         public const int ActivityLocationMaxLength = 20;
 
 

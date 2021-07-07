@@ -27,26 +27,24 @@
 
         public IActionResult Add()
         {
-            var model = new CategoryAddViewModel();
-
             return this.View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(CategoryAddViewModel input)
+        public async Task<IActionResult> Add(CategoryAddViewModel model)
         {
-            if (this.categoryRepository.All().Any(x => x.Name == input.Name))
+            if (this.categoryRepository.All().Any(x => x.Name == model.Name))
             {
                 this.ModelState.AddModelError(string.Empty, "Name already exist");
-                return this.View(input);
+                return this.View(model);
             }
 
             if (!this.ModelState.IsValid)
             {
-                return this.View(input);
+                return this.View(model);
             }
 
-            await this.categoryService.AddAsync(input);
+            await this.categoryService.AddAsync(model);
 
             return this.RedirectToAction("All");
         }
@@ -61,44 +59,33 @@
             return this.View(categories);
         }
 
+        [CheckId]
         public IActionResult Edit(int id)
         {
-            if (!this.categoryService.CheckId(id))
-            {
-                return this.NotFound();
-            }
-
             var category = this.categoryService.GetById<CategoryEditViewModel>(id);
 
             return this.View(category);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, CategoryEditViewModel editViewModel)
+        public async Task<IActionResult> Edit(int id, CategoryEditViewModel model)
         {
-            var category = this.categoryService.GetById<CategoryEditViewModel>(id);
-
             if (!this.ModelState.IsValid)
             {
-                return this.View(editViewModel);
+                return this.View(model);
             }
 
-            await this.categoryService.UpdateById(id, editViewModel);
+            await this.categoryService.UpdateById(id, model);
 
             return this.RedirectToAction("All");
         }
 
+        [CheckId]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            if (!this.categoryService.CheckId(id))
-            {
-                return this.NotFound();
-            }
-
             await this.categoryService.Delete(id);
             return this.RedirectToAction("All");
-
         }
     }
 }

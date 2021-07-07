@@ -1,5 +1,4 @@
-﻿
-namespace WhazzupInTryavna.Web.Controllers
+﻿namespace WhazzupInTryavna.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +6,7 @@ namespace WhazzupInTryavna.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public IActionResult Add()

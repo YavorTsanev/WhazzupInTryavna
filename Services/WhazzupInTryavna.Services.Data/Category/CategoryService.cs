@@ -57,7 +57,7 @@
             await this.categoryRepository.SaveChangesAsync();
         }
 
-        public bool CheckId(int id)
+        public bool IsIdExist(int id)
         {
             return this.categoryRepository.All().Any(x => x.Id == id);
         }

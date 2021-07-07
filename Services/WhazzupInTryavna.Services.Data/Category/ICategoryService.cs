@@ -17,6 +17,6 @@
 
         Task Delete(int id);
 
-        bool CheckId(int id);
+        bool IsIdExist(int id);
     }
 }
