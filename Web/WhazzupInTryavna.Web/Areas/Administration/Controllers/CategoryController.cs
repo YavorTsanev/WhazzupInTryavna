@@ -59,7 +59,7 @@
             return this.View(categories);
         }
 
-        [CheckId]
+        [CheckCategoryId]
         public IActionResult Edit(int id)
         {
             var category = this.categoryService.GetById<CategoryEditViewModel>(id);
@@ -80,7 +80,7 @@
             return this.RedirectToAction("All");
         }
 
-        [CheckId]
+        [CheckCategoryId]
         public async Task<IActionResult> Delete(int id)
         {
             await this.categoryService.Delete(id);

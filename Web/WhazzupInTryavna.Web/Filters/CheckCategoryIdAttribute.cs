@@ -5,12 +5,18 @@
     using Microsoft.Extensions.DependencyInjection;
     using WhazzupInTryavna.Services.Data.Category;
 
-    public class CheckIdAttribute : ActionFilterAttribute
+    public class CheckCategoryIdAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             var categoryService = context.HttpContext.RequestServices.GetService<ICategoryService>();
-            var id = (int)context.ActionArguments["id"];
+
+            var id = 0;
+
+            if (context.ActionArguments.ContainsKey("id"))
+            {
+                id = (int)context.ActionArguments["id"];
+            }
 
             if (categoryService != null && !categoryService.IsIdExist(id))
             {

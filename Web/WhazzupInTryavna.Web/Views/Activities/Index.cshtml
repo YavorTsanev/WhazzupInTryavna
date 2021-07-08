@@ -1,4 +1,6 @@
-﻿@{
+﻿@model WhazzupInTryavna.Web.ViewModels.Activities.ActivitiesListViewModel
+
+@{
     ViewData["Title"] = "Activities";
 }
 
@@ -13,10 +15,31 @@
     <a asp-controller="Activities" asp-action="Add" class="btn btn-info">Add Activity</a>
 </div>
 
+<br />
+
+<div class="row text-center">
+    @foreach (var activity in Model.Activities)
+    {
+        <section class="card-deck col-3 offset-1">
+            <a asp-controller="Activities" asp-action="Details" asp-route-id="@activity.Id">
+                <div class="card" >
+                    <img class="card-img-top" src="@activity.CategoryImage" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@activity.Name</h5>
+                        <p class="card-text">@activity.Location</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Star Time @activity.StartTime.ToLocalTime().ToString("d - MMMM dddd HH:mm")</small>
+                    </div>
+                </div>
+            </a>
+        </section>
+    }
+</div>
 @section Scripts
 {
     <script>
         let el = document.getElementById("succsesAlert");
-        setTimeout(function () { el.hidden = true }, 2000)
+        setTimeout(function () { el.hidden = true }, 3000)
     </script>
 }

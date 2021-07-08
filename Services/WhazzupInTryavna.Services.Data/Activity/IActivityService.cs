@@ -10,5 +10,7 @@
     public interface IActivityService
     {
        Task CreateAsync(string userid, ActivityAddViewModel model);
+
+       IEnumerable<T> GetAll<T>();
     }
 }

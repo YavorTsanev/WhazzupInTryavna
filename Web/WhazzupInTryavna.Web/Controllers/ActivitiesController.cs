@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using WhazzupInTryavna.Data.Models;
@@ -9,6 +10,7 @@
     using WhazzupInTryavna.Services.Data.Category;
     using WhazzupInTryavna.Web.ViewModels.Activities;
 
+    [Authorize]
     public class ActivitiesController : BaseController
     {
         private readonly ICategoryService categoryService;
@@ -24,7 +26,12 @@
 
         public IActionResult Index()
         {
-            return this.View();
+            var model = new ActivitiesListViewModel
+            {
+                Activities = this.activityService.GetAll<ActivityInListViewModel>(),
+            };
+
+            return this.View(model);
         }
 
         public IActionResult Add()
@@ -51,6 +58,11 @@
             this.TempData["AddedActivity"] = "Activity added successfully";
 
             return this.Redirect("/Activities/Index");
+        }
+
+        public IActionResult Details(int activityId)
+        {
+            return this.View();
         }
     }
 }

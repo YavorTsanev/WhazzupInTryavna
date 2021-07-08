@@ -1,4 +1,8 @@
-﻿namespace WhazzupInTryavna.Services.Data.Activity
+﻿using System.Collections.Generic;
+using System.Linq;
+using WhazzupInTryavna.Services.Mapping;
+
+namespace WhazzupInTryavna.Services.Data.Activity
 {
     using System.Threading.Tasks;
 
@@ -40,6 +44,11 @@
 
             await this.userActivityRepository.AddAsync(userActivity);
             await this.userActivityRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAll<T>()
+        {
+            return this.activityRepository.All().OrderByDescending(x => x.StartTime).To<T>().ToList();
         }
     }
 }
