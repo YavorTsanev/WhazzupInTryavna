@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using WhazzupInTryavna.Services.Mapping;
-
-namespace WhazzupInTryavna.Services.Data.Activity
+﻿namespace WhazzupInTryavna.Services.Data.Activity
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models.Activities;
+    using WhazzupInTryavna.Services.Mapping;
     using WhazzupInTryavna.Web.ViewModels.Activities;
 
     public class ActivityService : IActivityService
@@ -49,6 +48,11 @@ namespace WhazzupInTryavna.Services.Data.Activity
         public IEnumerable<T> GetAll<T>()
         {
             return this.activityRepository.All().OrderByDescending(x => x.StartTime).To<T>().ToList();
+        }
+
+        public T GetById<T>(int id)
+        {
+            return this.activityRepository.All().Where(x => x.Id == id).To<T>().FirstOrDefault();
         }
     }
 }

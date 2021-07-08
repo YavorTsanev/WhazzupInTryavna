@@ -12,5 +12,7 @@
        Task CreateAsync(string userid, ActivityAddViewModel model);
 
        IEnumerable<T> GetAll<T>();
+
+       T GetById<T>(int id);
     }
 }

@@ -60,9 +60,11 @@
             return this.Redirect("/Activities/Index");
         }
 
-        public IActionResult Details(int activityId)
+        public IActionResult Details(int id)
         {
-            return this.View();
+            var model = this.activityService.GetById<SingleActivityViewModel>(id);
+
+            return this.View(model);
         }
     }
 }
