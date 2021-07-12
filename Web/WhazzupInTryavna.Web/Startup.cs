@@ -1,5 +1,7 @@
 ﻿namespace WhazzupInTryavna.Web
 {
+    using MyRecipes.Services.Data.Vote;
+    using WhazzupInTryavna.Services.Data.Vote;
     using System.Reflection;
 
     using Microsoft.AspNetCore.Builder;
@@ -55,6 +57,10 @@
                     }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddAntiforgery(o =>
+            {
+                o.HeaderName = "X-CSRF-TOKEN";
+            });
 
             services.AddSingleton(this.configuration);
 
@@ -68,6 +74,7 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IActivityService, ActivityService>();
+            services.AddTransient<IVoteService, VoteService>();
 
             // Authentication
             services.AddAuthentication().AddFacebook(facebookOptions =>

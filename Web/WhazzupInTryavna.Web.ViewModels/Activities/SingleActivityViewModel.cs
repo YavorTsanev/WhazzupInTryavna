@@ -28,6 +28,8 @@
 
         public DateTime StartTime { get; set; }
 
+        public TimeSpan TimeLeft => this.StartTime.ToLocalTime() - DateTime.Now;
+
         public string AddedByUserUserName { get; set; }
 
         public int UserActivitiesCount { get; set; }
