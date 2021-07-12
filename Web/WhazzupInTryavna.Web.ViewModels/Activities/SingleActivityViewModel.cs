@@ -20,10 +20,6 @@
 
         public string CategoryName { get; set; }
 
-        public string AddedByUserId { get; set; }
-
-        public int CategoryActivitiesCount { get; set; }
-
         public string CategoryImage { get; set; }
 
         public string Description { get; set; }
@@ -31,8 +27,6 @@
         public string Location { get; set; }
 
         public DateTime StartTime { get; set; }
-
-        public TimeSpan TimeLeft => this.StartTime.ToLocalTime() - DateTime.Now;
 
         public string AddedByUserUserName { get; set; }
 

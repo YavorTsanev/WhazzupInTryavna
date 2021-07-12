@@ -1,10 +1,7 @@
 ﻿@model WhazzupInTryavna.Web.ViewModels.Activities.SingleActivityViewModel
 @using Microsoft.AspNetCore.Identity
-@using Microsoft.CodeAnalysis.CSharp.Syntax
 @using WhazzupInTryavna.Data.Models
 @inject UserManager<ApplicationUser> UserManager
-
-<partial name="_HeroNavMenu"/>
 
 @{ ViewData["Title"] = Model.Name; }
 <div class="single-recipe-layout1 text-center">
@@ -16,10 +13,7 @@
         <div class="text-center">
             <ul class="entry-meta">
                 <li class="single-meta">
-                    <i class="far fa-calendar-alt"></i>  Created on
-                    <span>
-                        @Model.CreatedOn
-                    </span>
+                    <i class="far fa-calendar-alt"></i> @Model.CreatedOn
                 </li>
                 <li class="single-meta">
                     <i class="fas fa-user"></i> by
@@ -52,7 +46,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="media-body space-sm">
-                            <div >lOCATION</div>
+                            <div >location</div>
                             <div class="feature-title"><strong>@Model.Location</strong></div>
                         </div>
                     </div>
@@ -78,19 +72,8 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="media-body space-sm">
-                            @if(Model.StartTime < DateTime.Now)
-                            {
-                                <div>
-                                    THE ACTIVITY ALREADY BEGUN
-                                </div>
-                            }
-                            @if (Model.StartTime > DateTime.Now)
-                            {
-                                <div>
-                                    REMAINING TIME UNTIL THE START
-                                </div>
-                            }   
-                            <div class="feature-title">@($"{Model.TimeLeft.Days}d {Model.TimeLeft.Hours}h {Model.TimeLeft.Minutes}m")</div>
+                            <div class="feature-title">SERVING</div>
+                            <div>!!!!!!!!!!!</div>
                         </div>
                     </div>
                 </div>
@@ -102,8 +85,8 @@
                             <i class="fa fa-list-ol"></i>
                         </div>
                         <div class="media-body space-sm">
-                            <div >ACTIVITIES IN  @Model.CategoryName.ToUpper() CATEGORY</div>
-                            <div class="feature-title">@Model.CategoryActivitiesCount</div>
+                            <div class="feature-title">CATEGORY RECIPES</div>
+                            <div>!!!!!!!!!!!!</div>
                         </div>
                     </div>
                 </div>
@@ -129,21 +112,29 @@
 
                 </div>
             </div>
-        </div>
-        <div class="text-left">
-            @if (this.UserManager.GetUserId(this.User) == Model.AddedByUserId)
-            {
-               <a class="btn btn-info" style="margin: 5px" asp-controller="" asp-action="" asp-route-id="@Model.Id">Edit</a>
-            }
+
+            <a class="btn btn-info" style="margin: 5px" asp-controller="" asp-action="" asp-route-id="@Model.Id">Edit</a>
             @if (User.IsInRole("Administrator"))
             {<!-- Button trigger modal -->
-                <button type="button" style="margin: 5px" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Delete</button>
-                <form method="post" asp-action="" asp-route-id="@Model.Id" id="del"></form>
-            }
+
+                                <button type="button" style="margin: 5px" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                    Delete
+                                </button>
+
+                                                <form method="post" asp-action="" asp-route-id="@Model.Id" id="del">
+                                                </form>}
+            <form method="post" id="SendEmail" asp-action="" asp-route-id="@Model.Id">
+                @if (User.Identity.IsAuthenticated)
+                {
+    <button class="btn btn-success" style="margin: 5px">
+        SendMeRecipe
+    </button>}
+            </form>
             <button class="btn btn-primary" style="margin: 5px" onclick="window.print()">Print</button>
         </div>
     </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
