@@ -59,5 +59,29 @@
         {
             return this.activityRepository.All().Any(x => x.Id == id);
         }
+
+        public async Task Join(int activityId, string userId)
+        {
+            var userActivity = new UserActivity
+            {
+                ActivityId = activityId,
+                UserId = userId,
+            };
+
+            await this.userActivityRepository.AddAsync(userActivity);
+            await this.activityRepository.SaveChangesAsync();
+        }
+
+        public async Task DisJoin(int activityId, string userId)
+        {
+            var userActivity = this.userActivityRepository.All()
+                .FirstOrDefault(x => x.ActivityId == activityId && x.UserId == userId);
+
+            if (userActivity != null)
+            {
+                this.userActivityRepository.Delete(userActivity);
+                await this.userActivityRepository.SaveChangesAsync();
+            }
+        }
     }
 }

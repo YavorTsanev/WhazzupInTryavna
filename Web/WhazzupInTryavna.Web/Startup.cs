@@ -1,7 +1,5 @@
 ﻿namespace WhazzupInTryavna.Web
 {
-    using MyRecipes.Services.Data.Vote;
-    using WhazzupInTryavna.Services.Data.Vote;
     using System.Reflection;
 
     using Microsoft.AspNetCore.Builder;
@@ -12,6 +10,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using MyRecipes.Services.Data.Vote;
     using WhazzupInTryavna.Data;
     using WhazzupInTryavna.Data.Common;
     using WhazzupInTryavna.Data.Common.Repositories;
@@ -21,6 +20,7 @@
     using WhazzupInTryavna.Services.Data;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
+    using WhazzupInTryavna.Services.Data.Vote;
     using WhazzupInTryavna.Services.Mapping;
     using WhazzupInTryavna.Services.Messaging;
     using WhazzupInTryavna.Web.ViewModels;

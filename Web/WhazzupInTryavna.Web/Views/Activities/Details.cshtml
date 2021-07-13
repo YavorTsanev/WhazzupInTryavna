@@ -15,7 +15,7 @@
         <div class="text-center">
             <ul class="entry-meta">
                 <li class="single-meta">
-                    <i class="far fa-calendar-alt"></i> @Model.CreatedOn
+                    <i class="far fa-calendar-alt"></i> create on @Model.CreatedOn.ToLocalTime()
                 </li>
                 <li class="single-meta">
                     <i class="fas fa-user"></i> by
@@ -48,8 +48,21 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="media-body space-sm">
-                            <div>location</div>
+                            <div>LOCATION</div>
                             <div class="feature-title"><strong>@Model.Location</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="feature-wrap">
+                    <div class="media">
+                        <div class="feature-icon">
+                            <i class="far fa-clock"></i>
+                        </div>
+                        <div class="media-body space-sm">
+                            <div>START TIME</div>
+                            <div class="feature-title"><strong>@Model.StartTime.ToString("dd - MMMM (dddd) HH:mm")</strong></div>
                         </div>
                     </div>
                 </div>
@@ -61,21 +74,19 @@
                             <i class="fas fa-hourglass-start"></i>
                         </div>
                         <div class="media-body space-sm">
-                            <div>START TIME</div>
-                            <div class="feature-title"><strong>@Model.StartTime.ToLocalTime().ToString("dd - MMMM (dddd) HH:mm")</strong></div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="feature-wrap">
-                    <div class="media">
-                        <div class="feature-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="media-body space-sm">
-                            <div class="feature-title">SERVING</div>
-                            <div>!!!!!!!!!!!</div>
+                            <div>
+                                @{
+                                    if (Model.StartTime > DateTime.Now)
+                                    {
+                                        @:TIME TO START
+                                    }
+                                    else
+                                    {
+                                        @:ACTIVITY ALREADY STARTED
+                                    }
+                                }
+                            </div>
+                            <div class="feature-title">@Model.TimeLeft.Days d @Model.TimeLeft.Hours h @Model.TimeLeft.Minutes m</div>
                         </div>
                     </div>
                 </div>
@@ -87,8 +98,8 @@
                             <i class="fa fa-list-ol"></i>
                         </div>
                         <div class="media-body space-sm">
-                            <div class="feature-title">CATEGORY RECIPES</div>
-                            <div>!!!!!!!!!!!!</div>
+                            <div >ACTIVITIES IN THIS CATEGORY</div>
+                            <div class="feature-title">@Model.CategoryActivitiesCount</div>
                         </div>
                     </div>
                 </div>
@@ -106,36 +117,34 @@
             <div class="col-md-6">
                 <div class="ingridients-wrap">
                     <div class="item-title"><i class="fas fa-list-ul"></i>Going</div>
-
-                    @foreach (var user in @Model.UsersInActivity)
-                    {
-                        <label class="item-title">@user.Name,</label>
-                    }
-
+                    <label class="item-title">@string.Join(", ", Model.UsersInActivity.Select(x => x.Name))</label>
                 </div>
-            </div>
-
-            <a class="btn btn-info" style="margin: 5px" asp-controller="" asp-action="" asp-route-id="@Model.Id">Edit</a>
-            @if (User.IsInRole("Administrator"))
-            {<!-- Button trigger modal -->
-
-                <button type="button" style="margin: 5px" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                    Delete
-                </button>
-
-                <form method="post" asp-action="" asp-route-id="@Model.Id" id="del">
-                </form>}
-            <form method="post" id="SendEmail" asp-action="" asp-route-id="@Model.Id">
-                @if (User.Identity.IsAuthenticated)
+                @if (Model.UsersInActivity.Any(x => x.Name == User.Identity.Name))
                 {
-                    <button class="btn btn-success" style="margin: 5px">
-                        SendMeRecipe
-                    </button>}
-            </form>
-            <button class="btn btn-primary" style="margin: 5px" onclick="window.print()">Print</button>
+                    <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="DisJoin" asp-route-id="@Model.Id">DISJOIN</a>
+                }
+                else
+                {
+                    <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="Join" asp-route-id="@Model.Id">JOIN</a>
+                }
+            </div>
         </div>
     </div>
 </div>
+
+<div class="container offset-2 col-3">
+    @if (Model.AddedByUserId == UserManager.GetUserId(User))
+    {
+        <a class="btn btn-info" style="margin: 5px" asp-controller="" asp-action="" asp-route-id="@Model.Id">Edit</a>
+        <button type="button" style="margin: 5px" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+            Delete
+        </button>
+        <form method="post" asp-action="" asp-route-id="@Model.Id" id="del">
+        </form>
+    }   
+    <button class="btn btn-primary" style="margin: 5px" onclick="window.print()">Print</button>
+</div>
+
 
 
 <!-- Modal -->

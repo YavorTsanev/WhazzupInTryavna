@@ -1,13 +1,13 @@
 ﻿namespace WhazzupInTryavna.Web.Controllers
 {
-    using WhazzupInTryavna.Services.Data.Vote;
-    using WhazzupInTryavna.Data.Models;
-    using WhazzupInTryavna.Web.ViewModels.Votes;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using WhazzupInTryavna.Data.Models;
+    using WhazzupInTryavna.Services.Data.Vote;
+    using WhazzupInTryavna.Web.ViewModels.Votes;
 
     [ApiController]
     [Route("api/[controller]")]

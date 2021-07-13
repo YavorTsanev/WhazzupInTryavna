@@ -14,5 +14,9 @@
        T GetById<T>(int id);
 
        bool IsIdExist(int id);
+
+       Task Join(int activityId, string userId);
+
+       Task DisJoin(int activityId, string userId);
     }
 }

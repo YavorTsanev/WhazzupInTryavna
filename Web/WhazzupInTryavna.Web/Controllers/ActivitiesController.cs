@@ -1,4 +1,6 @@
-﻿using WhazzupInTryavna.Web.Filters;
+﻿using System.Linq;
+using WhazzupInTryavna.Data.Common.Repositories;
+using WhazzupInTryavna.Data.Models.Activities;
 
 namespace WhazzupInTryavna.Web.Controllers
 {
@@ -10,6 +12,7 @@ namespace WhazzupInTryavna.Web.Controllers
     using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
+    using WhazzupInTryavna.Web.Filters;
     using WhazzupInTryavna.Web.ViewModels.Activities;
 
     [Authorize]
@@ -18,12 +21,14 @@ namespace WhazzupInTryavna.Web.Controllers
         private readonly ICategoryService categoryService;
         private readonly IActivityService activityService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IDeletableEntityRepository<UserActivity> userActivityRepository;
 
-        public ActivitiesController(ICategoryService categoryService, IActivityService activityService, UserManager<ApplicationUser> userManager)
+        public ActivitiesController(ICategoryService categoryService, IActivityService activityService, UserManager<ApplicationUser> userManager, IDeletableEntityRepository<UserActivity> userActivityRepository)
         {
             this.categoryService = categoryService;
             this.activityService = activityService;
             this.userManager = userManager;
+            this.userActivityRepository = userActivityRepository;
         }
 
         public IActionResult Index()
@@ -53,7 +58,7 @@ namespace WhazzupInTryavna.Web.Controllers
                 return this.View(model);
             }
 
-            var userid = this.userManager.GetUserId(this.User);
+            var userid = this.GetUserId();
 
             await this.activityService.CreateAsync(userid, model);
 
@@ -68,6 +73,34 @@ namespace WhazzupInTryavna.Web.Controllers
             var model = this.activityService.GetById<SingleActivityViewModel>(id);
 
             return this.View(model);
+        }
+
+        public async Task<IActionResult> Join(int id)
+        {
+            var userId = this.GetUserId();
+
+            if (this.userActivityRepository.All().Any(x => x.ActivityId == id && x.UserId == userId))
+            {
+                return this.RedirectToAction("Index");
+            }
+
+            await this.activityService.Join(id, userId);
+
+            return this.RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DisJoin(int id)
+        {
+            var userId = this.GetUserId();
+
+            await this.activityService.DisJoin(id, userId);
+
+            return this.RedirectToAction("Index");
+        }
+
+        private string GetUserId()
+        {
+            return this.userManager.GetUserId(this.User);
         }
     }
 }

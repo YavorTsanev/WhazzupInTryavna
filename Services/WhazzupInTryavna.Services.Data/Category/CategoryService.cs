@@ -5,7 +5,9 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Identity;
     using WhazzupInTryavna.Data.Common.Repositories;
+    using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Mapping;
     using WhazzupInTryavna.Web.ViewModels.Administration.Category;
