@@ -11,12 +11,16 @@
 
        IEnumerable<T> GetAll<T>();
 
-       T GetById<T>(int id);
+       T GetById<T>(int activityId);
 
-       bool IsIdExist(int id);
+       bool IsIdExist(int activityId);
 
        Task Join(int activityId, string userId);
 
        Task DisJoin(int activityId, string userId);
+
+       Task UpdateAsync(int activityId, ActivityEditViewModel model);
+
+       Task Delete(int activityId);
     }
 }

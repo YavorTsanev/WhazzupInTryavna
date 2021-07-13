@@ -50,14 +50,14 @@
             return this.activityRepository.All().OrderByDescending(x => x.StartTime).To<T>().ToList();
         }
 
-        public T GetById<T>(int id)
+        public T GetById<T>(int activityId)
         {
-            return this.activityRepository.All().Where(x => x.Id == id).To<T>().FirstOrDefault();
+            return this.activityRepository.All().Where(x => x.Id == activityId).To<T>().FirstOrDefault();
         }
 
-        public bool IsIdExist(int id)
+        public bool IsIdExist(int activityId)
         {
-            return this.activityRepository.All().Any(x => x.Id == id);
+            return this.activityRepository.All().Any(x => x.Id == activityId);
         }
 
         public async Task Join(int activityId, string userId)
@@ -82,6 +82,31 @@
                 this.userActivityRepository.Delete(userActivity);
                 await this.userActivityRepository.SaveChangesAsync();
             }
+        }
+
+        public async Task UpdateAsync(int activityId, ActivityEditViewModel model)
+        {
+            var activity = this.GetActivityById(activityId);
+
+            activity.StartTime = model.StartTime;
+            activity.CategoryId = model.CategoryId;
+            activity.Description = model.Description;
+            activity.Location = model.Location;
+            activity.Name = model.Name;
+            await this.activityRepository.SaveChangesAsync();
+        }
+
+        public async Task Delete(int activityId)
+        {
+            var activity = this.GetActivityById(activityId);
+
+            this.activityRepository.Delete(activity);
+            await this.activityRepository.SaveChangesAsync();
+        }
+
+        private Activity GetActivityById(int id)
+        {
+            return this.activityRepository.All().FirstOrDefault(x => x.Id == id);
         }
     }
 }

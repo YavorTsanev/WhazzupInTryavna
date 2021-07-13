@@ -1,5 +1,4 @@
-﻿
-namespace WhazzupInTryavna.Data.Models.Activities
+﻿namespace WhazzupInTryavna.Data.Models.Activities
 {
     using WhazzupInTryavna.Data.Common.Models;
 

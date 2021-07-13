@@ -3,7 +3,12 @@
 @using WhazzupInTryavna.Data.Models
 @inject UserManager<ApplicationUser> UserManager
 
-<partial name="_HeroNavMenu"/>
+@if (TempData.ContainsKey("UpdatedActivity"))
+{
+    <div id="succsesAlert" class="alert alert-success">@this.TempData["UpdatedActivity"]</div>
+}
+
+<partial name="_HeroNavMenu" />
 
 @{ ViewData["Title"] = Model.Name; }
 <div class="single-recipe-layout1 text-center">
@@ -98,7 +103,7 @@
                             <i class="fa fa-list-ol"></i>
                         </div>
                         <div class="media-body space-sm">
-                            <div >ACTIVITIES IN THIS CATEGORY</div>
+                            <div>ACTIVITIES IN THIS CATEGORY</div>
                             <div class="feature-title">@Model.CategoryActivitiesCount</div>
                         </div>
                     </div>
@@ -135,26 +140,26 @@
 <div class="container offset-2 col-3">
     @if (Model.AddedByUserId == UserManager.GetUserId(User))
     {
-        <a class="btn btn-info" style="margin: 5px" asp-controller="" asp-action="" asp-route-id="@Model.Id">Edit</a>
+        <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
         <button type="button" style="margin: 5px" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
             Delete
         </button>
-        <form method="post" asp-action="" asp-route-id="@Model.Id" id="del">
+        <form method="post" asp-action="Delete" asp-route-id="@Model.Id" id="del">
         </form>
-    }   
+    }
     <button class="btn btn-primary" style="margin: 5px" onclick="window.print()">Print</button>
 </div>
 
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hactivityIdden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hactivityIdden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body text-center">
@@ -241,6 +246,10 @@
                 .replace(/>/g, "&gt;")
                 .replace(/"/g, "&quot;")
                 .replace(/'/g, "&#039;");
-        }</script>
-
+        }
+    </script>
+    <script>
+        let el = document.getElementById("succsesAlert");
+        setTimeout(function () { el.hidden = true }, 3000)
+    </script>
 }

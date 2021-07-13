@@ -2,11 +2,12 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Mapping;
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 
-    public class CategoryAddViewModel : IMapFrom<Data.Models.Activities.Category>
+    public class CategoryAddViewModel : IMapFrom<Category>
     {
         [Required]
         [MinLength(CategoryNameMinLength)]

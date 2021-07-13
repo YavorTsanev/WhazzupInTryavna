@@ -3,10 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     using AutoMapper;
-    using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Mapping;
 

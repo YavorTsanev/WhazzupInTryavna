@@ -11,13 +11,13 @@
 
         ICollection<T> GetAll<T>();
 
-        T GetById<T>(int id);
+        T GetById<T>(int categoryId);
 
-        Task UpdateById(int id, CategoryEditViewModel editViewModel);
+        Task UpdateById(int categoryId, CategoryEditViewModel editViewModel);
 
-        Task Delete(int id);
+        Task Delete(int categoryId);
 
-        bool IsIdExist(int id);
+        bool IsIdExist(int categoryId);
 
         IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
     }

@@ -5,9 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Identity;
     using WhazzupInTryavna.Data.Common.Repositories;
-    using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Mapping;
     using WhazzupInTryavna.Web.ViewModels.Administration.Category;
@@ -39,40 +37,40 @@
             return this.categoryRepository.All().To<T>().ToList();
         }
 
-        public T GetById<T>(int id)
+        public T GetById<T>(int categoryId)
         {
-            return this.categoryRepository.All().Where(x => x.Id == id).To<T>().FirstOrDefault();
+            return this.categoryRepository.All().Where(x => x.Id == categoryId).To<T>().FirstOrDefault();
         }
 
-        public async Task UpdateById(int id, CategoryEditViewModel editViewModel)
+        public async Task UpdateById(int categoryId, CategoryEditViewModel editViewModel)
         {
-            var category = this.GetById(id);
+            var category = this.GetById(categoryId);
             category.Image = editViewModel.Image;
             category.Name = editViewModel.Name;
             await this.categoryRepository.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int categoryId)
         {
-            var category = this.GetById(id);
+            var category = this.GetById(categoryId);
             this.categoryRepository.Delete(category);
             await this.categoryRepository.SaveChangesAsync();
         }
 
-        public bool IsIdExist(int id)
+        public bool IsIdExist(int categoryId)
         {
-            return this.categoryRepository.All().Any(x => x.Id == id);
+            return this.categoryRepository.All().Any(x => x.Id == categoryId);
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
         {
-            return this.categoryRepository.All().Select(x => new {x.Id, x.Name}).OrderBy(x => x.Name).ToList()
+            return this.categoryRepository.All().Select(x => new { x.Id, x.Name }).OrderBy(x => x.Name).ToList()
                 .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
 
-        private Category GetById(int id)
+        private Category GetById(int categoryId)
         {
-           return this.categoryRepository.All().FirstOrDefault(x => x.Id == id);
+            return this.categoryRepository.All().FirstOrDefault(x => x.Id == categoryId);
         }
     }
 }

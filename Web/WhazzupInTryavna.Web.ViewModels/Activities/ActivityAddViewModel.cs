@@ -28,8 +28,6 @@
         [DisplayName("Start Time")]
         public DateTime StartTime { get; set; }
 
-        public string AddedByUserId { get; set; }
-
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
     }
 }

@@ -16,6 +16,5 @@
         public string Image { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
-
     }
 }

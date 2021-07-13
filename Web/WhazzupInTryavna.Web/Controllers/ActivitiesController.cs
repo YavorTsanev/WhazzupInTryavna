@@ -52,6 +52,11 @@ namespace WhazzupInTryavna.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ActivityAddViewModel model)
         {
+            if (!this.categoryService.IsIdExist(model.CategoryId))
+            {
+                this.ModelState.AddModelError(nameof(model.CategoryId), "Category don't exist");
+            }
+
             if (!this.ModelState.IsValid)
             {
                 model.CategoriesItems = this.categoryService.GetAllAsKeyValuePairs();
@@ -75,25 +80,66 @@ namespace WhazzupInTryavna.Web.Controllers
             return this.View(model);
         }
 
+        [CheckActivityId]
         public async Task<IActionResult> Join(int id)
         {
             var userId = this.GetUserId();
 
             if (this.userActivityRepository.All().Any(x => x.ActivityId == id && x.UserId == userId))
             {
-                return this.RedirectToAction("Index");
+                return this.RedirectToAction("Details", new { id });
             }
 
             await this.activityService.Join(id, userId);
 
-            return this.RedirectToAction("Index");
+            return this.RedirectToAction("Details", new { id });
         }
 
+        [CheckActivityId]
         public async Task<IActionResult> DisJoin(int id)
         {
             var userId = this.GetUserId();
 
             await this.activityService.DisJoin(id, userId);
+
+            return this.RedirectToAction("Details", new { id });
+        }
+
+        [CheckActivityId]
+        public IActionResult Edit(int id)
+        {
+            var model = this.activityService.GetById<ActivityEditViewModel>(id);
+            model.CategoriesItems = this.categoryService.GetAllAsKeyValuePairs();
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [CheckActivityId]
+        public async Task<IActionResult> Edit(int id, ActivityEditViewModel model)
+        {
+            if (!this.categoryService.IsIdExist(model.CategoryId))
+            {
+                this.ModelState.AddModelError(nameof(model.CategoryId), "Category don't exist");
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                model.CategoriesItems = this.categoryService.GetAllAsKeyValuePairs();
+                return this.View(model);
+            }
+
+            await this.activityService.UpdateAsync(id, model);
+
+            this.TempData["UpdatedActivity"] = "Activity updated successfully";
+
+            return this.RedirectToAction("Details", new { id });
+        }
+
+        [CheckActivityId]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.activityService.Delete(id);
 
             return this.RedirectToAction("Index");
         }
