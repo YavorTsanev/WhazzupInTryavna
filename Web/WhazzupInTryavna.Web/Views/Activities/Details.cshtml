@@ -3,6 +3,8 @@
 @using WhazzupInTryavna.Data.Models
 @inject UserManager<ApplicationUser> UserManager
 
+<partial name="_HeroNavMenu"/>
+
 @{ ViewData["Title"] = Model.Name; }
 <div class="single-recipe-layout1 text-center">
     <div class="ctg-name">@Model.CategoryName</div>

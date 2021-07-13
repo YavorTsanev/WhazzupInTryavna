@@ -54,5 +54,10 @@
         {
             return this.activityRepository.All().Where(x => x.Id == id).To<T>().FirstOrDefault();
         }
+
+        public bool IsIdExist(int id)
+        {
+            return this.activityRepository.All().Any(x => x.Id == id);
+        }
     }
 }

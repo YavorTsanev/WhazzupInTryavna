@@ -1,8 +1,6 @@
 ﻿namespace WhazzupInTryavna.Services.Data.Activity
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
     using System.Threading.Tasks;
 
     using WhazzupInTryavna.Web.ViewModels.Activities;
@@ -14,5 +12,7 @@
        IEnumerable<T> GetAll<T>();
 
        T GetById<T>(int id);
+
+       bool IsIdExist(int id);
     }
 }

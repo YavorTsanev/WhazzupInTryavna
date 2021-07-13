@@ -1,4 +1,6 @@
-﻿namespace WhazzupInTryavna.Web.Controllers
+﻿using WhazzupInTryavna.Web.Filters;
+
+namespace WhazzupInTryavna.Web.Controllers
 {
     using System.Threading.Tasks;
 
@@ -60,6 +62,7 @@
             return this.Redirect("/Activities/Index");
         }
 
+        [CheckActivityId]
         public IActionResult Details(int id)
         {
             var model = this.activityService.GetById<SingleActivityViewModel>(id);
