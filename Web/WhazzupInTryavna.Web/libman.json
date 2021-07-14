@@ -40,6 +40,11 @@
       "provider": "cdnjs",
       "library": "font-awesome@5.15.3",
       "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "microsoft-signalr@5.0.7",
+      "destination": "wwwroot/lib/microsoft-signalr/"
     }
   ]
 }

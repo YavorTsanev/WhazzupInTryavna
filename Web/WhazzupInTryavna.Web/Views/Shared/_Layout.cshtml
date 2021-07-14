@@ -7,9 +7,9 @@
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    <link href="~/css/style.css" rel="stylesheet" asp-append-version="true"/>
+    <link href="~/css/style.css" rel="stylesheet" asp-append-version="true" />
     <link href="~/assets/css/style.css" rel="stylesheet" asp-append-version="true" />
-    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" asp-append-version="true"/>
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" asp-append-version="true" />
 
     <!-- Vendor CSS Files -->
     <link href="~/assets/vendor/aos/aos.css" rel="stylesheet" asp-append-version="true">
@@ -51,7 +51,7 @@
     </div>
 
     <footer class="fixed-bottom">
-        <div >
+        <div>
             &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
@@ -60,7 +60,6 @@
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>
-    @await this.RenderSectionAsync("Scripts", required: false)
     <script src="~/assets/js/main.js"></script>
 
     <!-- Vendor JS Files -->
@@ -73,8 +72,10 @@
     <script src="~/assets/vendor/swiper/swiper-bundle.min.js" asp-append-version="true"></script>
     <script src="~/assets/vendor/typed.js/typed.min.js" asp-append-version="true"></script>
     <script src="~/assets/vendor/waypoints/noframework.waypoints.js" asp-append-version="true"></script>
-    <script src="~/js/custom.js"></script>
+    <script src="~/js/custom.js" asp-append-version="true"></script>
+    <script src="~/lib/microsoft-signalr/signalr.min.js" asp-append-version="true"></script>
     <!-- Template Main JS File -->
     <script src="~/assets/js/main.js" asp-append-version="true"></script>
+    @await this.RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,4 +1,6 @@
-﻿namespace WhazzupInTryavna.Web
+﻿using WhazzupInTryavna.Web.Hubs;
+
+namespace WhazzupInTryavna.Web
 {
     using System.Reflection;
 
@@ -50,6 +52,7 @@
                         options.MinimumSameSitePolicy = SameSiteMode.None;
                     });
 
+            services.AddSignalR();
             services.AddControllersWithViews(
                 options =>
                     {
@@ -120,6 +123,7 @@
             app.UseEndpoints(
                 endpoints =>
                     {
+                        endpoints.MapHub<ChatHub>("/chat");
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();
