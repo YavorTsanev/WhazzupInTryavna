@@ -20,5 +20,7 @@
         bool IsIdExist(int categoryId);
 
         IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
+
+        IEnumerable<string> GetAllCategoryNames();
     }
 }

@@ -45,9 +45,16 @@
             await this.userActivityRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>()
+        public IEnumerable<T> GetAll<T>(string category)
         {
-            return this.activityRepository.All().OrderByDescending(x => x.StartTime).To<T>().ToList();
+            var query = this.activityRepository.All();
+
+            if (category != "All")
+            {
+                query = query.Where(x => x.Category.Name == category);
+            }
+
+            return query.To<T>().ToList();
         }
 
         public T GetById<T>(int activityId)

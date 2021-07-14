@@ -138,7 +138,7 @@
                 </div>
                 @if (Model.AddedByUserId == UserManager.GetUserId(User))
                 {
-                    <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                    <a class="btn btn-info " style="margin: 5px" asp-controller="Activities" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
                     <button type="button" style="margin: 5px" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                         Delete
                     </button>

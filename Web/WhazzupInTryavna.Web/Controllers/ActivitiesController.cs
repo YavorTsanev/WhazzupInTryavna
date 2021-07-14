@@ -31,11 +31,12 @@ namespace WhazzupInTryavna.Web.Controllers
             this.userActivityRepository = userActivityRepository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string category)
         {
             var model = new ActivitiesListViewModel
             {
-                Activities = this.activityService.GetAll<ActivityInListViewModel>(),
+                Categories = this.categoryService.GetAllCategoryNames(),
+                Activities = this.activityService.GetAll<ActivityInListViewModel>(category),
             };
 
             return this.View(model);
