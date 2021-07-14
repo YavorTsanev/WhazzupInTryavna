@@ -49,7 +49,7 @@
         {
             var query = this.activityRepository.All();
 
-            if (category != "All")
+            if (category != "All" && category != null)
             {
                 query = query.Where(x => x.Category.Name == category);
             }

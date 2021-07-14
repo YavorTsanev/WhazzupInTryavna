@@ -70,8 +70,8 @@
 
         public IEnumerable<string> GetAllCategoryNames()
         {
-            var result =  this.categoryRepository.All().Select(x => x.Name).OrderBy(x => x).ToList();
-            result.Add("All");
+            var result = this.categoryRepository.All().Select(x => x.Name).OrderBy(x => x).ToList();
+            result.Insert(0, "All");
             return result;
         }
 
