@@ -45,7 +45,7 @@
             await this.userActivityRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(string category)
+        public IEnumerable<T> GetAll<T>(string category, string participants, string userId)
         {
             var query = this.activityRepository.All();
 
@@ -53,6 +53,15 @@
             {
                 query = query.Where(x => x.Category.Name == category);
             }
+
+            query = participants switch
+            {
+                "All" => query,
+                "My activities" => query.Where(x => x.UserActivities.Any(a => a.UserId == userId)),
+                "With the less participants" => query.OrderBy(x => x.UserActivities.Count),
+                "With the most participants" => query.OrderByDescending(x => x.UserActivities.Count),
+                _ => this.activityRepository.All(),
+            };
 
             return query.To<T>().ToList();
         }

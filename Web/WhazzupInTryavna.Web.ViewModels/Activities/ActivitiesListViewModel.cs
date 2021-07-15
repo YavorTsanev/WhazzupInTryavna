@@ -4,6 +4,8 @@
 
     public class ActivitiesListViewModel
     {
+        public string Participants { get; set; }
+
         public string Category { get; set; }
 
         public IEnumerable<string> Categories { get; set; }
