@@ -1,0 +1,93 @@
+﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
+@model WhazzupInTryavna.Web.ViewModels.Administration.Activities.ActivityAdminListingViewModel;
+@{
+    ViewData["Title"] = "Activities Administration";
+}
+
+@if (TempData.ContainsKey("AdminUpdatedActivity"))
+{
+<div id="adminSuccsesAlert" class="alert alert-success">@this.TempData["AdminUpdatedActivity"]</div>
+}
+
+<partial name="_HeroNavMenu" />
+
+<h1 class="text-center">Activities Administration</h1>
+
+<table class="table table-bordered table-hover">
+    @if (Model.Activities.Any())
+    {
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Category Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Start Time
+            </th>
+            <th>
+                Added by user
+            </th>
+            <th>
+                Joined users
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    }
+    <tbody>
+        @foreach (var item in Model.Activities)
+        {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.CategoryName
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                @item.Location
+            </td>
+            <td>
+                @if (item.StartTime > DateTime.Now)
+                {
+                @item.StartTime@: (not started)
+                }
+                else
+                {
+                @item.StartTime@: (started)
+                }
+            </td>
+            <td>
+                @item.AddedByUserUserName
+            </td>
+            <td>
+                @item.UserActivitiesCount
+            </td>
+            <td>
+                <div class="text-center">
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<!--Alert-->
+<script>
+    let el = document.getElementById("adminSuccsesAlert");
+    setTimeout(function () { el.hidden = true }, 3000)
+</script>

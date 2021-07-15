@@ -10,16 +10,16 @@
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Data.Category;
     using WhazzupInTryavna.Web.Controllers;
-    using WhazzupInTryavna.Web.ViewModels.Administration.Category;
+    using ViewModels.Administration.Categories;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     [Area("Administration")]
-    public class CategoryController : BaseController
+    public class CategoriesController : BaseController
     {
         private readonly ICategoryService categoryService;
         private readonly IDeletableEntityRepository<Category> categoryRepository;
 
-        public CategoryController(ICategoryService categoryService, IDeletableEntityRepository<Category> categoryRepository)
+        public CategoriesController(ICategoryService categoryService, IDeletableEntityRepository<Category> categoryRepository)
         {
             this.categoryService = categoryService;
             this.categoryRepository = categoryRepository;
@@ -51,7 +51,7 @@
 
         public IActionResult All()
         {
-            var categories = new CategoryListViewModel
+            var categories = new CategoryListingViewModel
             {
                 Categories = this.categoryService.GetAll<CategoryInListViewModel>(),
             };
@@ -75,7 +75,7 @@
                 return this.View(model);
             }
 
-            await this.categoryService.UpdateById(id, model);
+            await this.categoryService.UpdateByIdAsync(id, model);
 
             return this.RedirectToAction("All");
         }
@@ -83,7 +83,7 @@
         [CheckCategoryId]
         public async Task<IActionResult> Delete(int id)
         {
-            await this.categoryService.Delete(id);
+            await this.categoryService.DeleteAsync(id);
             return this.RedirectToAction("All");
         }
     }

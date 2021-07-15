@@ -1,11 +1,10 @@
-﻿namespace MyRecipes.Services.Data.Vote
+﻿namespace WhazzupInTryavna.Services.Data.Vote
 {
     using System.Linq;
     using System.Threading.Tasks;
 
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models.Activities;
-    using WhazzupInTryavna.Services.Data.Vote;
 
     public class VoteService : IVoteService
     {

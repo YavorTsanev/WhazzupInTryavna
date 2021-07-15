@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using WhazzupInTryavna.Web.ViewModels.Administration.Category;
+    using Web.ViewModels.Administration.Categories;
 
     public interface ICategoryService
     {
@@ -13,9 +13,9 @@
 
         T GetById<T>(int categoryId);
 
-        Task UpdateById(int categoryId, CategoryEditViewModel editViewModel);
+        Task UpdateByIdAsync(int categoryId, CategoryEditViewModel editViewModel);
 
-        Task Delete(int categoryId);
+        Task DeleteAsync(int categoryId);
 
         bool IsIdExist(int categoryId);
 

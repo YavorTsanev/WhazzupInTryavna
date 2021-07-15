@@ -1,4 +1,4 @@
-﻿namespace WhazzupInTryavna.Web.ViewModels.Administration.Category
+﻿namespace WhazzupInTryavna.Web.ViewModels.Administration.Categories
 {
     using System.ComponentModel.DataAnnotations;
 
@@ -15,7 +15,7 @@
         public string Name { get; set; }
 
         [Required]
-        [RegularExpression(CategoryImageRegEx, ErrorMessage = "Only Image files allowed.")]
+        [RegularExpression(CategoryImageRegEx, ErrorMessage = AllowedExtensionError)]
         public string Image { get; set; }
     }
 }

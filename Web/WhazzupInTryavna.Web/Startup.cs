@@ -10,7 +10,6 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using MyRecipes.Services.Data.Vote;
     using WhazzupInTryavna.Data;
     using WhazzupInTryavna.Data.Common;
     using WhazzupInTryavna.Data.Common.Repositories;

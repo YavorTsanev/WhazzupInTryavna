@@ -13,15 +13,13 @@
         //// Category
         public const int CategoryNameMinLength = 3;
         public const int CategoryNameMaxLength = 30;
-        public const string CategoryImageRegEx =
-            @"(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?";
+        public const string CategoryImageRegEx = @"(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpeg|jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?";
+        public const string AllowedExtensionError = "Only Image files allowed with extensions jpeg, jpg, gif, png!";
 
         ////Activity
         public const int ActivityNameMinLength = 3;
         public const int ActivityNameMaxLength = 40;
         public const int ActivityLocationMinLength = 4;
         public const int ActivityLocationMaxLength = 40;
-
-
     }
 }

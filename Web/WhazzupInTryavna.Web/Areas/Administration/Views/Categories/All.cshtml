@@ -1,12 +1,14 @@
 ﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
-@model WhazzupInTryavna.Web.ViewModels.Administration.Category.CategoryListViewModel;
+@model WhazzupInTryavna.Web.ViewModels.Administration.Categories.CategoryListingViewModel;
 @{
-    ViewData["Title"] = "Category Administration";
+    ViewData["Title"] = "Categories Administration";
 }
 <partial name="_HeroNavMenu" />
 
+<h1 class="text-center">Categories Administration</h1>
+
 <div class="card-body text-center">
-    <a class="btn btn-info" asp-area="Administration" asp-controller="Category" asp-action="Add">Add Category</a>
+    <a class="btn btn-info" asp-area="Administration" asp-controller="Categories" asp-action="Add">Add Category</a>
 </div>
 
 <table class="table table-bordered table-hover">

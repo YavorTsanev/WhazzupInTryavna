@@ -1,4 +1,4 @@
-﻿namespace WhazzupInTryavna.Web.ViewModels.Administration.Category
+﻿namespace WhazzupInTryavna.Web.ViewModels.Administration.Categories
 {
     using System.ComponentModel.DataAnnotations;
 

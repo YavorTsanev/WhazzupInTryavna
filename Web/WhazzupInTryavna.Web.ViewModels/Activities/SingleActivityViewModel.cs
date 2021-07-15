@@ -38,7 +38,7 @@
 
         public double AvgVote { get; set; }
 
-        public IEnumerable<UsersInActivity> UsersInActivity { get; set; }
+        public IEnumerable<UsersInActivityViewModel> UsersInActivity { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {

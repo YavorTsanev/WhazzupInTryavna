@@ -34,7 +34,7 @@
         {
             var userId = this.GetUserId();
 
-            var model = new ActivitiesListViewModel
+            var model = new ActivityListingViewModel
             {
                 Categories = this.categoryService.GetAllCategoryNames(),
                 Activities = this.activityService.GetAll<ActivityInListViewModel>(category, participants, userId, timeToStart),
@@ -92,7 +92,7 @@
                 return this.RedirectToAction("Details", new { id });
             }
 
-            await this.activityService.Join(id, userId);
+            await this.activityService.JoinAsync(id, userId);
 
             return this.RedirectToAction("Details", new { id });
         }
@@ -102,7 +102,7 @@
         {
             var userId = this.GetUserId();
 
-            await this.activityService.DisJoin(id, userId);
+            await this.activityService.DisJoinAsync(id, userId);
 
             return this.RedirectToAction("Details", new { id });
         }
@@ -141,7 +141,7 @@
         [CheckActivityId]
         public async Task<IActionResult> Delete(int id)
         {
-            await this.activityService.Delete(id);
+            await this.activityService.DeleteAsync(id);
 
             return this.RedirectToAction("Index");
         }

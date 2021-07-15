@@ -8,7 +8,7 @@
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Mapping;
-    using WhazzupInTryavna.Web.ViewModels.Administration.Category;
+    using Web.ViewModels.Administration.Categories;
 
     public class CategoryService : ICategoryService
     {
@@ -17,6 +17,23 @@
         public CategoryService(IDeletableEntityRepository<Category> categoryRepository)
         {
             this.categoryRepository = categoryRepository;
+        }
+
+        public ICollection<T> GetAll<T>()
+        {
+            return this.categoryRepository.All().To<T>().ToList();
+        }
+
+        public IEnumerable<string> GetAllCategoryNames()
+        {
+            var result = this.categoryRepository.All().Select(x => x.Name).OrderBy(x => x).ToList();
+            result.Insert(0, "All");
+            return result;
+        }
+
+        public T GetById<T>(int categoryId)
+        {
+            return this.categoryRepository.All().Where(x => x.Id == categoryId).To<T>().FirstOrDefault();
         }
 
         public async Task AddAsync(CategoryAddViewModel model)
@@ -32,17 +49,7 @@
             await this.categoryRepository.SaveChangesAsync();
         }
 
-        public ICollection<T> GetAll<T>()
-        {
-            return this.categoryRepository.All().To<T>().ToList();
-        }
-
-        public T GetById<T>(int categoryId)
-        {
-            return this.categoryRepository.All().Where(x => x.Id == categoryId).To<T>().FirstOrDefault();
-        }
-
-        public async Task UpdateById(int categoryId, CategoryEditViewModel editViewModel)
+        public async Task UpdateByIdAsync(int categoryId, CategoryEditViewModel editViewModel)
         {
             var category = this.GetById(categoryId);
             category.Image = editViewModel.Image;
@@ -50,7 +57,7 @@
             await this.categoryRepository.SaveChangesAsync();
         }
 
-        public async Task Delete(int categoryId)
+        public async Task DeleteAsync(int categoryId)
         {
             var category = this.GetById(categoryId);
             this.categoryRepository.Delete(category);
@@ -66,13 +73,6 @@
         {
             return this.categoryRepository.All().Select(x => new { x.Id, x.Name }).OrderBy(x => x.Name).ToList()
                 .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
-        }
-
-        public IEnumerable<string> GetAllCategoryNames()
-        {
-            var result = this.categoryRepository.All().Select(x => x.Name).OrderBy(x => x).ToList();
-            result.Insert(0, "All");
-            return result;
         }
 
         private Category GetById(int categoryId)

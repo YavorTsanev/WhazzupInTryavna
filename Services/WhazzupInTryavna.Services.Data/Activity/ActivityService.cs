@@ -21,29 +21,9 @@
             this.userActivityRepository = userActivityRepository;
         }
 
-        public async Task CreateAsync(string userid, ActivityAddViewModel model)
+        public IEnumerable<T> GetAll<T>()
         {
-            var activity = new Activity
-            {
-                CategoryId = model.CategoryId,
-                AddedByUserId = userid,
-                Description = model.Description,
-                Location = model.Location,
-                Name = model.Name,
-                StartTime = model.StartTime,
-            };
-
-            await this.activityRepository.AddAsync(activity);
-            await this.activityRepository.SaveChangesAsync();
-
-            var userActivity = new UserActivity
-            {
-                UserId = userid,
-                Activity = activity,
-            };
-
-            await this.userActivityRepository.AddAsync(userActivity);
-            await this.userActivityRepository.SaveChangesAsync();
+            return this.activityRepository.All().To<T>();
         }
 
         public IEnumerable<T> GetAll<T>(string category, string participants, string userId, string timeToStart)
@@ -75,38 +55,37 @@
             return query.To<T>().ToList();
         }
 
-        public T GetById<T>(int activityId)
+        public async Task CreateAsync(string userid, ActivityAddViewModel model)
         {
-            return this.activityRepository.All().Where(x => x.Id == activityId).To<T>().FirstOrDefault();
-        }
+            var activity = new Activity
+            {
+                CategoryId = model.CategoryId,
+                AddedByUserId = userid,
+                Description = model.Description,
+                Location = model.Location,
+                Name = model.Name,
+                StartTime = model.StartTime,
+            };
 
-        public bool IsIdExist(int activityId)
-        {
-            return this.activityRepository.All().Any(x => x.Id == activityId);
-        }
+            await this.activityRepository.AddAsync(activity);
+            await this.activityRepository.SaveChangesAsync();
 
-        public async Task Join(int activityId, string userId)
-        {
             var userActivity = new UserActivity
             {
-                ActivityId = activityId,
-                UserId = userId,
+                UserId = userid,
+                Activity = activity,
             };
 
             await this.userActivityRepository.AddAsync(userActivity);
-            await this.activityRepository.SaveChangesAsync();
+            await this.userActivityRepository.SaveChangesAsync();
         }
 
-        public async Task DisJoin(int activityId, string userId)
+        public async Task DeleteAsync(int activityId)
         {
-            var userActivity = this.userActivityRepository.All()
-                .FirstOrDefault(x => x.ActivityId == activityId && x.UserId == userId);
+            var activity = this.GetActivityById(activityId);
 
-            if (userActivity != null)
-            {
-                this.userActivityRepository.Delete(userActivity);
-                await this.userActivityRepository.SaveChangesAsync();
-            }
+            this.activityRepository.Delete(activity);
+            await this.activityRepository.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(int activityId, ActivityEditViewModel model)
@@ -121,12 +100,38 @@
             await this.activityRepository.SaveChangesAsync();
         }
 
-        public async Task Delete(int activityId)
+        public async Task JoinAsync(int activityId, string userId)
         {
-            var activity = this.GetActivityById(activityId);
+            var userActivity = new UserActivity
+            {
+                ActivityId = activityId,
+                UserId = userId,
+            };
 
-            this.activityRepository.Delete(activity);
+            await this.userActivityRepository.AddAsync(userActivity);
             await this.activityRepository.SaveChangesAsync();
+        }
+
+        public async Task DisJoinAsync(int activityId, string userId)
+        {
+            var userActivity = this.userActivityRepository.All()
+                .FirstOrDefault(x => x.ActivityId == activityId && x.UserId == userId);
+
+            if (userActivity != null)
+            {
+                this.userActivityRepository.Delete(userActivity);
+                await this.userActivityRepository.SaveChangesAsync();
+            }
+        }
+
+        public T GetById<T>(int activityId)
+        {
+            return this.activityRepository.All().Where(x => x.Id == activityId).To<T>().FirstOrDefault();
+        }
+
+        public bool IsIdExist(int activityId)
+        {
+            return this.activityRepository.All().Any(x => x.Id == activityId);
         }
 
         private Activity GetActivityById(int id)

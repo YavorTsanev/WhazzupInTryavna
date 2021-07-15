@@ -3,7 +3,7 @@
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Mapping;
 
-    public class ActivityEditViewModel : ActivityAddViewModel, IMapFrom<Activity>
+    public class ActivityEditViewModel : ActivityBaseViewModel, IMapFrom<Activity>
     {
     }
 }

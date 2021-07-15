@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class ActivitiesListViewModel
+    public class ActivityListingViewModel
     {
         [Display(Name = "Time to start")]
         public string TimeToStart { get; set; }

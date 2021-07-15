@@ -15,12 +15,14 @@
 
        bool IsIdExist(int activityId);
 
-       Task Join(int activityId, string userId);
+       Task JoinAsync(int activityId, string userId);
 
-       Task DisJoin(int activityId, string userId);
+       Task DisJoinAsync(int activityId, string userId);
 
        Task UpdateAsync(int activityId, ActivityEditViewModel model);
 
-       Task Delete(int activityId);
+       Task DeleteAsync(int activityId);
+
+       IEnumerable<T> GetAll<T>();
     }
 }
