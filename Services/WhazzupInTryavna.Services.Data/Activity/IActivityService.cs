@@ -9,7 +9,7 @@
     {
        Task CreateAsync(string userid, ActivityAddViewModel model);
 
-       IEnumerable<T> GetAll<T>(string category, string participant, string userId);
+       IEnumerable<T> GetAll<T>(string category, string participant, string userId, string timeToStart);
 
        T GetById<T>(int activityId);
 

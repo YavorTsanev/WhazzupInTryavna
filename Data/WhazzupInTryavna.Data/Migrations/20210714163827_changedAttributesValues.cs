@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace WhazzupInTryavna.Data.Migrations
+﻿namespace WhazzupInTryavna.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class changedAttributesValues : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

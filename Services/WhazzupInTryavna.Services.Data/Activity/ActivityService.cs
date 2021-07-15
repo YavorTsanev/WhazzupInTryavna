@@ -1,5 +1,6 @@
 ﻿namespace WhazzupInTryavna.Services.Data.Activity
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -45,7 +46,7 @@
             await this.userActivityRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(string category, string participants, string userId)
+        public IEnumerable<T> GetAll<T>(string category, string participants, string userId, string timeToStart)
         {
             var query = this.activityRepository.All();
 
@@ -60,6 +61,14 @@
                 "My activities" => query.Where(x => x.UserActivities.Any(a => a.UserId == userId)),
                 "With the less participants" => query.OrderBy(x => x.UserActivities.Count),
                 "With the most participants" => query.OrderByDescending(x => x.UserActivities.Count),
+                _ => this.activityRepository.All(),
+            };
+
+            query = timeToStart switch
+            {
+                "All" => query,
+                "Not started" => query.Where(x => x.StartTime > DateTime.Now).OrderByDescending(x => x.StartTime),
+                "Started" => query.Where(x => x.StartTime < DateTime.Now).OrderByDescending(x => x.StartTime),
                 _ => this.activityRepository.All(),
             };
 

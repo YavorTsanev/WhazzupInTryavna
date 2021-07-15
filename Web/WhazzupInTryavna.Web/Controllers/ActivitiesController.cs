@@ -1,15 +1,14 @@
-﻿using System.Linq;
-using WhazzupInTryavna.Data.Common.Repositories;
-using WhazzupInTryavna.Data.Models.Activities;
-
-namespace WhazzupInTryavna.Web.Controllers
+﻿namespace WhazzupInTryavna.Web.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models;
+    using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
     using WhazzupInTryavna.Web.Filters;
@@ -31,14 +30,14 @@ namespace WhazzupInTryavna.Web.Controllers
             this.userActivityRepository = userActivityRepository;
         }
 
-        public IActionResult Index(string category, string participants)
+        public IActionResult Index(string category, string participants, string timeToStart)
         {
             var userId = this.GetUserId();
 
             var model = new ActivitiesListViewModel
             {
                 Categories = this.categoryService.GetAllCategoryNames(),
-                Activities = this.activityService.GetAll<ActivityInListViewModel>(category, participants, userId),
+                Activities = this.activityService.GetAll<ActivityInListViewModel>(category, participants, userId, timeToStart),
             };
 
             return this.View(model);

@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace WhazzupInTryavna.Web.Hubs
+﻿namespace WhazzupInTryavna.Web.Hubs
 {
     using System.Threading.Tasks;
 

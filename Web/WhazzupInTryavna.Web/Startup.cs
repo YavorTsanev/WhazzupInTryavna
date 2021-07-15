@@ -1,6 +1,4 @@
-﻿using WhazzupInTryavna.Web.Hubs;
-
-namespace WhazzupInTryavna.Web
+﻿namespace WhazzupInTryavna.Web
 {
     using System.Reflection;
 
@@ -25,6 +23,7 @@ namespace WhazzupInTryavna.Web
     using WhazzupInTryavna.Services.Data.Vote;
     using WhazzupInTryavna.Services.Mapping;
     using WhazzupInTryavna.Services.Messaging;
+    using WhazzupInTryavna.Web.Hubs;
     using WhazzupInTryavna.Web.ViewModels;
 
     public class Startup
