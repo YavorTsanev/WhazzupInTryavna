@@ -5,12 +5,20 @@
 
     public class ActivityListingViewModel
     {
-        [Display(Name = "Time to start")]
-        public string TimeToStart { get; set; }
+        [Display(Name = "SEARCH BY NAME")]
+        public string SearchTerm { get; set; }
 
-        public string Participants { get; set; }
-
+        [Display(Name = "SORT BY CATEGORY")]
         public string Category { get; set; }
+
+        [Display(Name = "SORT ACTIVITIES")]
+        public string Activity { get; set; }
+
+        [Display(Name = "COUNT OF JOINS")]
+        public string CountOfJoins { get; set; }
+
+        [Display(Name = "SORT BY START TIME")]
+        public string TimeToStart { get; set; }
 
         public IEnumerable<string> Categories { get; set; }
 

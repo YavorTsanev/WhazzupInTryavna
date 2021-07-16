@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using WhazzupInTryavna.Web.Filters;
 
 namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
 {
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using WhazzupInTryavna.Common;
@@ -31,6 +33,7 @@ namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
             return this.View(model);
         }
 
+        [CheckActivityId]
         public IActionResult Edit(int id)
         {
             var model = this.activityService.GetById<ActivityAdminEditViewModel>(id);
@@ -39,6 +42,7 @@ namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
             return this.View(model);
         }
 
+        [CheckActivityId]
         [HttpPost]
         public async Task<IActionResult> Edit(int id, ActivityAdminEditViewModel model)
         {
@@ -56,6 +60,14 @@ namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
             await this.activityService.UpdateAsync(id, model);
 
             this.TempData["AdminUpdatedActivity"] = "Activity updated by admin successfully";
+
+            return this.RedirectToAction("All");
+        }
+
+        [CheckActivityId]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.activityService.DeleteAsync(id);
 
             return this.RedirectToAction("All");
         }

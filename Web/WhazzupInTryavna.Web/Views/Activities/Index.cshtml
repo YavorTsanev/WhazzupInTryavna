@@ -18,8 +18,12 @@
 <br />
 <form method="get">
     <div class="row text-center container">
-        <div class="form-group col-4">
-            <label asp-for="Category" ></label>
+        <div class="form-group offset-1 col-2">
+            <label asp-for="SearchTerm"></label>
+            <input asp-for="SearchTerm" class="form-control"/>
+        </div>
+        <div class="form-group col-2">
+            <label asp-for="Category"></label>
             <select asp-for="Category" class="form-control">
                 @foreach (var category in Model.Categories)
                 {
@@ -27,16 +31,23 @@
                 }
             </select>
         </div>
-        <div class="form-group col-4">
-            <label asp-for="Participants"></label>
-            <select asp-for="Participants" class="form-control">
+        <div class="form-group col-2">
+            <label asp-for="Activity"></label>
+            <select asp-for="Activity" class="form-control">
                 <option value="All">All</option>
                 <option value="My activities">My activities</option>
-                <option value="With the most participants">With the most participants</option>
-                <option value="With the less participants">With the less participants</option>
+                <option value="My joins">My joins</option>
             </select>
         </div>
-        <div class="form-group col-4">
+        <div class="form-group col-2">
+            <label asp-for="CountOfJoins"></label>
+            <select asp-for="CountOfJoins" class="form-control">
+                <option value="All">All</option>
+                <option value="With most joins">With most joins</option>
+                <option value="With less joins">With less joins</option>
+            </select>
+        </div>
+        <div class="form-group col-2">
             <label asp-for="TimeToStart"></label>
             <select asp-for="TimeToStart" class="form-control">
                 <option value="All">All</option>
@@ -44,10 +55,18 @@
                 <option value="Started">Started</option>
             </select>
         </div>
-        
+
     </div>
     <div class="text-center">
-        <button class="btn btn-primary text-center" asp-controller="Activities" asp-action="Index" asp-route-category="@Model.Category" asp-route-participants="@Model.Participants" asp-route-timeToStart="@Model.TimeToStart">Search</button>
+        <button class="btn btn-primary text-center"
+                asp-controller="Activities" asp-action="Index"
+                asp-route-searchTerm="@Model.SearchTerm"
+                asp-route-category="@Model.Category"
+                asp-route-activity="@Model.Activity"
+                asp-route-countOfJoins="@Model.CountOfJoins"
+                asp-route-timeToStart="@Model.TimeToStart">
+            Search
+        </button>
     </div>
 </form>
 <div class="row text-center">

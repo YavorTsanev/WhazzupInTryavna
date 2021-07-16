@@ -26,30 +26,39 @@
             return this.activityRepository.All().To<T>();
         }
 
-        public IEnumerable<T> GetAll<T>(string category, string participants, string userId, string timeToStart)
+        public IEnumerable<T> GetAll<T>(string searchTerm, string category, string activity, string userId, string countOfJoins, string timeToStart)
         {
             var query = this.activityRepository.All();
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                query = query.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower()));
+            }
 
             if (category != "All" && category != null)
             {
                 query = query.Where(x => x.Category.Name == category);
             }
 
-            query = participants switch
+            query = activity switch
             {
-                "All" => query,
-                "My activities" => query.Where(x => x.UserActivities.Any(a => a.UserId == userId)),
-                "With the less participants" => query.OrderBy(x => x.UserActivities.Count),
-                "With the most participants" => query.OrderByDescending(x => x.UserActivities.Count),
-                _ => this.activityRepository.All(),
+                "My activities" => query.Where(x => x.AddedByUserId == userId),
+                "My joins" => query.Where(x => x.UserActivities.Any(a => a.UserId == userId)),
+                "All" or _ => query,
+            };
+
+            query = countOfJoins switch
+            {
+                "With most joins" => query.OrderByDescending(x => x.UserActivities.Count),
+                "With less joins" => query.OrderBy(x => x.UserActivities.Count),
+                "All" or _ => query,
             };
 
             query = timeToStart switch
             {
-                "All" => query,
                 "Not started" => query.Where(x => x.StartTime > DateTime.Now).OrderByDescending(x => x.StartTime),
                 "Started" => query.Where(x => x.StartTime < DateTime.Now).OrderByDescending(x => x.StartTime),
-                _ => this.activityRepository.All(),
+                "All" or _ => query,
             };
 
             return query.To<T>().ToList();

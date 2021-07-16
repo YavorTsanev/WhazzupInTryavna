@@ -30,14 +30,14 @@
             this.userActivityRepository = userActivityRepository;
         }
 
-        public IActionResult Index(string category, string participants, string timeToStart)
+        public IActionResult Index(string searchTerm, string category, string activity, string countOfJoins, string timeToStart)
         {
             var userId = this.GetUserId();
 
             var model = new ActivityListingViewModel
             {
                 Categories = this.categoryService.GetAllCategoryNames(),
-                Activities = this.activityService.GetAll<ActivityInListViewModel>(category, participants, userId, timeToStart),
+                Activities = this.activityService.GetAll<ActivityInListViewModel>(searchTerm, category, activity, userId, countOfJoins, timeToStart),
             };
 
             return this.View(model);

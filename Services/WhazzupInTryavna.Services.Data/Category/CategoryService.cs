@@ -8,7 +8,7 @@
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Mapping;
-    using Web.ViewModels.Administration.Categories;
+    using WhazzupInTryavna.Web.ViewModels.Administration.Categories;
 
     public class CategoryService : ICategoryService
     {

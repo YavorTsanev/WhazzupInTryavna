@@ -10,7 +10,7 @@
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Data.Category;
     using WhazzupInTryavna.Web.Controllers;
-    using ViewModels.Administration.Categories;
+    using WhazzupInTryavna.Web.ViewModels.Administration.Categories;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     [Area("Administration")]

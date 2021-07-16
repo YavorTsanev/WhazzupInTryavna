@@ -124,7 +124,16 @@
             <div class="container">
                 <div class="ingridients-wrap">
                     <div class="item-title"><i class="fas fa-list-ul"></i>Going</div>
-                    <label class="item-title">@string.Join(", ", Model.UsersInActivity.Select(x => x.Name))</label>
+                    <label class="item-title">
+                        @if (Model.UsersInActivity.Any())
+                        {
+                            @string.Join(", ", Model.UsersInActivity.Select(x => x.Name))
+                        }
+                        else
+                        {
+                            @:No joins for now, be brave and hit the join button.
+                        }
+                    </label>
                     <div>
                         @if (Model.UsersInActivity.Any(x => x.Name == User.Identity.Name))
                         {

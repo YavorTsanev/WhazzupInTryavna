@@ -7,22 +7,22 @@
 
     public interface IActivityService
     {
-       Task CreateAsync(string userid, ActivityAddViewModel model);
+        Task CreateAsync(string userid, ActivityAddViewModel model);
 
-       IEnumerable<T> GetAll<T>(string category, string participant, string userId, string timeToStart);
+        IEnumerable<T> GetAll<T>(string searchTerm, string category, string activities, string userId, string countOfJoins, string timeToStart);
 
-       T GetById<T>(int activityId);
+        T GetById<T>(int activityId);
 
-       bool IsIdExist(int activityId);
+        bool IsIdExist(int activityId);
 
-       Task JoinAsync(int activityId, string userId);
+        Task JoinAsync(int activityId, string userId);
 
-       Task DisJoinAsync(int activityId, string userId);
+        Task DisJoinAsync(int activityId, string userId);
 
-       Task UpdateAsync(int activityId, ActivityEditViewModel model);
+        Task UpdateAsync(int activityId, ActivityEditViewModel model);
 
-       Task DeleteAsync(int activityId);
+        Task DeleteAsync(int activityId);
 
-       IEnumerable<T> GetAll<T>();
+        IEnumerable<T> GetAll<T>();
     }
 }
