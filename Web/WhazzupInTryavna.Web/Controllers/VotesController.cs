@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Services.Data.Vote;
+    using WhazzupInTryavna.Web.Infrastructure;
     using WhazzupInTryavna.Web.ViewModels.Votes;
 
     [ApiController]
@@ -14,19 +15,17 @@
     public class VotesController : ControllerBase
     {
         private readonly IVoteService voteService;
-        private readonly UserManager<ApplicationUser> userManager;
 
-        public VotesController(IVoteService voteService, UserManager<ApplicationUser> userManager)
+        public VotesController(IVoteService voteService)
         {
             this.voteService = voteService;
-            this.userManager = userManager;
         }
 
         [Authorize]
         [HttpPost]
         public async Task<ActionResult<PostResponseViewModel>> Post(PostVoteViewModel input)
         {
-            var userId = this.userManager.GetUserId(this.User);
+            var userId = this.User.GetId();
             await this.voteService.SetVoteAsync(input.ActivityId, userId, input.Value);
 
             var avgVote = this.voteService.GetAvgVote(input.ActivityId);

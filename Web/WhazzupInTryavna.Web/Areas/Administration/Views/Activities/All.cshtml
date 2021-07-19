@@ -1,7 +1,7 @@
 ﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
-@model WhazzupInTryavna.Web.ViewModels.Administration.Activities.ActivityAdminListingViewModel;
+@model ActivityAdminListingViewModel
 @{
-    ViewData["Title"] = "Activities Administration";
+    ViewBag.Title = "Activities Administration";
 }
 
 @if (TempData.ContainsKey("AdminUpdatedActivity"))
@@ -11,7 +11,7 @@
 
 <partial name="_HeroNavMenu" />
 
-<h1 class="text-center">Activities Administration</h1>
+<h1 class="text-center">@ViewBag.Title</h1>
 
 <table class="table table-bordered table-hover">
     @if (Model.Activities.Any())

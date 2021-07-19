@@ -1,14 +1,14 @@
-﻿@model WhazzupInTryavna.Web.ViewModels.Activities.ActivityAddViewModel;
+﻿@model ActivityAddViewModel
 
 @{
-    ViewData["Title"] = "Add Activity";
+    ViewBag.Title = "Add Activity";
     var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
 <partial name="_HeroNavMenu"/>
 
 <section>
-    <h1 class="text-center">Add New Activity</h1>
+    <h1 class="text-center">@ViewBag.Title</h1>
 
     <form method="post" class="col-6 offset-3">
         <div class="form-group">

@@ -1,14 +1,14 @@
-﻿@model WhazzupInTryavna.Web.ViewModels.Administration.Categories.CategoryEditViewModel;
+﻿@model CategoryEditViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewBag.Title = "Edit Category";
 }
 
 <partial name="_HeroNavMenu" />
 
 <section>
     <div class="col-6 offset-3">
-        <h1 class="text-center">Edit Category</h1>
+        <h1 class="text-center">@ViewBag.Title</h1>
 
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>

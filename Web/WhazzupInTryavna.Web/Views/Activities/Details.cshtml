@@ -1,4 +1,4 @@
-﻿@model WhazzupInTryavna.Web.ViewModels.Activities.SingleActivityViewModel
+﻿@model SingleActivityViewModel
 @using Microsoft.AspNetCore.Identity
 @using WhazzupInTryavna.Data.Models
 @inject UserManager<ApplicationUser> UserManager
@@ -10,11 +10,11 @@
 
 <partial name="_HeroNavMenu" />
 
-@{ ViewData["Title"] = Model.Name; }
+@{ ViewBag.Title = Model.Name; }
 <div class="single-recipe-layout1 text-center">
     <div class="ctg-name">@Model.CategoryName</div>
     <h2 class="item-title">
-        @ViewData["Title"]
+        @ViewBag.Title
     </h2>
     <div class="text-center">
         <div class="text-center">
@@ -160,7 +160,7 @@
     </div>
 </div>
 
-<!-- DeleteAsyncAsync -->
+<!-- Delete -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hactivityIdden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

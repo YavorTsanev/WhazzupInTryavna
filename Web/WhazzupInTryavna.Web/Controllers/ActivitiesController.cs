@@ -6,33 +6,35 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using WhazzupInTryavna.Common;
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
     using WhazzupInTryavna.Web.Filters;
+    using WhazzupInTryavna.Web.Infrastructure;
     using WhazzupInTryavna.Web.ViewModels.Activities;
+
+    using static WhazzupInTryavna.Common.GlobalConstants;
 
     [Authorize]
     public class ActivitiesController : BaseController
     {
         private readonly ICategoryService categoryService;
         private readonly IActivityService activityService;
-        private readonly UserManager<ApplicationUser> userManager;
         private readonly IDeletableEntityRepository<UserActivity> userActivityRepository;
 
-        public ActivitiesController(ICategoryService categoryService, IActivityService activityService, UserManager<ApplicationUser> userManager, IDeletableEntityRepository<UserActivity> userActivityRepository)
+        public ActivitiesController(ICategoryService categoryService, IActivityService activityService, IDeletableEntityRepository<UserActivity> userActivityRepository)
         {
             this.categoryService = categoryService;
             this.activityService = activityService;
-            this.userManager = userManager;
             this.userActivityRepository = userActivityRepository;
         }
 
         public IActionResult Index(string searchTerm, string category, string activity, string countOfJoins, string timeToStart)
         {
-            var userId = this.GetUserId();
+            var userId = this.User.GetId();
 
             var model = new ActivityListingViewModel
             {
@@ -56,7 +58,7 @@
         {
             if (!this.categoryService.IsIdExist(model.CategoryId))
             {
-                this.ModelState.AddModelError(nameof(model.CategoryId), "Category don't exist");
+                this.ModelState.AddModelError(nameof(model.CategoryId), CategoryDontExist);
             }
 
             if (!this.ModelState.IsValid)
@@ -65,13 +67,13 @@
                 return this.View(model);
             }
 
-            var userid = this.GetUserId();
+            var userid = this.User.GetId();
 
             await this.activityService.CreateAsync(userid, model);
 
             this.TempData["AddedActivity"] = "Activity added successfully";
 
-            return this.Redirect("/Activities/Index");
+            return this.Redirect(nameof(this.Index));
         }
 
         [CheckActivityId]
@@ -85,26 +87,26 @@
         [CheckActivityId]
         public async Task<IActionResult> Join(int id)
         {
-            var userId = this.GetUserId();
+            var userId = this.User.GetId();
 
             if (this.userActivityRepository.All().Any(x => x.ActivityId == id && x.UserId == userId))
             {
-                return this.RedirectToAction("Details", new { id });
+                return this.RedirectToAction(nameof(this.Details), new { id });
             }
 
             await this.activityService.JoinAsync(id, userId);
 
-            return this.RedirectToAction("Details", new { id });
+            return this.RedirectToAction(nameof(this.Details), new { id });
         }
 
         [CheckActivityId]
         public async Task<IActionResult> DisJoin(int id)
         {
-            var userId = this.GetUserId();
+            var userId = this.User.GetId();
 
             await this.activityService.DisJoinAsync(id, userId);
 
-            return this.RedirectToAction("Details", new { id });
+            return this.RedirectToAction(nameof(this.Details), new { id });
         }
 
         [CheckActivityId]
@@ -122,7 +124,7 @@
         {
             if (!this.categoryService.IsIdExist(model.CategoryId))
             {
-                this.ModelState.AddModelError(nameof(model.CategoryId), "Category don't exist");
+                this.ModelState.AddModelError(nameof(model.CategoryId), CategoryDontExist);
             }
 
             if (!this.ModelState.IsValid)
@@ -135,7 +137,7 @@
 
             this.TempData["UpdatedActivity"] = "Activity updated successfully";
 
-            return this.RedirectToAction("Details", new { id });
+            return this.RedirectToAction(nameof(this.Details), new { id });
         }
 
         [CheckActivityId]
@@ -143,12 +145,8 @@
         {
             await this.activityService.DeleteAsync(id);
 
-            return this.RedirectToAction("Index");
+            return this.RedirectToAction(nameof(this.Index));
         }
 
-        private string GetUserId()
-        {
-            return this.userManager.GetUserId(this.User);
-        }
     }
 }

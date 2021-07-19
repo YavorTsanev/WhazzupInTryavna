@@ -1,10 +1,8 @@
-﻿@using WhazzupInTryavna.Common
-@{
-    this.ViewData["Title"] = "Home Page";
+﻿@{
+    ViewBag.Title = "Home Page";
 }
 
 <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-<!-- ======= Header ======= -->
 <header id="header" class="d-flex flex-column justify-content-center">
 
    @if (User.Identity.IsAuthenticated)
@@ -12,12 +10,11 @@
        <partial name="_HeroNavMenu"/>
    }
 
-</header><!-- End Header -->
+</header>
 
-<!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
         <h1>Wellcome to Трявна</h1>
         <p>If you wan't to <span class="typed" data-typed-items="do some activite, chat, read or post some thing, all of this things => just register and login"></span></p>
     </div>
-</section><!-- End Hero -->
+</section>

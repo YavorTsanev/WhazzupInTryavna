@@ -1,12 +1,10 @@
 ﻿namespace WhazzupInTryavna.Web.Controllers
 {
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    [Authorize]
-    public class ChatController : Controller
+    public class BlogController : Controller
     {
-        public IActionResult Chat()
+        public IActionResult Index()
         {
             return this.View();
         }

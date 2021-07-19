@@ -1,6 +1,4 @@
-﻿using WhazzupInTryavna.Web.Filters;
-
-namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
+﻿namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
 
@@ -9,7 +7,10 @@ namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
     using WhazzupInTryavna.Common;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
+    using WhazzupInTryavna.Web.Filters;
     using WhazzupInTryavna.Web.ViewModels.Administration.Activities;
+
+    using static WhazzupInTryavna.Common.GlobalConstants;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     [Area("Administration")]
@@ -48,7 +49,7 @@ namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
         {
             if (!this.categoryService.IsIdExist(model.CategoryId))
             {
-                this.ModelState.AddModelError(nameof(model.CategoryId), "Category don't exist");
+                this.ModelState.AddModelError(nameof(model.CategoryId), CategoryDontExist);
             }
 
             if (!this.ModelState.IsValid)
@@ -61,7 +62,7 @@ namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
 
             this.TempData["AdminUpdatedActivity"] = "Activity updated by admin successfully";
 
-            return this.RedirectToAction("All");
+            return this.RedirectToAction(nameof(this.All));
         }
 
         [CheckActivityId]
@@ -69,7 +70,7 @@ namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
         {
             await this.activityService.DeleteAsync(id);
 
-            return this.RedirectToAction("All");
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

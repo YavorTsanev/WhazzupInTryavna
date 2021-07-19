@@ -46,7 +46,7 @@
 
             await this.categoryService.AddAsync(model);
 
-            return this.RedirectToAction("All");
+            return this.RedirectToAction(nameof(this.All));
         }
 
         public IActionResult All()
@@ -77,14 +77,14 @@
 
             await this.categoryService.UpdateByIdAsync(id, model);
 
-            return this.RedirectToAction("All");
+            return this.RedirectToAction(nameof(this.All));
         }
 
         [CheckCategoryId]
         public async Task<IActionResult> Delete(int id)
         {
             await this.categoryService.DeleteAsync(id);
-            return this.RedirectToAction("All");
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

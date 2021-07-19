@@ -9,6 +9,8 @@
         public const string EmailForContact = "yavor.tsanev.1@gmail.com";
         public const string AdminEmail = "onq_koi_e@abv.bg";
 
+        //// Error messages
+        public const string CategoryDontExist = "Category don't exist";
         //// Data models requirements
         //// Category
         public const int CategoryNameMinLength = 3;
