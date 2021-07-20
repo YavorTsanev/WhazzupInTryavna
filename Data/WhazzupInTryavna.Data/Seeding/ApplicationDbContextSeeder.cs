@@ -12,6 +12,10 @@
     {
         private readonly IConfiguration configuration;
 
+        public ApplicationDbContextSeeder()
+        {
+        }
+
         public ApplicationDbContextSeeder(IConfiguration configuration)
         {
             this.configuration = configuration;

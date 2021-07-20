@@ -16,9 +16,11 @@
     using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Data.Repositories;
     using WhazzupInTryavna.Data.Seeding;
+    using WhazzupInTryavna.Services;
     using WhazzupInTryavna.Services.Data;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
+    using WhazzupInTryavna.Services.Data.News;
     using WhazzupInTryavna.Services.Data.Vote;
     using WhazzupInTryavna.Services.Mapping;
     using WhazzupInTryavna.Services.Messaging;
@@ -76,6 +78,8 @@
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IActivityService, ActivityService>();
             services.AddTransient<IVoteService, VoteService>();
+            services.AddTransient<ITryavnaNewsScraperService, TryavnaNewsScraperService>();
+            services.AddTransient<INewsService, NewsService>();
 
             // Authentication
             services.AddAuthentication().AddFacebook(facebookOptions =>

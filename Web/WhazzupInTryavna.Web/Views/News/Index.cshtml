@@ -1,0 +1,22 @@
+﻿@model NewsListingViewModel
+
+@{
+    ViewBag.Title = "Latest news";
+}
+
+<partial name="_HeroNavMenu" />
+
+<h1 class="text-center">@ViewBag.Title</h1>
+
+<div class="row container">
+    @foreach (var news in Model.NewsList)
+    {
+        <div class="card ml-5 mt-5 col-3" style="width: 18rem;">
+            <img class="card-img-top" src=@news.ImageUrl alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">@news.Title</p>
+            </div>
+        </div>
+    }
+</div>
+

@@ -23,6 +23,12 @@
     {
         public static int Main(string[] args)
         {
+
+            var data = DateTime.Parse("юли 9, 2021 ");
+
+            Console.WriteLine(data);
+
+            return 1;
             Console.WriteLine($"{typeof(Program).Namespace} ({string.Join(" ", args)}) starts working...");
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);

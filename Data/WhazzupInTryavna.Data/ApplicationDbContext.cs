@@ -11,6 +11,7 @@
     using WhazzupInTryavna.Data.Common.Models;
     using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Data.Models.Activities;
+    using WhazzupInTryavna.Data.Models.News;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -33,6 +34,8 @@
         public DbSet<Vote> Votes { get; set; }
 
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<News> News { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
