@@ -1,10 +1,11 @@
-﻿namespace WhazzupInTryavna.Data.Models.News
+﻿namespace WhazzupInTryavna.Web.ViewModels.News
 {
     using System;
 
-    using WhazzupInTryavna.Data.Common.Models;
+    using WhazzupInTryavna.Data.Models.News;
+    using WhazzupInTryavna.Services.Mapping;
 
-    public class News : BaseDeletableModel<int>
+    public class DetailsViewModel : IMapFrom<News>
     {
         public string Title { get; set; }
 

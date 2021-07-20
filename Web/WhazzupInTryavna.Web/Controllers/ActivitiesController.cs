@@ -47,8 +47,10 @@
 
         public IActionResult Add()
         {
-            var model = new ActivityAddViewModel();
-            model.CategoriesItems = this.categoryService.GetAllAsKeyValuePairs();
+            var model = new ActivityAddViewModel
+            {
+                CategoriesItems = this.categoryService.GetAllAsKeyValuePairs(),
+            };
 
             return this.View(model);
         }
@@ -147,6 +149,5 @@
 
             return this.RedirectToAction(nameof(this.Index));
         }
-
     }
 }

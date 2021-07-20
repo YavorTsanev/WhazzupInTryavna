@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace WhazzupInTryavna.Services.Models
+﻿namespace WhazzupInTryavna.Services.Models
 {
+    using System;
+
     public class NewsDto
     {
         public string Title { get; set; }

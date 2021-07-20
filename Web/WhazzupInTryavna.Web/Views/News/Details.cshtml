@@ -1,0 +1,18 @@
+﻿@model DetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<partial name="_HeroNavMenu"/>
+
+<div class="card mb-3 mt-5 mb-5 ml-5 container text-center">
+    <div class="text-center">
+        <img class="w-50" src="@Model.ImageUrl" alt="Card image cap">
+    </div>
+    <div class="card-body">
+        <h1 class="card-title mb-5 mt-5">@Model.Title</h1>
+        <h3 class="card-text mb-5">@Model.Content</h3>
+        <p class="card-text mb-5"><small class="text-muted">@Model.Date.ToString("yyyy MMMM dd")</small></p>
+    </div>
+</div>

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-
-namespace WhazzupInTryavna.Services.Data.News
+﻿namespace WhazzupInTryavna.Services.Data.News
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models.News;
@@ -21,6 +20,16 @@ namespace WhazzupInTryavna.Services.Data.News
         public IEnumerable<T> GetAll<T>()
         {
             return this.newsRepository.All().OrderByDescending(x => x.Date).To<T>();
+        }
+
+        public T GetById<T>(int newId)
+        {
+            return this.newsRepository.All().Where(x => x.Id == newId).To<T>().FirstOrDefault();
+        }
+
+        public bool IsIdExist(int newsId)
+        {
+            return this.newsRepository.All().Any(x => x.Id == newsId);
         }
     }
 }

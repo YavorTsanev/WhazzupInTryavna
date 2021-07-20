@@ -1,7 +1,7 @@
 ﻿@model NewsListingViewModel
 
 @{
-    ViewBag.Title = "Latest news";
+    ViewBag.Title = "Latest news from Tryavna";
 }
 
 <partial name="_HeroNavMenu" />
@@ -11,11 +11,16 @@
 <div class="row container">
     @foreach (var news in Model.NewsList)
     {
-        <div class="card ml-5 mt-5 col-3" style="width: 18rem;">
-            <img class="card-img-top" src=@news.ImageUrl alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">@news.Title</p>
-            </div>
+        <div class="card ml-5 mt-5 mb-5 col-3" style="width: 18rem;">
+            <span class="text-center">
+                <i class="far fa-calendar-alt"></i> @news.Date.ToString("yyyy MMMM dd")
+            </span>
+            <a asp-controller="News" asp-action="Details" asp-route-id="@news.Id">
+                <img class="card-img-top" src=@news.ImageUrl alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">@news.Title</p>
+                </div>
+            </a>
         </div>
     }
 </div>

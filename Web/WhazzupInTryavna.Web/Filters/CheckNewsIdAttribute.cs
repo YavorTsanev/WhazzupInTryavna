@@ -3,13 +3,13 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Filters;
     using Microsoft.Extensions.DependencyInjection;
-    using WhazzupInTryavna.Services.Data.Category;
+    using WhazzupInTryavna.Services.Data.News;
 
-    public class CheckCategoryIdAttribute : ActionFilterAttribute
+    public class CheckNewsIdAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            var categoryService = context.HttpContext.RequestServices.GetService<ICategoryService>();
+            var newsServiceService = context.HttpContext.RequestServices.GetService<INewsService>();
 
             var id = 0;
 
@@ -18,7 +18,7 @@
                 id = (int)context.ActionArguments["id"];
             }
 
-            if (categoryService != null && !categoryService.IsIdExist(id))
+            if (newsServiceService != null && !newsServiceService.IsIdExist(id))
             {
                 context.Result = new NotFoundResult();
             }

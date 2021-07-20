@@ -10,6 +10,7 @@
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Data.Category;
     using WhazzupInTryavna.Web.Controllers;
+    using WhazzupInTryavna.Web.Filters;
     using WhazzupInTryavna.Web.ViewModels.Administration.Categories;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
