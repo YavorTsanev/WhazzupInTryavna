@@ -43,4 +43,10 @@
     <ProjectReference Include="..\WhazzupInTryavna.Web.Infrastructure\WhazzupInTryavna.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\WhazzupInTryavna.Web.ViewModels\WhazzupInTryavna.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\assets\img\tryavna-1500x680.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

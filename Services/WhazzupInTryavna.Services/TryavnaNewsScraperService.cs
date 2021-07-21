@@ -1,4 +1,6 @@
-﻿namespace WhazzupInTryavna.Services
+﻿using System.Collections.Concurrent;
+
+namespace WhazzupInTryavna.Services
 {
     using System;
     using System.Collections.Generic;
@@ -26,8 +28,9 @@
         public async Task ImportNewsAsync(int count = 10)
         {
             var newsDtos = await this.FetchNews(count);
+            var orderedNewsDtos = newsDtos.OrderByDescending(x => x.Date);
 
-            foreach (var newsDto in newsDtos)
+            foreach (var newsDto in orderedNewsDtos)
             {
                 if (this.newsRepository.All().Any(x => x.Content == newsDto.Content))
                 {
@@ -47,17 +50,17 @@
             }
         }
 
-        private async Task<List<NewsDto>> FetchNews(int count)
+        private async Task<ConcurrentBag<NewsDto>> FetchNews(int count)
         {
-            var newsDtos = new List<NewsDto>();
+            var newsDtos = new ConcurrentBag<NewsDto>();
 
             var tryavnaWEbSite = await this.context.OpenAsync("https://tryavna.bg/aktualno/novini/");
 
-            for (int i = 1; i < count; i++)
+            Parallel.For(1, count, (i) =>
             {
                 var linkNews = tryavnaWEbSite.QuerySelector($"#wrapper > section.mt-4 > div > div:nth-child(1) > div:nth-child({i}) > div > a").GetAttribute("href");
 
-                var news = await this.context.OpenAsync(linkNews);
+                var news = this.context.OpenAsync(linkNews).GetAwaiter().GetResult();
 
                 var header = news.GetElementsByTagName("h1")[0].InnerHtml;
 
@@ -87,7 +90,7 @@
 
                     newsDtos.Add(newsDto);
                 }
-            }
+            });
 
             return newsDtos;
         }

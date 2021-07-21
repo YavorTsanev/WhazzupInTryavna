@@ -1,4 +1,6 @@
-﻿namespace WhazzupInTryavna.Web.Areas.Identity.Pages.Account
+﻿using WhazzupInTryavna.Data.Common.Repositories;
+
+namespace WhazzupInTryavna.Web.Areas.Identity.Pages.Account
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
