@@ -1,16 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-
-namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
+﻿namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
 {
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
     using WhazzupInTryavna.Common;
     using WhazzupInTryavna.Services.Data.Users;
     using WhazzupInTryavna.Web.Controllers;
     using WhazzupInTryavna.Web.ViewModels.Administration.Users;
-
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     [Area("Administration")]

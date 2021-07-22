@@ -72,35 +72,35 @@
             returnUrl ??= this.Url.Content("~/");
 
             this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await this.signInManager.PasswordSignInAsync(this.Input.Username, this.Input.Password, this.Input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
-                {
-                    this.logger.LogInformation("User logged in.");
-                    return this.LocalRedirect(returnUrl);
-                }
-
-                if (result.RequiresTwoFactor)
-                {
-                    return this.RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = this.Input.RememberMe });
-                }
-
-                if (result.IsLockedOut)
-                {
-                    this.logger.LogWarning("User account locked out.");
-                    return this.RedirectToPage("./Lockout");
-                }
-                else
-                {
-                    this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return this.Page();
-                }
+                return this.Page();
             }
 
-            return this.Page();
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+            var result = await this.signInManager.PasswordSignInAsync(this.Input.Username, this.Input.Password, this.Input.RememberMe, lockoutOnFailure: false);
+            if (result.Succeeded)
+            {
+                this.logger.LogInformation("User logged in.");
+                return this.LocalRedirect(returnUrl);
+            }
+
+            if (result.RequiresTwoFactor)
+            {
+                return this.RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = this.Input.RememberMe });
+            }
+
+            if (result.IsLockedOut)
+            {
+                this.logger.LogWarning("User account locked out.");
+                return this.RedirectToPage("./Lockout");
+            }
+            else
+            {
+                this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return this.Page();
+            }
         }
     }
 }

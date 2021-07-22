@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
-
-namespace WhazzupInTryavna.Services.Data.Users
+﻿namespace WhazzupInTryavna.Services.Data.Users
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Identity;
     using WhazzupInTryavna.Data.Common.Repositories;
