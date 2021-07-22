@@ -1,0 +1,70 @@
+﻿@model UsersListingViewModel
+
+@{
+    ViewBag.Title = "Users Administration";
+}
+
+<partial name="_HeroNavMenu" />
+
+<h1 class="text-center">@ViewBag.Title</h1>
+
+<table class="table table-bordered table-hover">
+    @if (Model.Users.Any())
+    {
+        <thead>
+            <tr>
+                <th>
+                    User Name
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Created On
+                </th>
+                <th>
+                    Is banned
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+    }
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>
+                    @item.UserName
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.CreatedOn.ToLocalTime().ToString("g")
+                </td>
+                <td>
+                    @if (item.IsDeleted)
+                    {
+                        @:Yes
+                    }
+                    else
+                    {
+                        @:No
+                    }
+                </td>
+                <td>
+                    <div class="text-center">
+                        @if (item.IsDeleted)
+                        {
+                            <a class="btn btn-info" asp-action="UnBan" asp-route-id="@item.Id">UnBan</a> 
+                        }
+                        else
+                        {
+                            <a class="btn btn-info" asp-action="Ban" asp-route-id="@item.Id">Ban</a> 
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>    

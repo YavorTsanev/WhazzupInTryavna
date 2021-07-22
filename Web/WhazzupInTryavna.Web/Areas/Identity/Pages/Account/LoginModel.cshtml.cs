@@ -1,6 +1,4 @@
-﻿using WhazzupInTryavna.Data.Common.Repositories;
-
-namespace WhazzupInTryavna.Web.Areas.Identity.Pages.Account
+﻿namespace WhazzupInTryavna.Web.Areas.Identity.Pages.Account
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -13,6 +11,7 @@ namespace WhazzupInTryavna.Web.Areas.Identity.Pages.Account
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Logging;
+    using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models;
 
     [AllowAnonymous]

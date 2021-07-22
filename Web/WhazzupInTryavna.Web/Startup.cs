@@ -1,4 +1,7 @@
-﻿namespace WhazzupInTryavna.Web
+﻿using System;
+using Microsoft.AspNetCore.Identity;
+
+namespace WhazzupInTryavna.Web
 {
     using System.Reflection;
 
@@ -21,6 +24,7 @@
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
     using WhazzupInTryavna.Services.Data.News;
+    using WhazzupInTryavna.Services.Data.Users;
     using WhazzupInTryavna.Services.Data.Vote;
     using WhazzupInTryavna.Services.Mapping;
     using WhazzupInTryavna.Services.Messaging;
@@ -45,6 +49,12 @@
             services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
                 .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+                // enables immediate logout, after updating the user's stat.
+                options.ValidationInterval = TimeSpan.Zero;
+            });
+
             services.Configure<CookiePolicyOptions>(
                 options =>
                     {
@@ -56,7 +66,7 @@
             services.AddControllersWithViews(
                 options =>
                     {
-                        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                        options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
                     }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -80,6 +90,7 @@
             services.AddTransient<IVoteService, VoteService>();
             services.AddTransient<ITryavnaNewsScraperService, TryavnaNewsScraperService>();
             services.AddTransient<INewsService, NewsService>();
+            services.AddTransient<IUsersService, UsersService>();
 
             // Authentication
             services.AddAuthentication().AddFacebook(facebookOptions =>

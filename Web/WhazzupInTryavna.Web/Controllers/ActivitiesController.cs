@@ -36,7 +36,7 @@
         {
             var userId = this.User.GetId();
 
-            var model = new ActivityListingViewModel
+            var model = new ActivitiesListingViewModel
             {
                 Categories = this.categoryService.GetAllCategoryNames(),
                 Activities = this.activityService.GetAll<ActivityInListViewModel>(searchTerm, category, activity, userId, countOfJoins, timeToStart),

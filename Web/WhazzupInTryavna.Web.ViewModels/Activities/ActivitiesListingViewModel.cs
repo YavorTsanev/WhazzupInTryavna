@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class ActivityListingViewModel
+    public class ActivitiesListingViewModel
     {
         [Display(Name = "SEARCH BY NAME")]
         public string SearchTerm { get; set; }

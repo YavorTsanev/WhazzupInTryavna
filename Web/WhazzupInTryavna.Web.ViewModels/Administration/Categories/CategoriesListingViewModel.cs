@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class CategoryListingViewModel
+    public class CategoriesListingViewModel
     {
         public ICollection<CategoryInListViewModel> Categories { get; set; }
     }

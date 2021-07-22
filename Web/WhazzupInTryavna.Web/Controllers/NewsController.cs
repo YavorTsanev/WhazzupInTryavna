@@ -10,7 +10,7 @@
     using WhazzupInTryavna.Web.ViewModels.News;
 
     [Authorize]
-    public class NewsController : Controller
+    public class NewsController : BaseController
     {
         private readonly ITryavnaNewsScraperService newsScraperService;
         private readonly INewsService newsService;

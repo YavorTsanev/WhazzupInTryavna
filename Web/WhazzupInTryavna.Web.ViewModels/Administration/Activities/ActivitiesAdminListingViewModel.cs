@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class ActivityAdminListingViewModel
+    public class ActivitiesAdminListingViewModel
     {
         public IEnumerable<ActivityAdminInListViewModel> Activities { get; set; }
     }

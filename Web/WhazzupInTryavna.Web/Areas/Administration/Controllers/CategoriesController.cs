@@ -52,7 +52,7 @@
 
         public IActionResult All()
         {
-            var categories = new CategoryListingViewModel
+            var categories = new CategoriesListingViewModel
             {
                 Categories = this.categoryService.GetAll<CategoryInListViewModel>(),
             };

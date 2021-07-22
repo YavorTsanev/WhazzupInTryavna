@@ -7,6 +7,7 @@
     using WhazzupInTryavna.Common;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
+    using WhazzupInTryavna.Web.Controllers;
     using WhazzupInTryavna.Web.Filters;
     using WhazzupInTryavna.Web.ViewModels.Administration.Activities;
 
@@ -14,7 +15,7 @@
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     [Area("Administration")]
-    public class ActivitiesController : Controller
+    public class ActivitiesController : BaseController
     {
         private readonly IActivityService activityService;
         private readonly ICategoryService categoryService;
@@ -27,7 +28,7 @@
 
         public IActionResult All()
         {
-            var model = new ActivityAdminListingViewModel
+            var model = new ActivitiesAdminListingViewModel
             {
                 Activities = this.activityService.GetAll<ActivityAdminInListViewModel>(),
             };

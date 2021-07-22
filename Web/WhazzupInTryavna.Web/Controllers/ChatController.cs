@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     [Authorize]
-    public class ChatController : Controller
+    public class ChatController : BaseController
     {
         public IActionResult Chat()
         {
