@@ -9,8 +9,6 @@
     using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Services.Mapping;
 
-    using static WhazzupInTryavna.Common.GlobalConstants;
-
     public class UsersService : IUsersService
     {
         private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
@@ -22,10 +20,8 @@
             this.userManager = userManager;
         }
 
-        public IEnumerable<T> GetAll<T>()
+        public IEnumerable<T> GetAll<T>(string roleId)
         {
-            var roleId = this.GetAdminRoleId();
-
             return this.userRepository.AllWithDeleted().Where(x => x.Roles.All(x => x.RoleId != roleId)).To<T>();
         }
 
@@ -44,11 +40,6 @@
 
             user.IsDeleted = false;
             await this.userRepository.SaveChangesAsync();
-        }
-
-        private string GetAdminRoleId()
-        {
-            return this.userManager.Users.Where(x => x.UserName == AdminUsername && x.Email == AdminEmail).SelectMany(x => x.Roles.Select(x => x.RoleId)).FirstOrDefault();
         }
     }
 }

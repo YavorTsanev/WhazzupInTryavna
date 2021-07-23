@@ -5,7 +5,7 @@
 
     public interface IUsersService
     {
-        IEnumerable<T> GetAll<T>();
+        IEnumerable<T> GetAll<T>(string roleId);
 
         Task BanAsync(string userId);
 
