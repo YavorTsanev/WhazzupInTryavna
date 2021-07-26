@@ -1,14 +1,14 @@
-﻿namespace WhazzupInTryavna.Web.Controllers
+﻿using WhazzupInTryavna.Services.Data.Comments;
+using WhazzupInTryavna.Web.ViewModels.Comments;
+
+namespace WhazzupInTryavna.Web.Controllers
 {
     using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using WhazzupInTryavna.Common;
     using WhazzupInTryavna.Data.Common.Repositories;
-    using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
@@ -24,12 +24,14 @@
         private readonly ICategoryService categoryService;
         private readonly IActivityService activityService;
         private readonly IDeletableEntityRepository<UserActivity> userActivityRepository;
+        private readonly ICommentsService commentsService;
 
-        public ActivitiesController(ICategoryService categoryService, IActivityService activityService, IDeletableEntityRepository<UserActivity> userActivityRepository)
+        public ActivitiesController(ICategoryService categoryService, IActivityService activityService, IDeletableEntityRepository<UserActivity> userActivityRepository, ICommentsService commentsService)
         {
             this.categoryService = categoryService;
             this.activityService = activityService;
             this.userActivityRepository = userActivityRepository;
+            this.commentsService = commentsService;
         }
 
         public IActionResult Index(string searchTerm, string category, string activity, string countOfJoins, string timeToStart)

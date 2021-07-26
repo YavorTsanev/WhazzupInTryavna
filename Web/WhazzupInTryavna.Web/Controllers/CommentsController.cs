@@ -1,24 +1,31 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using WhazzupInTryavna.Web.ViewModels.Comments;
-
-namespace WhazzupInTryavna.Web.Controllers
+﻿namespace WhazzupInTryavna.Web.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
+    using WhazzupInTryavna.Services.Data.Comments;
+    using WhazzupInTryavna.Web.Infrastructure;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using WhazzupInTryavna.Web.ViewModels.Comments;
 
     [Authorize]
     public class CommentsController : BaseController
     {
-        [HttpPost]
-        public IActionResult Add(CommentAddViewModel model)
+        private readonly ICommentsService commentsService;
+
+        public CommentsController(ICommentsService commentsService)
         {
-            if (!ModelState.IsValid)
+            this.commentsService = commentsService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(CommentAddViewModel model)
+        {
+            if (!this.ModelState.IsValid)
             {
                 return this.RedirectToAction("Details", "Activities", new { id = model.ActivityId }, "message");
             }
+
+            await this.commentsService.AddAsync(this.User.GetId(), model);
 
             return this.RedirectToAction("Details", "Activities", new { id = model.ActivityId }, "message");
         }

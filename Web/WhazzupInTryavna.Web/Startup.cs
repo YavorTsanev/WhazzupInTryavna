@@ -1,6 +1,4 @@
-﻿using WhazzupInTryavna.Services.Data.Comments;
-
-namespace WhazzupInTryavna.Web
+﻿namespace WhazzupInTryavna.Web
 {
     using System;
     using System.Reflection;
@@ -24,6 +22,7 @@ namespace WhazzupInTryavna.Web
     using WhazzupInTryavna.Services.Data;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
+    using WhazzupInTryavna.Services.Data.Comments;
     using WhazzupInTryavna.Services.Data.News;
     using WhazzupInTryavna.Services.Data.Users;
     using WhazzupInTryavna.Services.Data.Vote;

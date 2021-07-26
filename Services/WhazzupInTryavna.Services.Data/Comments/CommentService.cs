@@ -1,13 +1,14 @@
-﻿using System.Threading.Tasks;
-using WhazzupInTryavna.Data.Common.Repositories;
-using WhazzupInTryavna.Data.Models.Activities;
-using WhazzupInTryavna.Web.ViewModels.Comments;
+﻿using System.Collections.Generic;
+using System.Linq;
+using WhazzupInTryavna.Services.Mapping;
 
 namespace WhazzupInTryavna.Services.Data.Comments
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+    using System.Threading.Tasks;
+
+    using WhazzupInTryavna.Data.Common.Repositories;
+    using WhazzupInTryavna.Data.Models.Activities;
+    using WhazzupInTryavna.Web.ViewModels.Comments;
 
     public class CommentService : ICommentsService
     {
@@ -29,6 +30,11 @@ namespace WhazzupInTryavna.Services.Data.Comments
 
             await this.commentRepository.AddAsync(comment);
             await this.commentRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<T> GetAll<T>()
+        {
+            return this.commentRepository.All().OrderByDescending(x => x.CreatedOn).To<T>();
         }
     }
 }

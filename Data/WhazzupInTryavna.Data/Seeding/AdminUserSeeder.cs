@@ -7,7 +7,6 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using WhazzupInTryavna.Common;
     using WhazzupInTryavna.Data.Models;
 
     using static WhazzupInTryavna.Common.GlobalConstants;

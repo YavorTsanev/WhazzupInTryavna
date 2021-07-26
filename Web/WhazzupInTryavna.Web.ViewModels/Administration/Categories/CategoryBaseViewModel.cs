@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace WhazzupInTryavna.Web.ViewModels.Administration.Categories
+﻿namespace WhazzupInTryavna.Web.ViewModels.Administration.Categories
 {
+    using System.ComponentModel.DataAnnotations;
+
     using static WhazzupInTryavna.Common.GlobalConstants;
 
     public abstract class CategoryBaseViewModel

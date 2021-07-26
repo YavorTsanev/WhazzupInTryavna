@@ -32,18 +32,18 @@
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                query = (IOrderedQueryable<Activity>) query.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower()));
+                query = (IOrderedQueryable<Activity>)query.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower()));
             }
 
             if (category != "All" && category != null)
             {
-                query = (IOrderedQueryable<Activity>) query.Where(x => x.Category.Name == category);
+                query = (IOrderedQueryable<Activity>)query.Where(x => x.Category.Name == category);
             }
 
             query = activity switch
             {
-                "My activities" => (IOrderedQueryable<Activity>) query.Where(x => x.AddedByUserId == userId),
-                "My joins" => (IOrderedQueryable<Activity>) query.Where(x => x.UserActivities.Any(a => a.UserId == userId)),
+                "My activities" => (IOrderedQueryable<Activity>)query.Where(x => x.AddedByUserId == userId),
+                "My joins" => (IOrderedQueryable<Activity>)query.Where(x => x.UserActivities.Any(a => a.UserId == userId)),
                 "All" or _ => query,
             };
 

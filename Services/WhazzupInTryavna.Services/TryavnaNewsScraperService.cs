@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Concurrent;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -69,7 +68,6 @@
 
                 if (!contentCollection.Any(p => p.TextContent.Length < 1))
                 {
-
                     var imgUrl = news.QuerySelector(".post-image").Attributes[1].Value;
 
                     string content = null;
