@@ -23,5 +23,9 @@
         public const int ActivityNameMaxLength = 40;
         public const int ActivityLocationMinLength = 4;
         public const int ActivityLocationMaxLength = 40;
+
+        ////Comment
+        public const int CommentContentMinLength = 1;
+        public const int CommentContentMaxLength = 120;
     }
 }

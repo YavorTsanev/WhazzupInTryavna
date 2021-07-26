@@ -38,5 +38,7 @@ namespace WhazzupInTryavna.Data.Models
         public virtual ICollection<Vote> Votes { get; set; } = new HashSet<Vote>();
 
         public virtual ICollection<UserActivity> UserActivities { get; set; } = new HashSet<UserActivity>();
+
+        public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
     }
 }

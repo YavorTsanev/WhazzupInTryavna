@@ -38,7 +38,7 @@
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
             await userManager.CreateAsync(adminUser, this.configuration["AdminPassword"]);
-            await userManager.AddToRoleAsync(adminUser, GlobalConstants.AdministratorRoleName);
+            await userManager.AddToRoleAsync(adminUser, AdministratorRoleName);
         }
     }
 }

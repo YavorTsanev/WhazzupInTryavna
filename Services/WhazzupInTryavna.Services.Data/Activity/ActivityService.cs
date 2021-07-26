@@ -28,22 +28,22 @@
 
         public IEnumerable<T> GetAll<T>(string searchTerm, string category, string activity, string userId, string countOfJoins, string timeToStart)
         {
-            var query = this.activityRepository.All();
+            var query = this.activityRepository.All().OrderByDescending(x => x.CreatedOn);
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                query = query.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower()));
+                query = (IOrderedQueryable<Activity>) query.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower()));
             }
 
             if (category != "All" && category != null)
             {
-                query = query.Where(x => x.Category.Name == category);
+                query = (IOrderedQueryable<Activity>) query.Where(x => x.Category.Name == category);
             }
 
             query = activity switch
             {
-                "My activities" => query.Where(x => x.AddedByUserId == userId),
-                "My joins" => query.Where(x => x.UserActivities.Any(a => a.UserId == userId)),
+                "My activities" => (IOrderedQueryable<Activity>) query.Where(x => x.AddedByUserId == userId),
+                "My joins" => (IOrderedQueryable<Activity>) query.Where(x => x.UserActivities.Any(a => a.UserId == userId)),
                 "All" or _ => query,
             };
 

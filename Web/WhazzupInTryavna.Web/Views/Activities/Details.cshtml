@@ -181,6 +181,21 @@
     </div>
 </div>
 
+<div class="container mb-5">
+    <form asp-controller="Comments" asp-action="Add" method="post">
+        <input type="hidden" name="ActivityId" value="@Model.Id" />
+        <div class="form-group mt-3 d-flex justify-content-start">
+            <h3>Message</h3>
+            <input name="Content" class="w-75 ml-4 pl-3 form-control" type="text" placeholder="Message..." data-val="true" data-val-required="The Message field is required." />
+            <span class="text-danger" data-valmsg-for="Content" data-valmsg-replace="true"></span>
+            <button class="ml-4 btn btn-dark btn-lg">Send</button>
+        </div>
+    </form>
+    <hr style="height: 5px;" class="bg-dark" />
+    <div id="messagesList" style="font-size: 28px;">
+
+    </div>
+</div>
 <!-- Votes -->
 <form method="post" id="antiForgeryForm"></form>
 @section Scripts {

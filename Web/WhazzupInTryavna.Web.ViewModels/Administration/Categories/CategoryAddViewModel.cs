@@ -7,15 +7,7 @@
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 
-    public class CategoryAddViewModel : IMapFrom<Category>
+    public class CategoryAddViewModel : CategoryBaseViewModel, IMapFrom<Category>
     {
-        [Required]
-        [MinLength(CategoryNameMinLength)]
-        [MaxLength(CategoryNameMaxLength)]
-        public string Name { get; set; }
-
-        [Required]
-        [RegularExpression(CategoryImageRegEx, ErrorMessage = AllowedExtensionError)]
-        public string Image { get; set; }
     }
 }

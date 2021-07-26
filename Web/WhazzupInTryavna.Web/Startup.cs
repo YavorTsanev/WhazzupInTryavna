@@ -1,4 +1,6 @@
-﻿namespace WhazzupInTryavna.Web
+﻿using WhazzupInTryavna.Services.Data.Comments;
+
+namespace WhazzupInTryavna.Web
 {
     using System;
     using System.Reflection;
@@ -57,7 +59,7 @@
             services.Configure<CookiePolicyOptions>(
                 options =>
                     {
-                        options.CheckConsentNeeded = context => true;
+                        options.CheckConsentNeeded = _ => true;
                         options.MinimumSameSitePolicy = SameSiteMode.None;
                     });
 
@@ -82,14 +84,15 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
-            services.AddTransient<ISettingsService, SettingsService>();
-            services.AddTransient<ICategoryService, CategoryService>();
-            services.AddTransient<IActivityService, ActivityService>();
             services.AddTransient<IVoteService, VoteService>();
-            services.AddTransient<ITryavnaNewsScraperService, TryavnaNewsScraperService>();
             services.AddTransient<INewsService, NewsService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IActivityService, ActivityService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<ICommentsService, CommentService>();
+            services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ITryavnaNewsScraperService, TryavnaNewsScraperService>();
+            services.AddTransient<IEmailSender>(_ => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
 
             // Authentication
             services.AddAuthentication().AddFacebook(facebookOptions =>

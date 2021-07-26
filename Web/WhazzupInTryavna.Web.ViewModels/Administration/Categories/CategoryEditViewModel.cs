@@ -7,17 +7,8 @@
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 
-    public class CategoryEditViewModel : IMapFrom<Category>
+    public class CategoryEditViewModel : CategoryBaseViewModel, IMapFrom<Category>
     {
         public int Id { get; set; }
-
-        [Required]
-        [MinLength(CategoryNameMinLength)]
-        [MaxLength(CategoryNameMaxLength)]
-        public string Name { get; set; }
-
-        [Required]
-        [RegularExpression(CategoryImageRegEx, ErrorMessage = "Only Image files allowed.")]
-        public string Image { get; set; }
     }
 }
