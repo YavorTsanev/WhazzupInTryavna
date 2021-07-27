@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace WhazzupInTryavna.Services.Data.Comments
+﻿namespace WhazzupInTryavna.Services.Data.Comments
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using WhazzupInTryavna.Web.ViewModels.Comments;

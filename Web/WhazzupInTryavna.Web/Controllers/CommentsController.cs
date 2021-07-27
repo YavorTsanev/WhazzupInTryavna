@@ -1,10 +1,11 @@
 ﻿namespace WhazzupInTryavna.Web.Controllers
 {
     using System.Threading.Tasks;
-    using WhazzupInTryavna.Services.Data.Comments;
-    using WhazzupInTryavna.Web.Infrastructure;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using WhazzupInTryavna.Services.Data.Comments;
+    using WhazzupInTryavna.Web.Infrastructure;
     using WhazzupInTryavna.Web.ViewModels.Comments;
 
     [Authorize]

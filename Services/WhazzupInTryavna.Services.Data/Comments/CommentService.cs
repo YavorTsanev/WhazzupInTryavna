@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using WhazzupInTryavna.Services.Mapping;
-
-namespace WhazzupInTryavna.Services.Data.Comments
+﻿namespace WhazzupInTryavna.Services.Data.Comments
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models.Activities;
+    using WhazzupInTryavna.Services.Mapping;
     using WhazzupInTryavna.Web.ViewModels.Comments;
 
     public class CommentService : ICommentsService

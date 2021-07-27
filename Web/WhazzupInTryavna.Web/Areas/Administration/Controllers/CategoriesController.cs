@@ -69,6 +69,7 @@
         }
 
         [HttpPost]
+        [CheckCategoryId]
         public async Task<IActionResult> Edit(int id, CategoryEditViewModel model)
         {
             if (!this.ModelState.IsValid)

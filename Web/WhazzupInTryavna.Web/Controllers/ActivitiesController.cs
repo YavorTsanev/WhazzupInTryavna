@@ -1,7 +1,4 @@
-﻿using WhazzupInTryavna.Services.Data.Comments;
-using WhazzupInTryavna.Web.ViewModels.Comments;
-
-namespace WhazzupInTryavna.Web.Controllers
+﻿namespace WhazzupInTryavna.Web.Controllers
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -12,9 +9,11 @@ namespace WhazzupInTryavna.Web.Controllers
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
+    using WhazzupInTryavna.Services.Data.Comments;
     using WhazzupInTryavna.Web.Filters;
     using WhazzupInTryavna.Web.Infrastructure;
     using WhazzupInTryavna.Web.ViewModels.Activities;
+    using WhazzupInTryavna.Web.ViewModels.Comments;
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 

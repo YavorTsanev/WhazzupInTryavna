@@ -1,0 +1,52 @@
+﻿@model NewsAdminListingViewModel
+
+@{
+    ViewBag.Title = "News administration";
+}
+
+<h1 class="text-center">@ViewBag.Title</h1>
+
+<partial name="_HeroNavMenu"/>
+
+<table class="table table-bordered table-hover">
+    @if (Model.NewsList.Any())
+    {
+        <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Content
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+    }
+    <tbody>
+    @foreach (var item in Model.NewsList)
+    {
+        <tr>
+            <td>
+                @item.Title
+            </td>
+            <td>
+                @item.Content
+            </td>
+            <td>
+                @item.Date.ToLocalTime().ToString("D")
+            </td>
+            <td>
+                <div class="container text-center">
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <br/>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -27,5 +27,7 @@
         ////Comment
         public const int CommentContentMinLength = 1;
         public const int CommentContentMaxLength = 120;
+        ////News
+        public const string NewsImageRegEx = @"(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpeg|jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?";
     }
 }
