@@ -1,6 +1,7 @@
 ﻿@model SingleActivityViewModel
 @using Microsoft.AspNetCore.Identity
 @using WhazzupInTryavna.Data.Models
+@using System.Security.Cryptography.X509Certificates
 @inject UserManager<ApplicationUser> UserManager
 
 @if (TempData.ContainsKey("UpdatedActivity"))
@@ -188,7 +189,7 @@
             <h3>Message</h3>
             <input name="Content" class="w-75 ml-4 pl-3 form-control" type="text" placeholder="Message..." data-val="true" data-val-required="The Message field is required." />
             <span class="text-danger" data-valmsg-for="Content" data-valmsg-replace="true"></span>
-            <button class="ml-4 btn btn-dark btn-lg">Send</button>
+            <button  class="ml-4 btn btn-dark btn-lg">Send</button>
         </div>
     </form>
     <hr style="height: 5px;" class="bg-dark" />
@@ -197,13 +198,13 @@
         @foreach (var comment in Model.Comments)
         {
         <div class="card mb-4">
-            <small class="text-center">@comment.CreatedOn.ToLocalTime().ToString("f")</small>
+            <small  class="text-center">@comment.CreatedOn.ToLocalTime().ToString("f")</small>
             <div class="card-header">
                 @comment.UserUserName
             </div>
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                    <p>@comment.Content</p>
+                    <p id="@comment.UserUserName">@comment.Content</p>
                 </blockquote>
             </div>
         </div>
@@ -239,5 +240,12 @@
     <script>
         let el = document.getElementById("succsesAlert");
         setTimeout(function () { el.hidden = true }, 3000)
+    </script>
+    <!--Comments-->
+    <script>
+        $(document).ready(function () {
+            var anchor = document.getElementById('@User.Identity.Name');
+        anchor.scrollIntoView(true);
+    });
     </script>
 }

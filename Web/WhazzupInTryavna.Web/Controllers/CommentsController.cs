@@ -22,12 +22,12 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction("Details", "Activities", new { id = model.ActivityId }, "message");
+                return this.RedirectToAction("Details", "Activities", new { id = model.ActivityId });
             }
 
             await this.commentsService.AddAsync(this.User.GetId(), model);
 
-            return this.RedirectToAction("Details", "Activities", new { id = model.ActivityId }, "message");
+            return this.RedirectToAction("Details", "Activities", new { id = model.ActivityId });
         }
     }
 }
