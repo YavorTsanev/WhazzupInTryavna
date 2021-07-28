@@ -13,7 +13,6 @@
     using WhazzupInTryavna.Web.Filters;
     using WhazzupInTryavna.Web.Infrastructure;
     using WhazzupInTryavna.Web.ViewModels.Activities;
-    using WhazzupInTryavna.Web.ViewModels.Comments;
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 

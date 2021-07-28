@@ -1,15 +1,9 @@
 ﻿namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using WhazzupInTryavna.Common;
     using WhazzupInTryavna.Services.Data.News;
-    using WhazzupInTryavna.Web.Controllers;
     using WhazzupInTryavna.Web.ViewModels.Administration.News;
     using WhazzupInTryavna.Web.ViewModels.News;
 

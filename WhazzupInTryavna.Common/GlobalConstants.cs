@@ -6,6 +6,7 @@
         public const string SiteUrl = "https://localhost:44319/";
         public const string AdminUsername = "Yavor";
         public const string AdministratorRoleName = "Administrator";
+        public const string AdministrationAreaName = "Administration";
         public const string EmailForContact = "yavor.tsanev.1@gmail.com";
         public const string AdminEmail = "onq_koi_e@abv.bg";
 

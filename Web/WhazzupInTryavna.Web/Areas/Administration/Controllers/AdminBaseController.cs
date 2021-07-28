@@ -1,18 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using WhazzupInTryavna.Common;
-using WhazzupInTryavna.Web.Controllers;
-
-namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
+﻿namespace WhazzupInTryavna.Web.Areas.Administration.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
+    using WhazzupInTryavna.Web.Controllers;
 
+    using static WhazzupInTryavna.Common.GlobalConstants;
 
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    [Area("Administration")]
+    [Authorize(Roles = AdministratorRoleName)]
+    [Area(AdministrationAreaName)]
     public abstract class AdminBaseController : BaseController
     {
     }

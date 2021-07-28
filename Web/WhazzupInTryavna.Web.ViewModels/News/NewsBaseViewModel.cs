@@ -1,9 +1,7 @@
 ﻿namespace WhazzupInTryavna.Web.ViewModels.News
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 

@@ -2,12 +2,9 @@
 {
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using WhazzupInTryavna.Common;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
-    using WhazzupInTryavna.Web.Controllers;
     using WhazzupInTryavna.Web.Filters;
     using WhazzupInTryavna.Web.ViewModels.Administration.Activities;
 

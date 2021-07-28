@@ -3,13 +3,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using WhazzupInTryavna.Common;
     using WhazzupInTryavna.Data.Models;
     using WhazzupInTryavna.Services.Data.Users;
-    using WhazzupInTryavna.Web.Controllers;
     using WhazzupInTryavna.Web.ViewModels.Administration.Users;
 
     using static WhazzupInTryavna.Common.GlobalConstants;
