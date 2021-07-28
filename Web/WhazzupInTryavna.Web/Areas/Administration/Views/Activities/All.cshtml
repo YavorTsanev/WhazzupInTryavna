@@ -5,42 +5,46 @@
 
 @if (TempData.ContainsKey("AdminUpdatedActivity"))
 {
-<div id="adminSuccsesAlert" class="alert alert-success">@this.TempData["AdminUpdatedActivity"]</div>
+    <div id="adminSuccsesAlert" class="alert alert-success">@this.TempData["AdminUpdatedActivity"]</div>
 }
 
 <partial name="_HeroNavMenu" />
 
-<h1 class="text-center">@ViewBag.Title</h1>
+<partial name="_BackToMainAdministrationPartial"/>
 
 <table class="table table-bordered table-hover">
     @if (Model.Activities.Any())
     {
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Category Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Location
-            </th>
-            <th>
-                Start Time
-            </th>
-            <th>
-                Added by user
-            </th>
-            <th>
-                Joined users
-            </th>
-            <th></th>
-        </tr>
-    </thead>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Category Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Location
+                </th>
+                <th>
+                    Start Time
+                </th>
+                <th>
+                    Added by user
+                </th>
+                <th>
+                    Joined users
+                </th>
+                <th>
+                    Comments
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
     }
     <tbody>
         @foreach (var item in Model.Activities)
@@ -61,11 +65,11 @@
             <td>
                 @if (item.StartTime > DateTime.Now)
                 {
-                @item.StartTime@: (not started)
+                    @item.StartTime@: (not started)
                 }
                 else
                 {
-                @item.StartTime@: (started)
+                    @item.StartTime@: (started)
                 }
             </td>
             <td>
@@ -73,6 +77,9 @@
             </td>
             <td>
                 @item.UserActivitiesCount
+            </td>
+            <td>
+                <a asp-area="Administration" asp-controller="Comments" asp-action="All" asp-route-id="@item.Id">@item.CommentsCount</a>
             </td>
             <td>
                 <div class="text-center">

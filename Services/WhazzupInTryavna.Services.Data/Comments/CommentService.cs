@@ -12,10 +12,12 @@
     public class CommentService : ICommentsService
     {
         private readonly IDeletableEntityRepository<Comment> commentRepository;
+        private readonly IDeletableEntityRepository<Activity> activityRepository;
 
-        public CommentService(IDeletableEntityRepository<Comment> commentRepository)
+        public CommentService(IDeletableEntityRepository<Comment> commentRepository, IDeletableEntityRepository<Activity> activityRepository)
         {
             this.commentRepository = commentRepository;
+            this.activityRepository = activityRepository;
         }
 
         public async Task AddAsync(string userId, CommentAddViewModel model)
@@ -34,6 +36,25 @@
         public IEnumerable<T> GetAll<T>()
         {
             return this.commentRepository.All().OrderByDescending(x => x.CreatedOn).To<T>();
+        }
+
+        public IEnumerable<T> GetAllByActivityId<T>(int activityId)
+        {
+            return this.commentRepository.All().Where(x => x.ActivityId == activityId).To<T>();
+        }
+
+        public string GetActivityName(int activityId)
+        {
+            return this.activityRepository.All().Where(x => x.Id == activityId).Select(x => x.Name)
+                .FirstOrDefault();
+        }
+
+        public async Task DeleteAsync(int commentId)
+        {
+            var commentToDelete = this.commentRepository.All().FirstOrDefault(x => x.Id == commentId);
+
+            this.commentRepository.Delete(commentToDelete);
+            await this.commentRepository.SaveChangesAsync();
         }
     }
 }

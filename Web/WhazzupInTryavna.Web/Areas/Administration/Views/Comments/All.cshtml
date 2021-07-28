@@ -1,0 +1,56 @@
+﻿@model CommentsAdminListingViewModel
+
+@{
+    ViewBag.Title = Model.Comments.Any() ?"Comments for " + Model.ActivityName : "No comments for " + Model.ActivityName;
+}
+
+<partial name="_HeroNavMenu"/>
+
+
+
+<div class="row container mb-2">
+    <div class="text-xl-left col-2">
+        <a class="btn btn-info" asp-controller="Activities" asp-action="All">BACK TO ACTIVITY LIST</a>
+    </div>
+    <h1 class="col-12 text-center">@ViewBag.Title</h1>
+</div>
+
+<table class="table table-bordered table-hover">
+    @if (Model.Comments.Any())
+    {
+    <thead>
+        <tr>
+            <th>
+                User Name
+            </th>
+            <th>
+                Created On
+            </th>
+            <th>
+                Content
+            </th>
+        </tr>
+    </thead>
+    }
+    <tbody>
+        @foreach (var item in Model.Comments)
+        {
+        <tr>
+            <td>
+                @item.UserUserName
+            </td>
+            <td>
+                @item.CreatedOn.ToLocalTime()
+            </td>
+            <td>
+                @item.Content
+            </td>
+            <td>
+                <div class="text-center">
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id" asp-route-activityId="@Model.ActivityId">Delete</a>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

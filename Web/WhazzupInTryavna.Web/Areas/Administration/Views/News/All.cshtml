@@ -4,9 +4,9 @@
     ViewBag.Title = "News administration";
 }
 
-<h1 class="text-center">@ViewBag.Title</h1>
-
 <partial name="_HeroNavMenu"/>
+
+<partial name="_BackToMainAdministrationPartial" />
 
 <table class="table table-bordered table-hover">
     @if (Model.NewsList.Any())

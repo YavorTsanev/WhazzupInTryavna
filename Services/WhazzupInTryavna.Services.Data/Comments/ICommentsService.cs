@@ -10,5 +10,11 @@
         Task AddAsync(string userId, CommentAddViewModel model);
 
         IEnumerable<T> GetAll<T>();
+
+        IEnumerable<T> GetAllByActivityId<T>(int activityId);
+
+        string GetActivityName(int activityId);
+
+        Task DeleteAsync(int commentId);
     }
 }

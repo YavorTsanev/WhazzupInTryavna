@@ -16,5 +16,7 @@
         public string Location { get; set; }
 
         public DateTime StartTime { get; set; }
+
+        public int CommentsCount { get; set; }
     }
 }
