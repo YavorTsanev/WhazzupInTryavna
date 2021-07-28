@@ -7,9 +7,7 @@
     using WhazzupInTryavna.Web.Controllers;
     using WhazzupInTryavna.Web.ViewModels.News;
 
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    [Area("Administration")]
-    public class AdministrationController : BaseController
+    public class AdministrationController : AdminBaseController
     {
         public IActionResult Index()
         {

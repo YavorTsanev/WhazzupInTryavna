@@ -13,9 +13,7 @@
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    [Area("Administration")]
-    public class ActivitiesController : BaseController
+    public class ActivitiesController : AdminBaseController
     {
         private readonly IActivityService activityService;
         private readonly ICategoryService categoryService;

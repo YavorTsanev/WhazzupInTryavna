@@ -13,9 +13,7 @@
     using WhazzupInTryavna.Web.ViewModels.Administration.News;
     using WhazzupInTryavna.Web.ViewModels.News;
 
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    [Area("Administration")]
-    public class NewsController : BaseController
+    public class NewsController : AdminBaseController
     {
         private readonly INewsService newsService;
 

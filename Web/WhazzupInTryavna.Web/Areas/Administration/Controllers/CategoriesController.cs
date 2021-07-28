@@ -13,9 +13,7 @@
     using WhazzupInTryavna.Web.Filters;
     using WhazzupInTryavna.Web.ViewModels.Administration.Categories;
 
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    [Area("Administration")]
-    public class CategoriesController : BaseController
+    public class CategoriesController : AdminBaseController
     {
         private readonly ICategoryService categoryService;
         private readonly IDeletableEntityRepository<Category> categoryRepository;

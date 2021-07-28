@@ -14,9 +14,7 @@
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 
-    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-    [Area("Administration")]
-    public class UsersController : BaseController
+    public class UsersController : AdminBaseController
     {
         private readonly IUsersService usersService;
         private readonly RoleManager<ApplicationRole> roleManager;
