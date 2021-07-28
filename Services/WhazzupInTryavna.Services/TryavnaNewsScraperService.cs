@@ -68,24 +68,31 @@
 
                 if (!contentCollection.Any(p => p.TextContent.Length < 1))
                 {
-                    var imgUrl = news.QuerySelector(".post-image").Attributes[1].Value;
-
-                    string content = null;
-
-                    foreach (var item in contentCollection.Skip(1).SkipLast(2))
+                    try
                     {
-                        content += item.TextContent.Trim();
+                        var imgUrl = news.QuerySelector(".post-image").Attributes[1].Value;
+
+                        string content = null;
+
+                        foreach (var item in contentCollection.Skip(1).SkipLast(2))
+                        {
+                            content += item.TextContent.Trim();
+                        }
+
+                        var newsDto = new NewsDto
+                        {
+                            Title = header,
+                            Date = DateTime.Parse(newsDate),
+                            ImageUrl = imgUrl,
+                            Content = content,
+                        };
+
+                        newsDtos.Add(newsDto);
                     }
-
-                    var newsDto = new NewsDto
+                    catch (Exception)
                     {
-                        Title = header,
-                        Date = DateTime.Parse(newsDate),
-                        ImageUrl = imgUrl,
-                        Content = content,
-                    };
-
-                    newsDtos.Add(newsDto);
+                        // ignored
+                    }
                 }
             });
 
