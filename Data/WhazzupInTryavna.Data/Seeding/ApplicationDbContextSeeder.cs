@@ -41,6 +41,7 @@
                               new SettingsSeeder(),
                               new AdminUserSeeder(this.configuration),
                               new CategorySeeder(),
+                              new NewsSeeder(),
                           };
 
             foreach (var seeder in seeders)

@@ -39,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Services\WhazzupInTryavna.Services\WhazzupInTryavna.Services.csproj" />
     <ProjectReference Include="..\..\WhazzupInTryavna.Common\WhazzupInTryavna.Common.csproj" />
     <ProjectReference Include="..\WhazzupInTryavna.Data.Common\WhazzupInTryavna.Data.Common.csproj" />
     <ProjectReference Include="..\WhazzupInTryavna.Data.Models\WhazzupInTryavna.Data.Models.csproj" />
