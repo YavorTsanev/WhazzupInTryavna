@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HomeViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -13,8 +15,29 @@
 </header>
 
 <section id="hero" class="d-flex flex-column justify-content-center">
-    <div class="container" data-aos="zoom-in" data-aos-delay="100">
-        <h1>Wellcome to Трявна</h1>
-        <p>If you wan't to <span class="typed" data-typed-items="do some activite, chat, read or post some thing, all of this things => just register and login"></span></p>
-    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="container" data-aos="zoom-in" data-aos-delay="100">
+            <h1>Wellcome to Трявна</h1>
+            <p>Find <span class="typed" data-typed-items="activities to do, news, friends in chat, happiness"></span></p>
+        </div>
+        <div class="row container  mt-5 text-center">
+            <a asp-area="" asp-controller="Activities" asp-action="Index" type="button" class="btn btn-secondary ml-4 mr-5 col-2">
+                Activities <span class="badge badge-secondary">@Model.ActivitiesCount</span>
+            </a>
+            <a asp-area="" asp-controller="News" asp-action="Index" type="button" class="btn btn-secondary ml-5 mr-5 col-2">
+                News <span class="badge badge-secondary">@Model.NewsCount</span>
+            </a>
+            <a asp-controller="Chat" asp-action="Chat" type="button" class="btn btn-secondary ml-5 col-2">
+                Registered users <span class="badge badge-secondary">@Model.UsersCount</span>
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="container" data-aos="zoom-in" data-aos-delay="100">
+            <h1>Visit Whazz up in Tryavna</h1>
+            <p>If you want to <span class="typed" data-typed-items="find activities to do, read news, chat, be able to do all this  just register and login"></span></p>
+        </div>
+    }
 </section>

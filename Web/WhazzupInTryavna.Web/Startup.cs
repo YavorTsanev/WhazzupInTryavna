@@ -23,6 +23,7 @@
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
     using WhazzupInTryavna.Services.Data.Comments;
+    using WhazzupInTryavna.Services.Data.Home;
     using WhazzupInTryavna.Services.Data.News;
     using WhazzupInTryavna.Services.Data.Users;
     using WhazzupInTryavna.Services.Data.Vote;
@@ -83,6 +84,7 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
+            services.AddTransient<IHomeService, HomeService>();
             services.AddTransient<IVoteService, VoteService>();
             services.AddTransient<INewsService, NewsService>();
             services.AddTransient<IUsersService, UsersService>();

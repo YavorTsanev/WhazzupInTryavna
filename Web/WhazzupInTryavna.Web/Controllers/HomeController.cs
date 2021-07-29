@@ -3,13 +3,29 @@
     using System.Diagnostics;
 
     using Microsoft.AspNetCore.Mvc;
+    using WhazzupInTryavna.Services.Data.Home;
     using WhazzupInTryavna.Web.ViewModels;
+    using WhazzupInTryavna.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {
+        private readonly IHomeService homeService;
+
+        public HomeController(IHomeService homeService)
+        {
+            this.homeService = homeService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var model = new HomeViewModel
+            {
+                ActivitiesCount = this.homeService.ActivitiesCount(),
+                NewsCount = this.homeService.NewsCount(),
+                UsersCount = this.homeService.UsersCount(),
+            };
+
+            return this.View(model);
         }
 
         public IActionResult Privacy()
