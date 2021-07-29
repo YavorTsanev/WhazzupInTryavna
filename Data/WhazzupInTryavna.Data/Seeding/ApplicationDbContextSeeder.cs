@@ -40,6 +40,7 @@
                               new RolesSeeder(),
                               new SettingsSeeder(),
                               new AdminUserSeeder(this.configuration),
+                              new CategorySeeder(),
                           };
 
             foreach (var seeder in seeders)
