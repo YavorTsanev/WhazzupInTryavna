@@ -1,4 +1,4 @@
-﻿namespace SignalRChat.Models.Chat
+﻿namespace WhazzupInTryavna.Web.ViewModels.Chat
 {
     public class Message
     {

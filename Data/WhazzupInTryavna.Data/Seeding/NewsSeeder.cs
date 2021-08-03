@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using WhazzupInTryavna.Services;
-
-namespace WhazzupInTryavna.Data.Seeding
+﻿namespace WhazzupInTryavna.Data.Seeding
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
+    using WhazzupInTryavna.Services;
 
     public class NewsSeeder : ISeeder
     {
