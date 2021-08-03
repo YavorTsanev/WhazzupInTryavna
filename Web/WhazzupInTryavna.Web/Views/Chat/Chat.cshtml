@@ -24,6 +24,7 @@
 </section>
 
 @section Scripts {
+    <!--Visualize message-->
     <script type="text/javascript">
         var connection =
             new signalR.HubConnectionBuilder()
@@ -72,12 +73,12 @@
                 .replace(/'/g, "&#039;");
         }
     </script>
-    @* Online users *@
+    <!--Online users-->
     <script>
         document.addEventListener("DOMContentLoaded",
-            function() {
+            function () {
                 function bindConnectionMessage(connection) {
-                    var messageCallback = function(count) {
+                    var messageCallback = function (count) {
                         console.log("message " + count);
                         if (!users) return;
                         var userCountSpan = document.getElementById("users");
@@ -100,10 +101,10 @@
                 bindConnectionMessage(connection);
                 connection
                     .start()
-                    .then(function() {
+                    .then(function () {
                         onConnected(connection);
                     })
-                    .catch(function(error) {
+                    .catch(function (error) {
                         console.error(error.message);
                     });
             });
@@ -118,11 +119,11 @@
             });
 
     </script>
-    @* Trigger send button with enter *@
+    <!--Trigger send button with enter-->
     <script>
         var input = document.getElementById("messageInput");
         input.addEventListener("keyup",
-            function(event) {
+            function (event) {
                 if (event.keyCode === 13) {
                     event.preventDefault();
                     document.getElementById("sendButton").click();

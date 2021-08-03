@@ -135,7 +135,7 @@
                         }
                     </label>
                     <div>
-                        @if (Model.UsersInActivity.Any(x => x.Name == User.Identity.Name))
+                        @if (Model.UsersInActivity.Any(x => x.Name == User.Identity?.Name))
                         {
                             <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="DisJoin" asp-route-id="@Model.Id">DISJOIN</a>
                         }
@@ -235,16 +235,16 @@
             });
         });
     </script>
-    <!--Alert-->
+    <!--Alert displaying-->
     <script>
         let el = document.getElementById("succsesAlert");
         setTimeout(function() { el.hidden = true }, 3000);
     </script>
-    <!--Comments-->
+    <!--Comments scroll-->
     <script>
         $(document).ready(function () {
-            var anchor = document.getElementById('@User.Identity.Name');
-        anchor.scrollIntoView(true);
-    });
+            const anchor = document.getElementById('@User.Identity.Name');
+            anchor.scrollIntoView(true);
+        });
     </script>
 }

@@ -52,39 +52,39 @@
         {
             var newsDtos = new ConcurrentBag<NewsDto>();
 
-            var tryavnaWEbSite = await this.context.OpenAsync("https://tryavna.bg/aktualno/novini/");
+            var tryavnaWebSite = await this.context.OpenAsync("https://tryavna.bg/aktualno/novini/");
 
             Parallel.For(1, count, (i) =>
             {
-                var linkNews = tryavnaWEbSite.QuerySelector($"#wrapper > section.mt-4 > div > div:nth-child(1) > div:nth-child({i}) > div > a").GetAttribute("href");
+                var linkNews = tryavnaWebSite.QuerySelector($"#wrapper > section.mt-4 > div > div:nth-child(1) > div:nth-child({i}) > div > a").GetAttribute("href");
 
                 var news = this.context.OpenAsync(linkNews).GetAwaiter().GetResult();
 
-                var header = news.GetElementsByTagName("h1")[0].InnerHtml;
+                var newsHeader = news.GetElementsByTagName("h1")[0].InnerHtml;
 
                 var newsDate = news.QuerySelector(".lead").TextContent.Trim();
 
-                var contentCollection = news.GetElementsByTagName("p");
+                var newsContentCollection = news.GetElementsByTagName("p");
 
-                if (!contentCollection.Any(p => p.TextContent.Length < 1))
+                if (!newsContentCollection.Any(p => p.TextContent.Length < 1))
                 {
                     try
                     {
-                        var imgUrl = news.QuerySelector(".post-image").Attributes[1].Value;
+                        var newsImgUrl = news.QuerySelector(".post-image").Attributes[1].Value;
 
-                        string content = null;
+                        string newsContent = null;
 
-                        foreach (var item in contentCollection.Skip(1).SkipLast(2))
+                        foreach (var item in newsContentCollection.Skip(1).SkipLast(2))
                         {
-                            content += item.TextContent.Trim();
+                            newsContent += item.TextContent.Trim();
                         }
 
                         var newsDto = new NewsDto
                         {
-                            Title = header,
+                            Title = newsHeader,
                             Date = DateTime.Parse(newsDate),
-                            ImageUrl = imgUrl,
-                            Content = content,
+                            ImageUrl = newsImgUrl,
+                            Content = newsContent,
                         };
 
                         newsDtos.Add(newsDto);
