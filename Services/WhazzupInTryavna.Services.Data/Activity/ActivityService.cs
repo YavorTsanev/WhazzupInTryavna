@@ -23,7 +23,7 @@
 
         public IEnumerable<T> GetAll<T>()
         {
-            return this.activityRepository.All().To<T>();
+            return this.activityRepository.All().OrderByDescending(x => x.CreatedOn).To<T>();
         }
 
         public IEnumerable<T> GetAll<T>(string searchTerm, string category, string activity, string userId, string countOfJoins, string timeToStart)

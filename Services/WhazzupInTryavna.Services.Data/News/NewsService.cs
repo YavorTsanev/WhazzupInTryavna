@@ -1,4 +1,7 @@
-﻿namespace WhazzupInTryavna.Services.Data.News
+﻿using System;
+using Microsoft.Extensions.Caching.Memory;
+
+namespace WhazzupInTryavna.Services.Data.News
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -12,15 +15,30 @@
     public class NewsService : INewsService
     {
         private readonly IDeletableEntityRepository<News> newsRepository;
+        private readonly IMemoryCache memoryCache;
 
-        public NewsService(IDeletableEntityRepository<News> newsRepository)
+        public NewsService(IDeletableEntityRepository<News> newsRepository, IMemoryCache memoryCache)
         {
             this.newsRepository = newsRepository;
+            this.memoryCache = memoryCache;
         }
 
         public IEnumerable<T> GetAll<T>()
         {
-            return this.newsRepository.All().OrderByDescending(x => x.Date).To<T>();
+            const string newsAllKey = "newsAllKey";
+
+            var allNews = this.memoryCache.Get<List<T>>(newsAllKey);
+
+            if (allNews == null)
+            {
+                allNews = this.newsRepository.All().OrderByDescending(x => x.Date).To<T>().ToList();
+
+                var memoryCacheOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(60));
+
+                this.memoryCache.Set(newsAllKey, allNews, memoryCacheOptions);
+            }
+
+            return allNews;
         }
 
         public T GetById<T>(int newId)

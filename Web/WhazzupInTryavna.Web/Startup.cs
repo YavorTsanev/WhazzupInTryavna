@@ -64,6 +64,7 @@
                     });
 
             services.AddSignalR();
+
             services.AddControllersWithViews(
                 options =>
                     {
@@ -77,6 +78,8 @@
             });
 
             services.AddSingleton(this.configuration);
+
+            services.AddMemoryCache();
 
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
@@ -101,13 +104,13 @@
                 facebookOptions.AppId = this.configuration["Authentication:Facebook:AppId"];
                 facebookOptions.AppSecret = this.configuration["Authentication:Facebook:AppSecret"];
             });
+
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
