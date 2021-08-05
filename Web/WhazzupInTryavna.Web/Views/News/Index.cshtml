@@ -6,8 +6,9 @@
 
 <partial name="_HeroNavMenu" />
 
-<h1 class="text-center">@ViewBag.Title</h1>
-
+<div class="text-center mb-5 mt-5 row">
+    <h1 class="bg--accent offset-4 col-4 text-center text-dark">@ViewBag.Title</h1>
+</div>
 <div class="row container">
     @foreach (var news in Model.NewsList)
     {
