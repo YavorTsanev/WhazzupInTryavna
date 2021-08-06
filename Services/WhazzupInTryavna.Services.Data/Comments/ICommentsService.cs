@@ -7,7 +7,7 @@
 
     public interface ICommentsService
     {
-        Task AddAsync(string userId, CommentAddViewModel model);
+        Task AddAsync(string userId, CommentFormModel model);
 
         IEnumerable<T> GetAll<T>();
 

@@ -2,12 +2,14 @@
 {
     using System.Diagnostics;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using WhazzupInTryavna.Services.Data.Home;
     using WhazzupInTryavna.Web.ViewModels;
     using WhazzupInTryavna.Web.ViewModels.Home;
 
-    public class HomeController : BaseController
+    [AllowAnonymous]
+    public class HomeController : BaseAuthorizeController
     {
         private readonly IHomeService homeService;
 

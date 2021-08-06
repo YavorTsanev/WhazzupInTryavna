@@ -1,6 +1,6 @@
 ﻿namespace WhazzupInTryavna.Web.ViewModels.Activities
 {
-    public class ActivityAddViewModel : ActivityBaseViewModel
+    public class ActivityFormModel : ActivityBaseViewModel
     {
     }
 }

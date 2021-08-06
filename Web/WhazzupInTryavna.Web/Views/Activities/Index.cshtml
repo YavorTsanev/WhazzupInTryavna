@@ -6,7 +6,7 @@
 
 @if (TempData.ContainsKey("AddedActivity"))
 {
-    <div id="succsesAlert" class="alert alert-success">@this.TempData["AddedActivity"]</div>
+    <div id="successesAlert" class="alert alert-success">@this.TempData["AddedActivity"]</div>
 }
 
 <partial name="_HeroNavMenu" />
@@ -21,7 +21,7 @@
     <div class="row text-center container">
         <div class="form-group offset-1 col-2">
             <label asp-for="SearchTerm"></label>
-            <input asp-for="SearchTerm" class="form-control"/>
+            <input asp-for="SearchTerm" class="form-control" />
         </div>
         <div class="form-group col-2">
             <label asp-for="Category"></label>
@@ -71,31 +71,38 @@
     </div>
 </form>
 <div class="row text-center">
-    @foreach (var activity in Model.Activities)
-    {
-        <section class="card-deck col-3 offset-1">
-            <a asp-controller="Activities" asp-action="Details" asp-route-id="@activity.Id">
-                <div class="card">
-                    <img class="card-img-top" src="@activity.CategoryImage" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">@activity.Name</h5>
-                        <p class="card-text">@activity.Location</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Star Time: @activity.StartTime.ToString("dd - MMMM (dddd) HH:mm")</small>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Comments: @activity.CommentsCount</small>
-                    </div>
-                </div>
-            </a>
-        </section>
-    }
+   @if (Model.Activities.Any())
+   {
+       @foreach (var activity in Model.Activities)
+       {
+           <section class="card-deck col-3 offset-1">
+               <a asp-controller="Activities" asp-action="Details" asp-route-id="@activity.Id">
+                   <div class="card">
+                       <img class="card-img-top" src="@activity.CategoryImage" alt="Card image cap">
+                       <div class="card-body">
+                           <h5 class="card-title">@activity.Name</h5>
+                           <p class="card-text">@activity.Location</p>
+                       </div>
+                       <div class="card-footer">
+                           <small class="text-muted">Star Time: @activity.StartTime.ToString("dd - MMMM (dddd) HH:mm")</small>
+                       </div>
+                       <div class="card-footer">
+                           <small class="text-muted">Comments: @activity.CommentsCount</small>
+                       </div>
+                   </div>
+               </a>
+           </section>
+       }
+   }
+   else
+   {
+       <h1 class="text-center">No activities in this category!</h1>
+   }
 </div>
 @section Scripts
 {
     <script>
-        let el = document.getElementById("succsesAlert");
-        setTimeout(function() { el.hidden = true }, 3000);
+        let el = document.getElementById("successesAlert");
+        setTimeout(function () { el.hidden = true }, 3000);
     </script>
 }

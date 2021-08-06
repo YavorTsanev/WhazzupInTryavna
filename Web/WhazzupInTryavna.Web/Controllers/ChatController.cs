@@ -3,8 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    [Authorize]
-    public class ChatController : BaseController
+    public class ChatController : BaseAuthorizeController
     {
         public IActionResult Chat()
         {

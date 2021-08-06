@@ -15,6 +15,7 @@
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
     using WhazzupInTryavna.Data.Models;
+    using WhazzupInTryavna.Services.Messaging;
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 
@@ -24,13 +25,13 @@
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ILogger<RegisterModel> logger;
-        private readonly WhazzupInTryavna.Services.Messaging.IEmailSender emailSender;
+        private readonly IEmailSender emailSender;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            WhazzupInTryavna.Services.Messaging.IEmailSender emailSender)
+            IEmailSender emailSender)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;

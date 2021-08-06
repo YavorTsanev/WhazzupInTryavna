@@ -20,7 +20,7 @@
             this.activityRepository = activityRepository;
         }
 
-        public async Task AddAsync(string userId, CommentAddViewModel model)
+        public async Task AddAsync(string userId, CommentFormModel model)
         {
             var comment = new Comment
             {

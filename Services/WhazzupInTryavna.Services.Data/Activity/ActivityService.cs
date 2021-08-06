@@ -64,7 +64,7 @@
             return query.To<T>().ToList();
         }
 
-        public async Task CreateAsync(string userid, ActivityAddViewModel model)
+        public async Task CreateAsync(string userid, ActivityFormModel model)
         {
             var activity = new Activity
             {

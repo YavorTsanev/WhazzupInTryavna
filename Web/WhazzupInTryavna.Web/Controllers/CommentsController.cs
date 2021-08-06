@@ -2,14 +2,12 @@
 {
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using WhazzupInTryavna.Services.Data.Comments;
     using WhazzupInTryavna.Web.Infrastructure;
     using WhazzupInTryavna.Web.ViewModels.Comments;
 
-    [Authorize]
-    public class CommentsController : BaseController
+    public class CommentsController : BaseAuthorizeController
     {
         private readonly ICommentsService commentsService;
 
@@ -19,7 +17,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(CommentAddViewModel model)
+        public async Task<IActionResult> Add(CommentFormModel model)
         {
             if (!this.ModelState.IsValid)
             {

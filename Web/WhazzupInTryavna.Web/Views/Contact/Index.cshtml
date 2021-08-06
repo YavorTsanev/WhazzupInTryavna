@@ -1,0 +1,86 @@
+﻿@model ContactFormModel
+@using static WhazzupInTryavna.Common.GlobalConstants
+@using WhazzupInTryavna.Web.Infrastructure
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<partial name="_HeroNavMenu" />
+
+@if (TempData.ContainsKey("SuccessSentEmail"))
+{
+    <div id="successesAlert" class="alert alert-success">@this.TempData["SuccessSentEmail"]</div>
+}
+
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>@ViewBag.Title</h2>
+        </div>
+
+        <div class="row mt-1">
+
+            <div class="col-lg-4">
+                <div class="info">
+                    <div class="address">
+                        <i class="bi bi-geo-alt"></i>
+                        <h4>Location:</h4>
+                        <p>Svetushka, Tryavna, Bulgaria</p>
+                    </div>
+
+                    <div class="email">
+                        <i class="bi bi-envelope"></i>
+                        <h4>Email:</h4>
+                        <p>@EmailForContact</p>
+                    </div>
+
+                    <div class="phone">
+                        <i class="bi bi-phone"></i>
+                        <h4>Call:</h4>
+                        <p>@PhoneNumberForContact</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-8 mt-5 mt-lg-0">
+
+                <form asp-controller="Contact" asp-action="Index" class="php-email-form">
+                    <div class="row">
+                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                            <input asp-for="Name" placeholder="Your Name" class="form-control">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <input asp-for="Email" class="form-control" value="@User.GetEmail()" placeholder="Your Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input asp-for="Subject" type="text" class="form-control" placeholder="Subject">
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-3">
+                        <textarea asp-for="Message" class="form-control" rows="5" placeholder="Message"></textarea>
+                        <span asp-validation-for="Message" class="text-danger"></span>
+                    </div>
+                    <div class="text-center"><button type="submit">Send Message</button></div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+@section Scripts
+{
+    <script>
+        let el = document.getElementById("successesAlert");
+        setTimeout(function () { el.hidden = true }, 3000);
+    </script>
+}

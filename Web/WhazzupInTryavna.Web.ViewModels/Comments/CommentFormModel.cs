@@ -4,7 +4,7 @@
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 
-    public class CommentAddViewModel
+    public class CommentFormModel
     {
         [Required]
         [MinLength(CommentContentMinLength)]

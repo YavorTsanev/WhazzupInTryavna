@@ -9,7 +9,7 @@
     using WhazzupInTryavna.Services.Data;
     using WhazzupInTryavna.Web.ViewModels.Settings;
 
-    public class SettingsController : BaseController
+    public class SettingsController : BaseAuthorizeController
     {
         private readonly ISettingsService settingsService;
 

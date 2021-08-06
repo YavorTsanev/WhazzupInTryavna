@@ -2,15 +2,13 @@
 {
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using WhazzupInTryavna.Services;
     using WhazzupInTryavna.Services.Data.News;
     using WhazzupInTryavna.Web.Filters;
     using WhazzupInTryavna.Web.ViewModels.News;
 
-    [Authorize]
-    public class NewsController : BaseController
+    public class NewsController : BaseAuthorizeController
     {
         private readonly ITryavnaNewsScraperService newsScraperService;
         private readonly INewsService newsService;

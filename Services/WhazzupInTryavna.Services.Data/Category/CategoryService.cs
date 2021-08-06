@@ -36,7 +36,7 @@
             return this.categoryRepository.All().Where(x => x.Id == categoryId).To<T>().FirstOrDefault();
         }
 
-        public async Task AddAsync(CategoryAddViewModel model)
+        public async Task AddAsync(CategoryFormModel model)
         {
             var category = new Category
             {

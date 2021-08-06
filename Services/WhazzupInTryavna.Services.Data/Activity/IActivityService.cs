@@ -7,7 +7,7 @@
 
     public interface IActivityService
     {
-        Task CreateAsync(string userid, ActivityAddViewModel model);
+        Task CreateAsync(string userid, ActivityFormModel model);
 
         IEnumerable<T> GetAll<T>(string searchTerm, string category, string activities, string userId, string countOfJoins, string timeToStart);
 

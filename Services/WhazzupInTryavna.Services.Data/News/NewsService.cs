@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.Extensions.Caching.Memory;
-
-namespace WhazzupInTryavna.Services.Data.News
+﻿namespace WhazzupInTryavna.Services.Data.News
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.Extensions.Caching.Memory;
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models.News;
     using WhazzupInTryavna.Services.Mapping;

@@ -17,7 +17,7 @@
     using static WhazzupInTryavna.Common.GlobalConstants;
 
     [Authorize]
-    public class ActivitiesController : BaseController
+    public class ActivitiesController : BaseAuthorizeController
     {
         private readonly ICategoryService categoryService;
         private readonly IActivityService activityService;
@@ -47,7 +47,7 @@
 
         public IActionResult Add()
         {
-            var model = new ActivityAddViewModel
+            var model = new ActivityFormModel
             {
                 CategoriesItems = this.categoryService.GetAllAsKeyValuePairs(),
             };
@@ -56,7 +56,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(ActivityAddViewModel model)
+        public async Task<IActionResult> Add(ActivityFormModel model)
         {
             if (!this.categoryService.IsIdExist(model.CategoryId))
             {

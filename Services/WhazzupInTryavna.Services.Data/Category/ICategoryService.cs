@@ -7,7 +7,7 @@
 
     public interface ICategoryService
     {
-        Task AddAsync(CategoryAddViewModel model);
+        Task AddAsync(CategoryFormModel model);
 
         ICollection<T> GetAll<T>();
 

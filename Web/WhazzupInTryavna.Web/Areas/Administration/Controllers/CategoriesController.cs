@@ -27,7 +27,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(CategoryAddViewModel model)
+        public async Task<IActionResult> Add(CategoryFormModel model)
         {
             if (this.categoryRepository.All().Any(x => x.Name == model.Name))
             {

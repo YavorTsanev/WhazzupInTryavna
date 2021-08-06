@@ -50,6 +50,11 @@
                 Name = "Drinking",
                 Image = "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202103/Liquor-1_1200x768.jpeg",
             });
+            await dbContext.Categories.AddAsync(new Category
+            {
+                Name = "Other",
+                Image = "https://pngimage.net/wp-content/uploads/2018/06/other-png-4.png",
+            });
 
             await dbContext.SaveChangesAsync();
         }
