@@ -55,6 +55,11 @@
                 Name = "Other",
                 Image = "https://pngimage.net/wp-content/uploads/2018/06/other-png-4.png",
             });
+            await dbContext.Categories.AddAsync(new Category
+            {
+                Name = "Camping",
+                Image = "https://www.reshare.com.au/wp-content/uploads/2020/11/GettyImages-904960682_54_990x660.jpeg",
+            });
 
             await dbContext.SaveChangesAsync();
         }

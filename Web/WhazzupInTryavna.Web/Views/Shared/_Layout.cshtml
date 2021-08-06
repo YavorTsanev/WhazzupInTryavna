@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title - @AppConst.SystemName</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.min.css"/>
-    <link href="~/css/style.css" rel="stylesheet"/>
-    <link href="~/assets/css/style.css" rel="stylesheet"/>
-    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.min.css" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
 
     <!-- Vendor CSS Files -->
     <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
@@ -43,6 +43,25 @@
         </nav>
     </header>
 
+    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+    <header id="header" class="d-flex flex-column justify-content-center">
+        <nav id="navbar" class="navbar nav-menu">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <ul>
+                    <li><a asp-area="" asp-controller="Activities" asp-action="Index" class="nav-link"><i class="fas fa-play"></i> <span>Activities</span></a></li>
+                    <li><a asp-area="" asp-controller="News" asp-action="Index" class="nav-link"><i class="fas fa-newspaper"></i> <span>News</span></a></li>
+                    <li><a asp-area="" asp-controller="Chat" asp-action="Chat" class="nav-link"><i class="fas fa-comments"></i> <span>Live Chat</span></a></li>
+                    <li><a asp-area="" asp-controller="Contact" asp-action="Index" class="nav-link"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
+                    @if (User.IsInRole(AdminConst.RoleName))
+                    {
+                        <li><a asp-area="Administration" asp-controller="Administration" asp-action="Index" class="nav-link"><i class="fas fa-user-shield"></i> <span>Administration</span></a></li>
+                    }
+                </ul>
+            }
+        </nav>
+    </header>
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
@@ -60,7 +79,6 @@
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.min.js"></script>
-    <script src="~/assets/js/main.js"></script>
 
     <!-- Vendor JS Files -->
     <script src="~/assets/vendor/glightbox/js/glightbox.js"></script>

@@ -6,7 +6,6 @@
     ViewBag.Title = "Contact";
 }
 
-<partial name="_HeroNavMenu" />
 
 @if (TempData.ContainsKey("SuccessSentEmail"))
 {
@@ -81,6 +80,8 @@
 {
     <script>
         let el = document.getElementById("successesAlert");
-        setTimeout(function () { el.hidden = true }, 3000);
+        if (el !== null) {
+            setTimeout(function () { el.hidden = true }, 3000);
+        }
     </script>
 }

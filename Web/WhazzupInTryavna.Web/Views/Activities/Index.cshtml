@@ -9,7 +9,6 @@
     <div id="successesAlert" class="alert alert-success">@this.TempData["AddedActivity"]</div>
 }
 
-<partial name="_HeroNavMenu" />
 
 <div class="text-center row">
     <h1 class="col-2 offset-5 mt-5 mb-5 bg--accent text-dark">@ViewBag.Title</h1>
@@ -103,6 +102,8 @@
 {
     <script>
         let el = document.getElementById("successesAlert");
-        setTimeout(function () { el.hidden = true }, 3000);
+        if (el !== null) {
+            setTimeout(function () { el.hidden = true }, 3000);
+        }
     </script>
 }

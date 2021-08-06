@@ -5,10 +5,9 @@
 
 @if (TempData.ContainsKey("AdminUpdatedActivity"))
 {
-    <div id="adminSuccsesAlert" class="alert alert-success">@this.TempData["AdminUpdatedActivity"]</div>
+    <div id="adminSuccessesAlert" class="alert alert-success">@this.TempData["AdminUpdatedActivity"]</div>
 }
 
-<partial name="_HeroNavMenu" />
 
 <partial name="_BackToMainAdministrationPartial"/>
 
@@ -94,6 +93,8 @@
 
 <!--Alert-->
 <script>
-    let el = document.getElementById("adminSuccsesAlert");
-    setTimeout(function () { el.hidden = true }, 3000)
+    let el = document.getElementById("adminSuccessesAlert");
+    if (el !== null) {
+        setTimeout(function () { el.hidden = true }, 3000);
+    }
 </script>

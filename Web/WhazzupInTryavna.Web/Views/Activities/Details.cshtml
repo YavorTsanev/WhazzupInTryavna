@@ -5,10 +5,9 @@
 
 @if (TempData.ContainsKey("UpdatedActivity"))
 {
-    <div id="succsesAlert" class="alert alert-success">@this.TempData["UpdatedActivity"]</div>
+    <div id="successesAlert" class="alert alert-success">@this.TempData["UpdatedActivity"]</div>
 }
 
-<partial name="_HeroNavMenu" />
 
 @{ ViewBag.Title = Model.Name; }
 <div class="single-recipe-layout1 text-center">
@@ -237,8 +236,10 @@
     </script>
     <!--Alert displaying-->
     <script>
-        let el = document.getElementById("succsesAlert");
-        setTimeout(function() { el.hidden = true }, 3000);
+        let el = document.getElementById("successesAlert");
+        if (el !== null) {
+            setTimeout(function () { el.hidden = true }, 3000);
+        }
     </script>
     <!--Comments scroll-->
     <script>
