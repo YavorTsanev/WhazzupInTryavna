@@ -9,7 +9,7 @@
     using WhazzupInTryavna.Services.Mapping;
     using WhazzupInTryavna.Web.ViewModels.Comments;
 
-    public class SingleActivityViewModel : ActivityBaseViewModel, IMapFrom<Activity>, IHaveCustomMappings
+    public class SingleActivityViewModel : ActivityBaseViewModel, IMapFrom<Activity>, IHaveCustomMappings, IActivityModel
     {
         public int Id { get; set; }
 

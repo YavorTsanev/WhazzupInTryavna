@@ -5,7 +5,7 @@
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Mapping;
 
-    public class ActivityInListViewModel : IMapFrom<Activity>
+    public class ActivityInListViewModel : IMapFrom<Activity>, IActivityModel
     {
         public int Id { get; set; }
 

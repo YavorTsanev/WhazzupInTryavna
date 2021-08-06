@@ -79,9 +79,14 @@
         }
 
         [CheckActivityId]
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string information)
         {
             var model = this.activityService.GetById<SingleActivityViewModel>(id);
+
+            if (information != model.GetInformation())
+            {
+                return this.BadRequest();
+            }
 
             return this.View(model);
         }
