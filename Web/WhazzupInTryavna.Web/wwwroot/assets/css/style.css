@@ -260,9 +260,9 @@ h1, h2, h3, h4, h5, h6 {
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
-    width: 100%;
+    width: 105%;
     height: 100vh;
-    background: url("../img/tryavna-1500x680.jpg") top right no-repeat;
+    background: url("../img/tryavna-1500x680.jpg") fixed;
     background-size: cover;
     position: relative;
 }

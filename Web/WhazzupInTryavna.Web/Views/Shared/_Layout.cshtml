@@ -43,11 +43,12 @@
         </nav>
     </header>
 
-    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+    
     <header id="header" class="d-flex flex-column justify-content-center">
         <nav id="navbar" class="navbar nav-menu">
             @if (User.Identity.IsAuthenticated)
             {
+                <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
                 <ul>
                     <li><a asp-area="" asp-controller="Activities" asp-action="Index" class="nav-link"><i class="fas fa-play"></i> <span>Activities</span></a></li>
                     <li><a asp-area="" asp-controller="News" asp-action="Index" class="nav-link"><i class="fas fa-newspaper"></i> <span>News</span></a></li>
