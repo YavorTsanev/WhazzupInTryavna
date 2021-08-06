@@ -6,8 +6,8 @@
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 
-    [Authorize(Roles = AdministratorRoleName)]
-    [Area(AdministrationAreaName)]
+    [Authorize(Roles = AdminConst.RoleName)]
+    [Area(AdminConst.AreaName)]
     public abstract class AdminBaseController : BaseAuthorizeController
     {
     }

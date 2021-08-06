@@ -22,22 +22,22 @@
 
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            if (dbContext.Users.FirstOrDefault(x => x.UserName == AdminUsername && x.Email == AdminEmail) != null)
+            if (dbContext.Users.FirstOrDefault(x => x.UserName == AdminConst.Username && x.Email == AdminConst.Email) != null)
             {
                 return;
             }
 
             var adminUser = new ApplicationUser
             {
-                Email = AdminEmail,
-                UserName = AdminUsername,
+                Email = AdminConst.Email,
+                UserName = AdminConst.Username,
                 EmailConfirmed = true,
             };
 
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
             await userManager.CreateAsync(adminUser, this.configuration["AdminPassword"]);
-            await userManager.AddToRoleAsync(adminUser, AdministratorRoleName);
+            await userManager.AddToRoleAsync(adminUser, AdminConst.RoleName);
         }
     }
 }

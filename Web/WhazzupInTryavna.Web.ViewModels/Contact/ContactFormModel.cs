@@ -7,22 +7,22 @@
     public class ContactFormModel
     {
         [Required]
-        [MinLength(ContactNameMinLength)]
-        [MaxLength(ContactNameMaxLength)]
+        [MinLength(ContactConst.NameMinLength)]
+        [MaxLength(ContactConst.NameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [RegularExpression(ContactEmailRegEx, ErrorMessage = EmailNotValid)]
+        [RegularExpression(ContactConst.EmailRegEx, ErrorMessage = ErrorMessageConst.EmailNotValid)]
         public string Email { get; set; }
 
         [Required]
-        [MinLength(ContactSubjectMinLength)]
-        [MaxLength(ContactSubjectMaxLength)]
+        [MinLength(ContactConst.SubjectMinLength)]
+        [MaxLength(ContactConst.SubjectMaxLength)]
         public string Subject { get; set; }
 
         [Required]
-        [MinLength(ContactMessageMinLength)]
-        [MaxLength(ContactMessageMaxLength)]
+        [MinLength(ContactConst.MessageMinLength)]
+        [MaxLength(ContactConst.MessageMaxLength)]
         public string Message { get; set; }
     }
 }

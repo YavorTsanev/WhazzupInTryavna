@@ -50,7 +50,7 @@
 
         private string GetAdminRoleId()
         {
-            return this.roleManager.Roles.Where(x => x.Name == AdministratorRoleName).Select(x => x.Id)
+            return this.roleManager.Roles.Where(x => x.Name == AdminConst.RoleName).Select(x => x.Id)
                 .FirstOrDefault();
         }
     }

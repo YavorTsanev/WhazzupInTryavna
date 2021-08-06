@@ -7,12 +7,12 @@
     public abstract class CategoryBaseViewModel
     {
         [Required]
-        [MinLength(CategoryNameMinLength)]
-        [MaxLength(CategoryNameMaxLength)]
+        [MinLength(CategoryConst.NameMinLength)]
+        [MaxLength(CategoryConst.NameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [RegularExpression(CategoryImageRegEx, ErrorMessage = AllowedExtensionError)]
+        [RegularExpression(CategoryConst.ImageRegEx, ErrorMessage = ErrorMessageConst.AllowedExtensionError)]
         public string Image { get; set; }
     }
 }

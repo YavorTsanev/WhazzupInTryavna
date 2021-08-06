@@ -2,47 +2,64 @@
 {
     public static class GlobalConstants
     {
-        public const string SystemName = "Whazz up in Tryavna";
-        public const string SiteUrl = "https://localhost:44319/";
-        public const string AdminUsername = "Yavor";
-        public const string AdministratorRoleName = "Administrator";
-        public const string AdministrationAreaName = "Administration";
-        public const string EmailForContact = "yavor.tsanev.1@gmail.com";
-        public const string PhoneNumberForContact = "+359 0894 66 ** **";
-        public const string AdminEmail = "onq_koi_e@abv.bg";
+        public class AppConst
+        {
+            public const string SystemName = "Whazz up in Tryavna";
+            public const string SiteUrl = "https://localhost:44319/";
+            public const string EmailForContact = "yavor.tsanev.1@gmail.com";
+            public const string PhoneNumberForContact = "+359 0894 66 ** **";
+        }
 
-        //// Error messages
-        public const string CategoryDontExist = "Category don't exist";
-        public const string AllowedExtensionError = "Only Image files allowed with extensions jpeg, jpg, gif, png!";
-        public const string EmailNotValid = "Not valid email";
+        public class AdminConst
+        {
+            public const string Email = "onq_koi_e@abv.bg";
+            public const string Username = "Yavor";
+            public const string RoleName = "Administrator";
+            public const string AreaName = "Administration";
+        }
 
-        //// Data models requirements
+        public class ErrorMessageConst
+        {
+            public const string CategoryDontExist = "Category don't exist";
+            public const string AllowedExtensionError = "Only Image files allowed with extensions jpeg, jpg, gif, png!";
+            public const string EmailNotValid = "Not valid email";
+        }
 
-        //// Category
-        public const int CategoryNameMinLength = 3;
-        public const int CategoryNameMaxLength = 30;
-        public const string CategoryImageRegEx = @"(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpeg|jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?";
+        public class CategoryConst
+        {
+            public const int NameMinLength = 3;
+            public const int NameMaxLength = 30;
+            public const string ImageRegEx = @"(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpeg|jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?";
+        }
 
-        ////Activity
-        public const int ActivityNameMinLength = 3;
-        public const int ActivityNameMaxLength = 40;
-        public const int ActivityLocationMinLength = 4;
-        public const int ActivityLocationMaxLength = 40;
+        public class ActivityConst
+        {
+            public const int NameMinLength = 3;
+            public const int NameMaxLength = 40;
+            public const int LocationMinLength = 4;
+            public const int LocationMaxLength = 40;
+        }
 
-        ////Comment
-        public const int CommentContentMinLength = 1;
-        public const int CommentContentMaxLength = 120;
+        public class CommentConst
+        {
+            public const int ContentMinLength = 1;
+            public const int ContentMaxLength = 120;
+        }
 
-        ////News
-        public const string NewsImageRegEx = @"(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpeg|jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?";
+        public class NewsConst
+        {
+            public const string ImageRegEx = @"(?:([^:\/?#]+):)?(?:\/\/([^\/?#]*))?([^?#]*\.(?:jpeg|jpg|gif|png))(?:\?([^#]*))?(?:#(.*))?";
+        }
 
-        ////Contact
-        public const int ContactNameMinLength = 2;
-        public const int ContactNameMaxLength = 10;
-        public const string ContactEmailRegEx = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
-        public const int ContactSubjectMinLength = 3;
-        public const int ContactSubjectMaxLength = 10;
-        public const int ContactMessageMinLength = 3;
-        public const int ContactMessageMaxLength = 1000;
+        public class ContactConst
+        {
+            public const int NameMinLength = 2;
+            public const int NameMaxLength = 10;
+            public const string EmailRegEx = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
+            public const int SubjectMinLength = 3;
+            public const int SubjectMaxLength = 10;
+            public const int MessageMinLength = 3;
+            public const int MessageMaxLength = 1000;
+        }
     }
 }

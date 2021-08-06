@@ -10,8 +10,8 @@
     public abstract class ActivityBaseViewModel
     {
         [Required]
-        [MinLength(ActivityNameMinLength)]
-        [MaxLength(ActivityNameMaxLength)]
+        [MinLength(ActivityConst.NameMinLength)]
+        [MaxLength(ActivityConst.NameMaxLength)]
         public string Name { get; set; }
 
         [DisplayName("Category")]
@@ -21,8 +21,8 @@
         public string Description { get; set; }
 
         [Required]
-        [MinLength(ActivityLocationMinLength)]
-        [MaxLength(ActivityLocationMaxLength)]
+        [MinLength(ActivityConst.LocationMinLength)]
+        [MaxLength(ActivityConst.LocationMaxLength)]
         public string Location { get; set; }
 
         [DisplayName("Start Time")]

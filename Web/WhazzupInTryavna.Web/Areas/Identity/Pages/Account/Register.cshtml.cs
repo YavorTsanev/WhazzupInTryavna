@@ -94,7 +94,7 @@
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: this.Request.Scheme);
-                    await this.emailSender.SendEmailAsync(AdminEmail, SystemName, this.Input.Email, "Confirm your email",
+                    await this.emailSender.SendEmailAsync(AdminConst.Email, AppConst.SystemName, this.Input.Email, "Confirm your email",
 #pragma warning disable SA1117 // Parameters should be on same line or separate lines
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 #pragma warning restore SA1117 // Parameters should be on same line or separate lines

@@ -13,7 +13,7 @@
         public DateTime Date { get; set; }
 
         [Required]
-        [RegularExpression(NewsImageRegEx, ErrorMessage = AllowedExtensionError)]
+        [RegularExpression(NewsConst.ImageRegEx, ErrorMessage = ErrorMessageConst.AllowedExtensionError)]
         public string ImageUrl { get; set; }
 
         [Required]

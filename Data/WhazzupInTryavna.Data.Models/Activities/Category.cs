@@ -10,7 +10,7 @@
     public class Category : BaseDeletableModel<int>
     {
         [Required]
-        [MaxLength(CategoryNameMaxLength)]
+        [MaxLength(CategoryConst.NameMaxLength)]
         public string Name { get; set; }
 
         [Required]

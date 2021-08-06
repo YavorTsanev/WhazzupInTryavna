@@ -9,7 +9,7 @@
     public class Comment : BaseDeletableModel<int>
     {
         [Required]
-        [MaxLength(CommentContentMaxLength)]
+        [MaxLength(CommentConst.ContentMaxLength)]
         public string Content { get; set; }
 
         public int ActivityId { get; set; }

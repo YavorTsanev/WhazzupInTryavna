@@ -7,8 +7,8 @@
     public class CommentFormModel
     {
         [Required]
-        [MinLength(CommentContentMinLength)]
-        [MaxLength(CommentContentMaxLength)]
+        [MinLength(CommentConst.ContentMinLength)]
+        [MaxLength(CommentConst.ContentMaxLength)]
         public string Content { get; set; }
 
         public int ActivityId { get; set; }

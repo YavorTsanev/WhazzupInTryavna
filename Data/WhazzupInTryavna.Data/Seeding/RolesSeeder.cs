@@ -6,8 +6,9 @@
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
-    using WhazzupInTryavna.Common;
     using WhazzupInTryavna.Data.Models;
+
+    using static WhazzupInTryavna.Common.GlobalConstants;
 
     internal class RolesSeeder : ISeeder
     {
@@ -15,7 +16,7 @@
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
 
-            await SeedRoleAsync(roleManager, GlobalConstants.AdministratorRoleName);
+            await SeedRoleAsync(roleManager, AdminConst.RoleName);
         }
 
         private static async Task SeedRoleAsync(RoleManager<ApplicationRole> roleManager, string roleName)

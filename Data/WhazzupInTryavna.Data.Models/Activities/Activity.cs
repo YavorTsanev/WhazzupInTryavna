@@ -11,7 +11,7 @@
     public class Activity : BaseDeletableModel<int>
     {
         [Required]
-        [MaxLength(ActivityNameMaxLength)]
+        [MaxLength(ActivityConst.NameMaxLength)]
         public string Name { get; set; }
 
         public int CategoryId { get; set; }
@@ -21,7 +21,7 @@
         public string Description { get; set; }
 
         [Required]
-        [MaxLength(ActivityLocationMaxLength)]
+        [MaxLength(ActivityConst.LocationMaxLength)]
         public string Location { get; set; }
 
         public DateTime StartTime { get; set; }

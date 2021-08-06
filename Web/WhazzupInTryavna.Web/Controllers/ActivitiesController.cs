@@ -60,7 +60,7 @@
         {
             if (!this.categoryService.IsIdExist(model.CategoryId))
             {
-                this.ModelState.AddModelError(nameof(model.CategoryId), CategoryDontExist);
+                this.ModelState.AddModelError(nameof(model.CategoryId), ErrorMessageConst.CategoryDontExist);
             }
 
             if (!this.ModelState.IsValid)
@@ -126,7 +126,7 @@
         {
             if (!this.categoryService.IsIdExist(model.CategoryId))
             {
-                this.ModelState.AddModelError(nameof(model.CategoryId), CategoryDontExist);
+                this.ModelState.AddModelError(nameof(model.CategoryId), ErrorMessageConst.CategoryDontExist);
             }
 
             if (!this.ModelState.IsValid)
