@@ -32,9 +32,14 @@
         }
 
         [CheckNewsId]
-        public IActionResult Details(int id)
+        public IActionResult Details(int id, string information)
         {
             var model = this.newsService.GetById<DetailsViewModel>(id);
+
+            if (information != model.Title)
+            {
+                return this.BadRequest();
+            }
 
             return this.View(model);
         }

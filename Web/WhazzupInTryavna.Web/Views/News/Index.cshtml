@@ -15,7 +15,7 @@
             <span class="text-center">
                 <i class="far fa-calendar-alt"></i> @news.Date.ToString("yyyy MMMM dd")
             </span>
-            <a asp-controller="News" asp-action="Details" asp-route-id="@news.Id">
+            <a asp-controller="News" asp-action="Details" asp-route-id="@news.Id" asp-route-information="@news.Title">
                 <img class="card-img-top" src=@news.ImageUrl alt="Card image cap">
                 <div class="card-body">
                     <p class="card-text">@news.Title</p>
