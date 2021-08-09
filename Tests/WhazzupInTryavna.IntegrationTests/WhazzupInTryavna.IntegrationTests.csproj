@@ -20,4 +20,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\WhazzupInTryavna.Data.Models\WhazzupInTryavna.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\WhazzupInTryavna.Web\WhazzupInTryavna.Web.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -13,12 +13,6 @@
 
     public class AdminUserSeeder : ISeeder
     {
-        private readonly IConfiguration configuration;
-
-        public AdminUserSeeder(IConfiguration configuration)
-        {
-            this.configuration = configuration;
-        }
 
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
@@ -36,7 +30,7 @@
 
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-            await userManager.CreateAsync(adminUser, this.configuration["AdminPassword"]);
+            await userManager.CreateAsync(adminUser, "123456");
             await userManager.AddToRoleAsync(adminUser, AdminConst.RoleName);
         }
     }

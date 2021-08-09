@@ -10,17 +10,6 @@
 
     public class ApplicationDbContextSeeder : ISeeder
     {
-        private readonly IConfiguration configuration;
-
-        public ApplicationDbContextSeeder()
-        {
-        }
-
-        public ApplicationDbContextSeeder(IConfiguration configuration)
-        {
-            this.configuration = configuration;
-        }
-
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext == null)
@@ -39,7 +28,7 @@
                           {
                               new RolesSeeder(),
                               new SettingsSeeder(),
-                              new AdminUserSeeder(this.configuration),
+                              new AdminUserSeeder(),
                               new CategorySeeder(),
                               new NewsSeeder(),
                           };

@@ -16,20 +16,17 @@
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 
-    [Authorize]
     public class ActivitiesController : BaseAuthorizeController
     {
         private readonly ICategoryService categoryService;
         private readonly IActivityService activityService;
         private readonly IDeletableEntityRepository<UserActivity> userActivityRepository;
-        private readonly ICommentsService commentsService;
 
-        public ActivitiesController(ICategoryService categoryService, IActivityService activityService, IDeletableEntityRepository<UserActivity> userActivityRepository, ICommentsService commentsService)
+        public ActivitiesController(ICategoryService categoryService, IActivityService activityService, IDeletableEntityRepository<UserActivity> userActivityRepository)
         {
             this.categoryService = categoryService;
             this.activityService = activityService;
             this.userActivityRepository = userActivityRepository;
-            this.commentsService = commentsService;
         }
 
         public IActionResult Index(string searchTerm, string category, string activity, string countOfJoins, string timeToStart)
