@@ -94,7 +94,6 @@
             services.AddTransient<IActivityService, ActivityService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<ICommentsService, CommentService>();
-            services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ITryavnaNewsScraperService, TryavnaNewsScraperService>();
             services.AddTransient<IEmailSender>(_ => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
 
