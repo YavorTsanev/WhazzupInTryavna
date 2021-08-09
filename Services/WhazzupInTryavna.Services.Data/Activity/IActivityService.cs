@@ -9,7 +9,7 @@
     {
         Task CreateAsync(string userid, ActivityFormModel model);
 
-        IEnumerable<T> GetAll<T>(string searchTerm, string category, string activities, string userId, string countOfJoins, string timeToStart);
+        IEnumerable<T> GetAll<T>(string searchTerm = null, string category = null, string activities = null, string userId = null, string countOfJoins = null, string timeToStart = null);
 
         T GetById<T>(int activityId);
 
@@ -22,7 +22,5 @@
         Task UpdateAsync(int activityId, ActivityEditViewModel model);
 
         Task DeleteAsync(int activityId);
-
-        IEnumerable<T> GetAll<T>();
     }
 }
