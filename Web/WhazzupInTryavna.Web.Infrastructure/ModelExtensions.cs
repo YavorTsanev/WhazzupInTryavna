@@ -1,7 +1,7 @@
-﻿using WhazzupInTryavna.Web.ViewModels.Activities;
-
-namespace WhazzupInTryavna.Web.Infrastructure
+﻿namespace WhazzupInTryavna.Web.Infrastructure
 {
+    using WhazzupInTryavna.Web.ViewModels.Activities;
+
     public static class ModelExtensions
     {
         public static string GetInformation(this IActivityModel model)

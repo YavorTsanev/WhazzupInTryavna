@@ -1,7 +1,6 @@
-﻿using WhazzupInTryavna.Web.ViewModels.Activities;
-
-namespace WhazzupInTryavna.Web.ViewModels.Comments
+﻿namespace WhazzupInTryavna.Web.ViewModels.Comments
 {
+    using WhazzupInTryavna.Web.ViewModels.Activities;
     using System.ComponentModel.DataAnnotations;
 
     using static WhazzupInTryavna.Common.GlobalConstants;
