@@ -25,4 +25,10 @@
     <ProjectReference Include="..\..\Web\WhazzupInTryavna.Web\WhazzupInTryavna.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="testsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

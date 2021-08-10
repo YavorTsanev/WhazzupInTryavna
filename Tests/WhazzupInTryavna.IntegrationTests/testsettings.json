@@ -1,0 +1,23 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=.;Database=WhazzupInTryavna;Trusted_Connection=True;MultipleActiveResultSets=true"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "SendGrid": {
+    "ApiKey": "test"
+  },
+  "Authentication": {
+    "Facebook": {
+      "AppId": 0,
+      "AppSecret": "test"
+    }
+  },
+  "AdminPassword": "123456",
+  "AllowedHosts": "*"
+}
