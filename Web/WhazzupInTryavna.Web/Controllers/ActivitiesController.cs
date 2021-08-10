@@ -89,28 +89,28 @@
         }
 
         [CheckActivityId]
-        public async Task<IActionResult> Join(int id)
+        public async Task<IActionResult> Join(int id, string information)
         {
             var userId = this.User.GetId();
 
             if (this.userActivityRepository.All().Any(x => x.ActivityId == id && x.UserId == userId))
             {
-                return this.RedirectToAction(nameof(this.Details), new { id });
+                return this.RedirectToAction(nameof(this.Details), new { id, information });
             }
 
             await this.activityService.JoinAsync(id, userId);
 
-            return this.RedirectToAction(nameof(this.Details), new { id });
+            return this.RedirectToAction(nameof(this.Details), new { id, information });
         }
 
         [CheckActivityId]
-        public async Task<IActionResult> DisJoin(int id)
+        public async Task<IActionResult> DisJoin(int id, string information)
         {
             var userId = this.User.GetId();
 
             await this.activityService.DisJoinAsync(id, userId);
 
-            return this.RedirectToAction(nameof(this.Details), new { id });
+            return this.RedirectToAction(nameof(this.Details), new { id, information });
         }
 
         [CheckActivityId]
@@ -139,9 +139,11 @@
 
             await this.activityService.UpdateAsync(id, model);
 
+            var information = model.GetInformation();
+
             this.TempData["UpdatedActivity"] = "Activity updated successfully";
 
-            return this.RedirectToAction(nameof(this.Details), new { id });
+            return this.RedirectToAction(nameof(this.Details), new { id, information });
         }
 
         [CheckActivityId]

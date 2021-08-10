@@ -1,6 +1,7 @@
 ﻿@model SingleActivityViewModel
 @using Microsoft.AspNetCore.Identity
 @using WhazzupInTryavna.Data.Models
+@using WhazzupInTryavna.Web.Infrastructure
 @inject UserManager<ApplicationUser> UserManager
 
 @if (TempData.ContainsKey("UpdatedActivity"))
@@ -136,17 +137,17 @@
                     <div>
                         @if (Model.UsersInActivity.Any(x => x.Name == User.Identity?.Name))
                         {
-                            <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="DisJoin" asp-route-id="@Model.Id">DISJOIN</a>
+                            <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="DisJoin" asp-route-id="@Model.Id" asp-route-information="@Model.GetInformation()" >DISJOIN</a>
                         }
                         else
                         {
-                            <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="Join" asp-route-id="@Model.Id">JOIN</a>
+                            <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="Join" asp-route-id="@Model.Id" asp-route-information="@Model.GetInformation()">JOIN</a>
                         }
                     </div>
                 </div>
                 @if (Model.AddedByUserId == UserManager.GetUserId(User))
                 {
-                    <a class="btn btn-info " style="margin: 5px" asp-controller="Activities" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                    <a class="btn btn-info " style="margin: 5px" asp-controller="Activities" asp-action="Edit" asp-route-id="@Model.Id" asp-route-information="@Model.GetInformation()">Edit</a>
                     <button type="button" style="margin: 5px" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                         Delete
                     </button>
@@ -181,13 +182,13 @@
 </div>
 <!--Comments-->
 <div class="container mb-5">
-    <form asp-controller="Comments" asp-action="Add" method="post">
+    <form asp-controller="Comments" asp-action="Add" asp-route-information="@Model.GetInformation()" method="post">
         <input type="hidden" name="ActivityId" value="@Model.Id" />
         <div class="form-group mt-3 d-flex justify-content-start">
             <h3>Message</h3>
             <input name="Content" class="w-75 ml-4 pl-3 form-control" type="text" placeholder="Message..." data-val="true" data-val-required="The Message field is required." />
             <span class="text-danger" data-valmsg-for="Content" data-valmsg-replace="true"></span>
-            <button  class="ml-4 btn btn-dark btn-lg">Send</button>
+            <button class="ml-4 btn btn-dark btn-lg">Send</button>
         </div>
     </form>
     <hr style="height: 5px;" class="bg-dark" />
