@@ -72,7 +72,7 @@
 
             this.TempData["AddedActivity"] = "Activity added successfully";
 
-            return this.Redirect(nameof(this.Index));
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         [CheckActivityId]

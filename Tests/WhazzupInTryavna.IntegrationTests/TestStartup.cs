@@ -1,10 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace WhazzupInTryavna.IntegrationTests
+﻿namespace WhazzupInTryavna.IntegrationTests
 {
     using Microsoft.Extensions.Configuration;
-    using WhazzupInTryavna.Web;
+    using Microsoft.Extensions.DependencyInjection;
     using MyTested.AspNetCore.Mvc;
+    using WhazzupInTryavna.Web;
 
     public class TestStartup : Startup
     {
