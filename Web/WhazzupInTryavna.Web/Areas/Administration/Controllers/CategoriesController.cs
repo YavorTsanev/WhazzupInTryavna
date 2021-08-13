@@ -32,7 +32,6 @@
             if (this.categoryRepository.All().Any(x => x.Name == model.Name))
             {
                 this.ModelState.AddModelError(string.Empty, "Name already exist");
-                return this.View(model);
             }
 
             if (!this.ModelState.IsValid)

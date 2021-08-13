@@ -5,7 +5,7 @@ using WhazzupInTryavna.Web.ViewModels.Activities;
 using WhazzupInTryavna.Web.ViewModels.Administration.Activities;
 using Xunit;
 
-namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllers
+namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
 {
     using System;
     using System.Collections.Generic;

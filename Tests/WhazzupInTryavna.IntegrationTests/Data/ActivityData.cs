@@ -1,4 +1,7 @@
-﻿namespace WhazzupInTryavna.IntegrationTests.Data
+﻿using System.Collections.Generic;
+using MyTested.AspNetCore.Mvc;
+
+namespace WhazzupInTryavna.IntegrationTests.Data
 {
     using System;
 
@@ -15,6 +18,16 @@
                 Location = "TestLocation",
                 CategoryId = 3,
                 StartTime = DateTime.Now,
+                AddedByUserId = TestUser.Username,
+                Comments = new List<Comment>
+                {
+                    new()
+                    {
+                        Content = "TestContent",
+                        ActivityId = 2,
+                        UserId = TestUser.Identifier,
+                    },
+                },
             };
         }
     }

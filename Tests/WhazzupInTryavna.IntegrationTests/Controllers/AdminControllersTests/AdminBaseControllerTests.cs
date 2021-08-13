@@ -2,7 +2,7 @@
 using WhazzupInTryavna.Web.Areas.Administration.Controllers;
 using Xunit;
 
-namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllers
+namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
 {
     public class AdminBaseControllerTests
     {
