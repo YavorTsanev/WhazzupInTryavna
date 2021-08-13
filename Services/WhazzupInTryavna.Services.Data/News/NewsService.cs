@@ -1,6 +1,5 @@
 ﻿namespace WhazzupInTryavna.Services.Data.News
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -24,20 +23,7 @@
 
         public IEnumerable<T> GetAll<T>()
         {
-            const string newsAllKey = "newsAllKey";
-
-            var allNews = this.memoryCache.Get<List<T>>(newsAllKey);
-
-            if (allNews == null)
-            {
-                allNews = this.newsRepository.All().OrderByDescending(x => x.Date).To<T>().ToList();
-
-                var memoryCacheOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(60));
-
-                this.memoryCache.Set(newsAllKey, allNews, memoryCacheOptions);
-            }
-
-            return allNews;
+            return this.newsRepository.All().OrderByDescending(x => x.Date).To<T>().ToList();
         }
 
         public T GetById<T>(int newId)

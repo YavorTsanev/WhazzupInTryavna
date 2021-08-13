@@ -8,7 +8,7 @@
 
     [Authorize(Roles = AdminConst.RoleName)]
     [Area(AdminConst.AreaName)]
-    public abstract class AdminBaseController : BaseAuthorizeController
+    public class AdminBaseController : Controller
     {
     }
 }

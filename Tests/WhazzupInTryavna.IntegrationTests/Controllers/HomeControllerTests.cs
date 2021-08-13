@@ -1,4 +1,6 @@
-﻿namespace WhazzupInTryavna.IntegrationTests.Controllers
+﻿using WhazzupInTryavna.Web.ViewModels;
+
+namespace WhazzupInTryavna.IntegrationTests.Controllers
 {
     using MyTested.AspNetCore.Mvc;
     using WhazzupInTryavna.Web.Controllers;
@@ -17,7 +19,7 @@
         }
 
         [Fact]
-        public void IndexShouldReturnCorrectViewWithModel()
+        public void IndexShouldReturnViewWithModel()
         {
             MyController<HomeController>
                 .Instance()
@@ -38,13 +40,13 @@
         }
 
         [Fact]
-        public void ErrorShouldReturnView()
+        public void ErrorShouldReturnViewWithModel()
         {
             MyController<HomeController>
                 .Instance()
                 .Calling(c => c.Error())
                 .ShouldReturn()
-                .View();
+                .View(v => v.WithModelOfType<ErrorViewModel>());
         }
     }
 }

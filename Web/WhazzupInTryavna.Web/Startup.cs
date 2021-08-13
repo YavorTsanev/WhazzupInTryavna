@@ -19,7 +19,6 @@
     using WhazzupInTryavna.Data.Repositories;
     using WhazzupInTryavna.Data.Seeding;
     using WhazzupInTryavna.Services;
-    using WhazzupInTryavna.Services.Data;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
     using WhazzupInTryavna.Services.Data.Comments;
@@ -103,13 +102,13 @@
                 facebookOptions.AppId = this.configuration["Authentication:Facebook:AppId"];
                 facebookOptions.AppSecret = this.configuration["Authentication:Facebook:AppSecret"];
             });
-
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {

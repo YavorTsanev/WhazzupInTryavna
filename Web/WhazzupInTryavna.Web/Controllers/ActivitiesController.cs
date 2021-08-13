@@ -3,13 +3,11 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Services.Data.Activity;
     using WhazzupInTryavna.Services.Data.Category;
-    using WhazzupInTryavna.Services.Data.Comments;
     using WhazzupInTryavna.Web.Filters;
     using WhazzupInTryavna.Web.Infrastructure;
     using WhazzupInTryavna.Web.ViewModels.Activities;

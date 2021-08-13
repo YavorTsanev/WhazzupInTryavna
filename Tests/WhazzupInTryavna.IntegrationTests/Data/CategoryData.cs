@@ -1,4 +1,6 @@
-﻿namespace WhazzupInTryavna.IntegrationTests.Data
+﻿using System.Collections.Generic;
+
+namespace WhazzupInTryavna.IntegrationTests.Data
 {
     using WhazzupInTryavna.Data.Models.Activities;
 
@@ -6,11 +8,12 @@
     {
         public static Category GetCategory()
         {
-            return new Category
+            return new()
             {
-                Id = 2,
+                Id = 3,
                 Name = "Test",
                 Image = "testImage.png",
+                Activities = new List<Activity>(5),
             };
         }
     }

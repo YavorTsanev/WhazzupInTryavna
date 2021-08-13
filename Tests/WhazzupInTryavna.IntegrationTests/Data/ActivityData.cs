@@ -1,20 +1,19 @@
-﻿using System;
-using WhazzupInTryavna.Data.Models.Activities;
-using WhazzupInTryavna.Web.ViewModels.Activities;
-
-namespace WhazzupInTryavna.IntegrationTests.Data
+﻿namespace WhazzupInTryavna.IntegrationTests.Data
 {
+    using System;
+
+    using WhazzupInTryavna.Data.Models.Activities;
 
     public static class ActivityData
     {
         public static Activity GetSingleActivity()
         {
-            return new Activity
+            return new()
             {
                 Id = 2,
                 Name = "TestName",
                 Location = "TestLocation",
-                CategoryId = 2,
+                CategoryId = 3,
                 StartTime = DateTime.Now,
             };
         }
