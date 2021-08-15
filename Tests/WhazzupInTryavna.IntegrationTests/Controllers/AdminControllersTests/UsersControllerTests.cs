@@ -1,6 +1,4 @@
-﻿
-
-using System.Linq;
+﻿using System.Linq;
 
 namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
 {
@@ -15,7 +13,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
     public class UsersControllerTests
     {
         [Fact]
-        public void GetAll()
+        public void GetAllShouldReturnViewWithAllUsersWithoutAdminUser()
         {
             MyController<UsersController>
                 .Instance(x => x.
@@ -28,11 +26,21 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
         }
 
         [Fact]
-        public void GetBan()
+        public void GetBanShouldDeleteAndSignOutUserByIdAndRedirect()
         {
             MyController<UsersController>
                 .Instance(x => x.WithData(GetUsers()))
                 .Calling(x => x.Ban("TestAppUser"))
+                .ShouldReturn()
+                .RedirectToAction("All");
+        }
+
+        [Fact]
+        public void GetUnBanShouldUnDeleteUserByIdAndRedirect()
+        {
+            MyController<UsersController>
+                .Instance(x => x.WithData(GetUsers()))
+                .Calling(x => x.UnBan("TestAppUser"))
                 .ShouldReturn()
                 .RedirectToAction("All");
         }

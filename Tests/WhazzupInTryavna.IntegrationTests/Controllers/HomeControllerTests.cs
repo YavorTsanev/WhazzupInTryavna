@@ -7,6 +7,10 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers
     using WhazzupInTryavna.Web.ViewModels.Home;
     using Xunit;
 
+    using static WhazzupInTryavna.IntegrationTests.Data.ActivityData;
+    using static WhazzupInTryavna.IntegrationTests.Data.NewsData;
+    using static WhazzupInTryavna.IntegrationTests.Data.UserData;
+
     public class HomeControllerTests
     {
         [Fact]
@@ -19,14 +23,20 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers
         }
 
         [Fact]
-        public void IndexShouldReturnViewWithModel()
+        public void IndexShouldReturnViewWithCorrectModel()
         {
             MyController<HomeController>
-                .Instance()
+                .Instance(x => x
+                    .WithData(GetNews())
+                    .WithData(GetUsers())
+                    .WithData(GetActivities()))
                 .Calling(c => c.Index())
                 .ShouldReturn()
                 .View(view => view
-                    .WithModelOfType<HomeViewModel>());
+                    .WithModelOfType<HomeViewModel>()
+                    .Passing(x => x.ActivitiesCount == 2 &&
+                                  x.NewsCount == 1 &&
+                                  x.UsersCount == 2));
         }
 
         [Fact]

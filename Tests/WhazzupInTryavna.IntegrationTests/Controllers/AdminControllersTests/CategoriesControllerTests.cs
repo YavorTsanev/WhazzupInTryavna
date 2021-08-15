@@ -28,7 +28,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
         {
             MyController<CategoriesController>
                 .Instance(x => x
-                    .WithData(GetCategory()))
+                    .WithData(GetSingleCategory()))
                 .Calling(x => x.Add(new CategoryFormModel
                 {
                     Image = "TestImage.png",
@@ -64,7 +64,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
         public void GetAllShouldReturnViewWithModel()
         {
             MyController<CategoriesController>
-                .Instance(x => x.WithData(GetCategory()))
+                .Instance(x => x.WithData(GetSingleCategory()))
                 .Calling(x => x.All())
                 .ShouldReturn()
                 .View(x => x.WithModelOfType<CategoriesListingViewModel>()
@@ -76,7 +76,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
         public void GetEditShouldReturnViewWithModel()
         {
             MyController<CategoriesController>
-                .Instance(x => x.WithData(GetCategory()))
+                .Instance(x => x.WithData(GetSingleCategory()))
                 .Calling(x => x.Edit(3))
                 .ShouldReturn()
                 .View(x => x.WithModelOfType<CategoryEditViewModel>()
@@ -87,7 +87,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
         public void PostEditShouldRedirectWithValidModelState()
         {
             MyController<CategoriesController>
-                .Instance(x => x.WithData(GetCategory()))
+                .Instance(x => x.WithData(GetSingleCategory()))
                 .Calling(x => x.Edit(3, new CategoryEditViewModel
                 {
                     Name = "Edit",
@@ -108,7 +108,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
         public void GetDeleteShouldDeleteCategoryByIdAndRedirect()
         {
             MyController<CategoriesController>
-                .Instance(x => x.WithData(GetCategory()))
+                .Instance(x => x.WithData(GetSingleCategory()))
                 .Calling(x => x.Delete(3))
                 .ShouldReturn()
                 .RedirectToAction("All");

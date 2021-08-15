@@ -40,18 +40,21 @@
         }
 
         [Fact]
-        public void PostIndexWithInvalidModelStateShouldReturnViewWithModel()
+        public void PostIndexWithInvalidModelStateShouldReturnViewWithCorrectModel()
         {
             MyController<ContactController>
                 .Instance(x => x.WithUser())
                 .Calling(x => x.Index(new ContactFormModel
-                ()))
+                {
+                    Email = "Invalid Email",
+                }))
                 .ShouldHave()
                 .ActionAttributes(x => x.RestrictingForHttpMethod(System.Net.Http.HttpMethod.Post))
                 .InvalidModelState()
                 .AndAlso()
                 .ShouldReturn()
-                .View(x => x.WithModelOfType<ContactFormModel>());
+                .View(x => x.WithModelOfType<ContactFormModel>()
+                    .Passing(x => x.Email == "Invalid Email"));
         }
     }
 }

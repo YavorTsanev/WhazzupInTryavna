@@ -53,7 +53,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
             MyController<ActivitiesController>
                 .Instance(x => x
                     .WithUser()
-                    .WithData(GetCategory()).WithData(GetSingleActivity()))
+                    .WithData(GetSingleCategory()).WithData(GetSingleActivity()))
                 .Calling(a => a.Edit(2, new ActivityAdminEditViewModel()
                 {
                     CategoryId = categoryId,

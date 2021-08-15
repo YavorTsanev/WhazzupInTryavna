@@ -15,13 +15,20 @@
     public class ActivitiesControllerTests
     {
         [Fact]
-        public void GetIndexShouldReturnViewWithModel()
+        public void GetIndexShouldReturnViewWithCorrectModel()
         {
             MyController<ActivitiesController>
-                .Instance(x => x.WithUser())
+                .Instance(x => x
+                    .WithUser()
+                    .WithData(GetSingleCategory())
+                    .WithData(GetSingleActivity()))
                 .Calling(a => a.Index(With.Any<string>(), With.Any<string>(), With.Any<string>(), With.Any<string>(), With.Any<string>()))
                 .ShouldReturn()
-                .View(v => v.WithModelOfType<ActivitiesListingViewModel>());
+                .View(v => v.WithModelOfType<ActivitiesListingViewModel>()
+                    .Passing(x => x.Categories.Any(c =>
+                        c == "Test") &&
+                                  x.Activities.Any(a =>
+                                      a.Name == "TestName")));
         }
 
         [Fact]
@@ -41,7 +48,7 @@
             MyController<ActivitiesController>
                 .Instance(x => x
                     .WithUser()
-                    .WithData(GetCategory()))
+                    .WithData(GetSingleCategory()))
                 .Calling(a => a.Add(new ActivityFormModel
                 {
                     CategoryId = categoryId,
@@ -71,18 +78,22 @@
         }
 
         [Fact]
-        public void PostAddShouldReturnViewWithModelWithInvalidModelState()
+        public void PostAddShouldReturnViewWithCorrectModelWithInvalidModelState()
         {
             MyController<ActivitiesController>
                 .Instance(x => x
                     .WithUser())
-                .Calling(a => a.Add(new ActivityFormModel()))
+                .Calling(a => a.Add(new ActivityFormModel
+                {
+                    Name = string.Empty,
+                }))
                 .ShouldHave()
                 .InvalidModelState()
                 .ActionAttributes(a => a.RestrictingForHttpMethod(System.Net.Http.HttpMethod.Post))
                 .AndAlso()
                 .ShouldReturn()
-                .View(v => v.WithModelOfType<ActivityFormModel>());
+                .View(v => v.WithModelOfType<ActivityFormModel>()
+                    .Passing(x => x.Name == string.Empty));
         }
 
         ////[Fact]
@@ -160,32 +171,30 @@
         }
 
         [Fact]
-        public void GetEditShouldReturnViewWithModel()
+        public void GetEditShouldReturnViewWithCorrectModel()
         {
             MyController<ActivitiesController>
-                .Instance(x => x.WithUser()
-                    .WithData(new Activity
-                    {
-                        Id = 5,
-                        Name = "TestName",
-                        Location = "TestLocation",
-                        CategoryId = 3,
-                        StartTime = DateTime.Now,
-                    })
+                .Instance(x => x
+                    .WithData(GetSingleCategory())
                     .WithData(GetSingleActivity()))
-                .Calling(a => a.Edit(5))
+                .Calling(a => a.Edit(2))
                 .ShouldReturn()
-                .View(v => v.WithModelOfType<ActivityEditViewModel>());
+                .View(v => v.WithModelOfType<ActivityEditViewModel>()
+                    .Passing(x =>
+                        x.CategoriesItems.Count() == 1 &&
+                        x.Name == "TestName" &&
+                        x.CategoryId == 3));
         }
 
         [Theory]
-        [InlineData(3, "TestName", "2020, 12, 12", "TestLocation")]
-        public void PostEditShouldRedirectAndHaveTempDataWithValidModelState(int categoryId, string name, DateTime startTime, string location)
+        [InlineData(10, "EditedName", "2020, 12, 12", "EditedLocation")]
+        public void PostEditWithValidModelStateAndHaveTempDataShouldUpdateActivityByIdAndRedirect(int categoryId, string name, DateTime startTime, string location)
         {
             MyController<ActivitiesController>
                 .Instance(x => x
                     .WithUser()
-                    .WithData(GetCategory()).WithData(GetSingleActivity()))
+                    .WithData(GetCategories())
+                    .WithData(GetSingleActivity()))
                 .Calling(a => a.Edit(2, new ActivityEditViewModel
                 {
                     CategoryId = categoryId,
@@ -197,31 +206,40 @@
                 .ActionAttributes(a => a.RestrictingForHttpMethod(System.Net.Http.HttpMethod.Post))
                 .ValidModelState()
                 .TempData(td => td.ContainingEntryWithKey("UpdatedActivity"))
+                .Data(x => x.WithSet<Activity>(x => x.Any(a => 
+                    a.Name == name &&
+                    a.CategoryId == categoryId &&
+                    a.StartTime == startTime &&
+                    a.Location == location)))
                 .AndAlso()
                 .ShouldReturn()
                 .RedirectToAction("Details");
         }
 
         [Fact]
-        public void PostEditShouldReturnViewWithModelWithInvalidModelState()
+        public void PostEditShouldReturnViewWithCorrectModelWithInvalidModelState()
         {
             MyController<ActivitiesController>
                 .Instance(x => x
                     .WithUser())
-                .Calling(a => a.Edit(2, new ActivityEditViewModel()))
+                .Calling(a => a.Edit(2, new ActivityEditViewModel
+                {
+                    Name = string.Empty,
+                }))
                 .ShouldHave()
                 .InvalidModelState()
                 .ActionAttributes(a => a.RestrictingForHttpMethod(System.Net.Http.HttpMethod.Post))
                 .AndAlso()
                 .ShouldReturn()
-                .View(v => v.WithModelOfType<ActivityEditViewModel>());
+                .View(v => v.WithModelOfType<ActivityEditViewModel>()
+                    .Passing(x => x.Name == string.Empty));
         }
 
         [Fact]
-        public void GetDeleteShouldRedirect()
+        public void GetDeleteShouldDeleteActivityByIdAndRedirect()
         {
             MyController<ActivitiesController>
-                .Instance(x => x.WithUser()
+                .Instance(x => x
                     .WithData(GetSingleActivity()))
                 .Calling(x => x.Delete(2))
                 .ShouldReturn()

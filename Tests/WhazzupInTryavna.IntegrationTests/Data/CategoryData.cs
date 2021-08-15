@@ -6,7 +6,7 @@ namespace WhazzupInTryavna.IntegrationTests.Data
 
     public static class CategoryData
     {
-        public static Category GetCategory()
+        public static Category GetSingleCategory()
         {
             return new()
             {
@@ -14,6 +14,27 @@ namespace WhazzupInTryavna.IntegrationTests.Data
                 Name = "Test",
                 Image = "testImage.png",
                 Activities = new List<Activity>(5),
+            };
+        }
+
+        public static List<Category> GetCategories()
+        {
+            return new()
+            {
+                new()
+                {
+                    Id = 3,
+                    Name = "Test3",
+                    Image = "testImage3.png",
+                    Activities = new List<Activity>(5),
+                },
+                new()
+                {
+                    Id = 10,
+                    Name = "Test10",
+                    Image = "testImage10.png",
+                    Activities = new List<Activity>(5),
+                },
             };
         }
     }

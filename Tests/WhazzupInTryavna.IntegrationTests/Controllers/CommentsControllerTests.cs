@@ -1,4 +1,7 @@
-﻿namespace WhazzupInTryavna.IntegrationTests.Controllers
+﻿using System.Linq;
+using WhazzupInTryavna.Data.Models.Activities;
+
+namespace WhazzupInTryavna.IntegrationTests.Controllers
 {
     using MyTested.AspNetCore.Mvc;
     using WhazzupInTryavna.Web.Controllers;
@@ -8,7 +11,7 @@
     public class CommentsControllerTests
     {
         [Fact]
-        public void PostAddShouldRedirectWithValidModelState()
+        public void PostAddShouldAddNewCommentForActivityAndRedirectWithValidModelState()
         {
             MyController<CommentsController>
                 .Instance(x => x.WithUser())
@@ -25,6 +28,10 @@
                 .ShouldHave()
                 .ActionAttributes(a => a.RestrictingForHttpMethod(System.Net.Http.HttpMethod.Post))
                 .ValidModelState()
+                .Data(x => x.WithSet<Comment>(x => x.Any(c =>
+                    c.Content == "TestContent" &&
+                    c.ActivityId == 2 &&
+                    c.UserId == TestUser.Identifier)))
                 .AndAlso()
                 .ShouldReturn()
                 .RedirectToAction("Details", "Activities", new { id = 2, information = "information" });

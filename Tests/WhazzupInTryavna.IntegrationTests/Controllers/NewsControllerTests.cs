@@ -1,4 +1,6 @@
-﻿namespace WhazzupInTryavna.IntegrationTests.Controllers
+﻿using System.Linq;
+
+namespace WhazzupInTryavna.IntegrationTests.Controllers
 {
     using System;
 
@@ -8,49 +10,42 @@
     using WhazzupInTryavna.Web.ViewModels.News;
     using Xunit;
 
+    using static WhazzupInTryavna.IntegrationTests.Data.NewsData;
+
     public class NewsControllerTests
     {
         [Fact]
-        public void GetIndexShouldReturnViewWithModel()
+        public void GetIndexShouldReturnViewWithCorrectModel()
         {
             MyController<NewsController>
                 .Instance()
-                .WithUser()
                 .Calling(x => x.Index())
                 .ShouldReturn()
-                .View(v => v.WithModelOfType<NewsListingViewModel>());
+                .View();
         }
 
         [Fact]
-        public void GetDetailsWithValidInformationShouldReturnViewWithModel()
+        public void GetDetailsShouldGetNewsByIdWithValidInformationAndReturnViewWitCorrectModel()
         {
             MyController<NewsController>
-                .Instance(x => x.WithData(new News
-                {
-                    Id = 2,
-                    Content = "TestContent",
-                    Date = DateTime.Now,
-                    ImageUrl = "TestImage.png",
-                    Title = "TestTitle",
-                }))
-                .Calling(x => x.Details(2, "TestTitle"))
+                .Instance(x => x
+                    .WithData(GetNews()))
+                .Calling(x => x.Details(5, "NewsTitle"))
                 .ShouldReturn()
-                .View(v => v.WithModelOfType<DetailsViewModel>());
+                .View(v => v.WithModelOfType<DetailsViewModel>()
+                    .Passing(x => x.Content == "NewsContent" &&
+                                  x.Date == new DateTime(2021, 8, 13) &&
+                                  x.ImageUrl == "News.png" &&
+                                  x.Title == "NewsTitle"));
         }
 
         [Fact]
         public void GetDetailsWithInvalidInformationShouldReturnBadRequest()
         {
             MyController<NewsController>
-                .Instance(x => x.WithData(new News
-                {
-                    Id = 2,
-                    Content = "TestContent",
-                    Date = DateTime.Now,
-                    ImageUrl = "TestImage.png",
-                    Title = "TestTitle",
-                }))
-                .Calling(x => x.Details(2, "InvalidTestTitle"))
+                .Instance(x => x
+                    .WithData(GetNews()))
+                .Calling(x => x.Details(5, "InvalidTestTitle"))
                 .ShouldReturn()
                 .BadRequest();
         }

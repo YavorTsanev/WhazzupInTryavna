@@ -30,5 +30,48 @@ namespace WhazzupInTryavna.IntegrationTests.Data
                 },
             };
         }
+
+        public static List<Activity> GetActivities()
+        {
+            return new()
+            {
+                new()
+                {
+                    Id = 3,
+                    Name = "TestName3",
+                    Location = "TestLocation3",
+                    CategoryId = 3,
+                    StartTime = DateTime.Now,
+                    AddedByUserId = TestUser.Username,
+                    Comments = new List<Comment>
+                    {
+                        new()
+                        {
+                            Content = "TestContent",
+                            ActivityId = 2,
+                            UserId = TestUser.Identifier,
+                        },
+                    },
+                },
+                new()
+                {
+                    Id = 4,
+                    Name = "TestName4",
+                    Location = "TestLocation4",
+                    CategoryId = 3,
+                    StartTime = DateTime.Now,
+                    AddedByUserId = TestUser.Username,
+                    Comments = new List<Comment>
+                    {
+                        new()
+                        {
+                            Content = "TestContent",
+                            ActivityId = 2,
+                            UserId = TestUser.Identifier,
+                        },
+                    },
+                },
+            };
+        }
     }
 }
