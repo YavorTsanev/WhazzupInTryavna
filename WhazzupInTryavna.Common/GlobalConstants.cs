@@ -18,6 +18,15 @@
             public const string AreaName = "Administration";
         }
 
+        public class UsersConst
+        {
+            public const string TestUserName1 = "TestUser1";
+            public const string TestUser1Email = "TestUser1@.abv.bg";
+
+            public const string TestUserName2 = "TestUser2";
+            public const string TestUser2Email = "TestUser2@.abv.bg";
+        }
+
         public class ErrorMessageConst
         {
             public const string CategoryDontExist = "Category don't exist";

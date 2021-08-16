@@ -25,8 +25,8 @@
             {
                 adminUser = new ApplicationUser
                 {
-                    Email = AdminConst.Email,
                     UserName = AdminConst.Username,
+                    Email = AdminConst.Email,
                     EmailConfirmed = true,
                 };
                 await userManager.CreateAsync(adminUser, conf["AdminPassword"]);
