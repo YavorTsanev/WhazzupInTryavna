@@ -1,15 +1,14 @@
-﻿using System.Linq;
-using WhazzupInTryavna.Data.Models.Activities;
-
-namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
+﻿namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
 {
+    using System.Linq;
+
     using MyTested.AspNetCore.Mvc;
+    using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Web.Areas.Administration.Controllers;
     using WhazzupInTryavna.Web.ViewModels.Administration.Categories;
     using Xunit;
 
     using static WhazzupInTryavna.IntegrationTests.Data.CategoryData;
-
 
     public class CategoriesControllerTests
     {
@@ -37,7 +36,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
                 .ShouldHave()
                 .ActionAttributes(a => a.RestrictingForHttpMethod(System.Net.Http.HttpMethod.Post))
                 .ValidModelState()
-                .Data(x => x.WithSet<Category>(x => x.Any(c =>
+                .Data(x => x.WithSet<Category>(d => d.Any(c =>
                     c.Image == "TestImage.png" &&
                     c.Name == "TestName")))
                 .AndAlso()
@@ -46,7 +45,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
         }
 
         [Fact]
-        public void PostAddShouldReturnViewWithModelWithInvalidModelState()
+        public void PostAddShouldReturnViewWithCorrectModelWithInvalidModelState()
         {
             MyController<CategoriesController>
                 .Instance()
@@ -61,25 +60,27 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
         }
 
         [Fact]
-        public void GetAllShouldReturnViewWithModel()
+        public void GetAllShouldReturnViewWithCorrectModel()
         {
             MyController<CategoriesController>
-                .Instance(x => x.WithData(GetSingleCategory()))
+                .Instance(x => x
+                    .WithData(GetSingleCategory()))
                 .Calling(x => x.All())
                 .ShouldReturn()
-                .View(x => x.WithModelOfType<CategoriesListingViewModel>()
-                    .Passing(x => x.Categories.Any(c => 
+                .View(v => v.WithModelOfType<CategoriesListingViewModel>()
+                    .Passing(x => x.Categories.Any(c =>
                         c.Name == "Test" && c.Image == "testImage.png")));
         }
 
         [Fact]
-        public void GetEditShouldReturnViewWithModel()
+        public void GetEditShouldReturnViewWithCorrectModel()
         {
             MyController<CategoriesController>
-                .Instance(x => x.WithData(GetSingleCategory()))
+                .Instance(x => x
+                    .WithData(GetSingleCategory()))
                 .Calling(x => x.Edit(3))
                 .ShouldReturn()
-                .View(x => x.WithModelOfType<CategoryEditViewModel>()
+                .View(v => v.WithModelOfType<CategoryEditViewModel>()
                 .Passing(x => x.Image == "testImage.png" && x.Name == "Test"));
         }
 
@@ -87,7 +88,8 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
         public void PostEditShouldRedirectWithValidModelState()
         {
             MyController<CategoriesController>
-                .Instance(x => x.WithData(GetSingleCategory()))
+                .Instance(x => x
+                    .WithData(GetSingleCategory()))
                 .Calling(x => x.Edit(3, new CategoryEditViewModel
                 {
                     Name = "Edit",
@@ -96,7 +98,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
                 .ShouldHave()
                 .ActionAttributes(a => a.RestrictingForHttpMethod(System.Net.Http.HttpMethod.Post))
                 .ValidModelState()
-                .Data(x => x.WithSet<Category>(x => x.Any(c => 
+                .Data(x => x.WithSet<Category>(d => d.Any(c =>
                     c.Name == "Edit" &&
                     c.Image == "Edit.png")))
                 .AndAlso()
@@ -108,7 +110,8 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
         public void GetDeleteShouldDeleteCategoryByIdAndRedirect()
         {
             MyController<CategoriesController>
-                .Instance(x => x.WithData(GetSingleCategory()))
+                .Instance(x => x
+                    .WithData(GetSingleCategory()))
                 .Calling(x => x.Delete(3))
                 .ShouldReturn()
                 .RedirectToAction("All");

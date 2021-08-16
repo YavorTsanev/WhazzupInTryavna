@@ -53,7 +53,7 @@
                 .InvalidModelState()
                 .AndAlso()
                 .ShouldReturn()
-                .View(x => x.WithModelOfType<ContactFormModel>()
+                .View(v => v.WithModelOfType<ContactFormModel>()
                     .Passing(x => x.Email == "Invalid Email"));
         }
     }

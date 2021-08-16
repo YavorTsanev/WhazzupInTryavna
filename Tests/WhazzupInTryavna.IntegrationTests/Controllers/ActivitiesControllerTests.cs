@@ -206,7 +206,7 @@
                 .ActionAttributes(a => a.RestrictingForHttpMethod(System.Net.Http.HttpMethod.Post))
                 .ValidModelState()
                 .TempData(td => td.ContainingEntryWithKey("UpdatedActivity"))
-                .Data(x => x.WithSet<Activity>(x => x.Any(a => 
+                .Data(x => x.WithSet<Activity>(d => d.Any(a =>
                     a.Name == name &&
                     a.CategoryId == categoryId &&
                     a.StartTime == startTime &&

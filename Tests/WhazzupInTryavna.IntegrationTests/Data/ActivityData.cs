@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using MyTested.AspNetCore.Mvc;
-
-namespace WhazzupInTryavna.IntegrationTests.Data
+﻿namespace WhazzupInTryavna.IntegrationTests.Data
 {
     using System;
+    using System.Collections.Generic;
 
+    using MyTested.AspNetCore.Mvc;
     using WhazzupInTryavna.Data.Models.Activities;
 
     public static class ActivityData

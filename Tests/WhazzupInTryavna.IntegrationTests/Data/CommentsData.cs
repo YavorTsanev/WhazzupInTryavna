@@ -1,8 +1,8 @@
-﻿using MyTested.AspNetCore.Mvc;
-using WhazzupInTryavna.Data.Models.Activities;
-
-namespace WhazzupInTryavna.IntegrationTests.Data
+﻿namespace WhazzupInTryavna.IntegrationTests.Data
 {
+    using MyTested.AspNetCore.Mvc;
+    using WhazzupInTryavna.Data.Models.Activities;
+
     public static class CommentsData
     {
         public static Comment GetComment()

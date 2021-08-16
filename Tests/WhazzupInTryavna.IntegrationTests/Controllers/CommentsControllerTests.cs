@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using WhazzupInTryavna.Data.Models.Activities;
-
-namespace WhazzupInTryavna.IntegrationTests.Controllers
+﻿namespace WhazzupInTryavna.IntegrationTests.Controllers
 {
+    using System.Linq;
+
     using MyTested.AspNetCore.Mvc;
+    using WhazzupInTryavna.Data.Models.Activities;
     using WhazzupInTryavna.Web.Controllers;
     using WhazzupInTryavna.Web.ViewModels.Comments;
     using Xunit;
@@ -28,7 +28,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers
                 .ShouldHave()
                 .ActionAttributes(a => a.RestrictingForHttpMethod(System.Net.Http.HttpMethod.Post))
                 .ValidModelState()
-                .Data(x => x.WithSet<Comment>(x => x.Any(c =>
+                .Data(x => x.WithSet<Comment>(d => d.Any(c =>
                     c.Content == "TestContent" &&
                     c.ActivityId == 2 &&
                     c.UserId == TestUser.Identifier)))

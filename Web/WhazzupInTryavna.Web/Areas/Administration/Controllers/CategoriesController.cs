@@ -21,6 +21,16 @@
             this.categoryRepository = categoryRepository;
         }
 
+        public IActionResult All()
+        {
+            var categories = new CategoriesListingViewModel
+            {
+                Categories = this.categoryService.GetAll<CategoryInListViewModel>(),
+            };
+
+            return this.View(categories);
+        }
+
         public IActionResult Add()
         {
             return this.View();
@@ -42,16 +52,6 @@
             await this.categoryService.AddAsync(model);
 
             return this.RedirectToAction(nameof(this.All));
-        }
-
-        public IActionResult All()
-        {
-            var categories = new CategoriesListingViewModel
-            {
-                Categories = this.categoryService.GetAll<CategoryInListViewModel>(),
-            };
-
-            return this.View(categories);
         }
 
         [CheckCategoryId]

@@ -1,9 +1,8 @@
-﻿using WhazzupInTryavna.Web.ViewModels;
-
-namespace WhazzupInTryavna.IntegrationTests.Controllers
+﻿namespace WhazzupInTryavna.IntegrationTests.Controllers
 {
     using MyTested.AspNetCore.Mvc;
     using WhazzupInTryavna.Web.Controllers;
+    using WhazzupInTryavna.Web.ViewModels;
     using WhazzupInTryavna.Web.ViewModels.Home;
     using Xunit;
 

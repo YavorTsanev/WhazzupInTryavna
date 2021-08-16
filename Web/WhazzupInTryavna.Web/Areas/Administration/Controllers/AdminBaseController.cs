@@ -2,7 +2,6 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using WhazzupInTryavna.Web.Controllers;
 
     using static WhazzupInTryavna.Common.GlobalConstants;
 

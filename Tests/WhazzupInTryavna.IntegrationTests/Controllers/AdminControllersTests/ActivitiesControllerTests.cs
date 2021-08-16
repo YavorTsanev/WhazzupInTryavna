@@ -1,49 +1,45 @@
-﻿using MyTested.AspNetCore.Mvc;
-using WhazzupInTryavna.Data.Models.Activities;
-using WhazzupInTryavna.Web.Areas.Administration.Controllers;
-using WhazzupInTryavna.Web.ViewModels.Activities;
-using WhazzupInTryavna.Web.ViewModels.Administration.Activities;
-using Xunit;
-
-namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
+﻿namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+
+    using MyTested.AspNetCore.Mvc;
+    using WhazzupInTryavna.Web.Areas.Administration.Controllers;
+    using WhazzupInTryavna.Web.ViewModels.Administration.Activities;
+    using Xunit;
+
     using static WhazzupInTryavna.IntegrationTests.Data.ActivityData;
     using static WhazzupInTryavna.IntegrationTests.Data.CategoryData;
 
     public class ActivitiesControllerTests
     {
         [Fact]
-        public void GetAllShouldReturnViewWithModel()
+        public void GetAllShouldReturnViewWithCorrectModel()
         {
             MyController<ActivitiesController>
-                .Instance()
+                .Instance(x => x
+                    .WithData(GetActivities())
+                    .WithUser()
+                    .WithData(GetCategories()))
                 .Calling(x => x.All())
                 .ShouldReturn()
-                .View(x => x.WithModelOfType<ActivitiesAdminListingViewModel>());
+                .View(v => v.WithModelOfType<ActivitiesAdminListingViewModel>()
+                    .Passing(x => x.Activities.Count() == 2));
         }
 
         [Fact]
-        public void GetEditShouldReturnViewWithModel()
+        public void GetEditShouldReturnViewWithCorrectModel()
         {
             MyController<ActivitiesController>
-                .Instance(x => x.WithUser()
-                    .WithData(new Activity
-                    {
-                        Id = 5,
-                        Name = "TestName",
-                        Location = "TestLocation",
-                        CategoryId = 3,
-                        StartTime = DateTime.Now,
-                    })
-                    .WithData(GetSingleActivity()))
-                .Calling(a => a.Edit(5))
+                .Instance(x => x
+                    .WithUser()
+                    .WithData(GetSingleActivity())
+                    .WithData(GetSingleCategory()))
+                .Calling(a => a.Edit(2))
                 .ShouldReturn()
-                .View(v => v.WithModelOfType<ActivityAdminEditViewModel>());
+                .View(v => v.WithModelOfType<ActivityAdminEditViewModel>()
+                    .Passing(x => x.Name == "TestName" &&
+                                  x.Location == "TestLocation"));
         }
 
         [Theory]
@@ -53,7 +49,8 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
             MyController<ActivitiesController>
                 .Instance(x => x
                     .WithUser()
-                    .WithData(GetSingleCategory()).WithData(GetSingleActivity()))
+                    .WithData(GetSingleCategory())
+                    .WithData(GetSingleActivity()))
                 .Calling(a => a.Edit(2, new ActivityAdminEditViewModel()
                 {
                     CategoryId = categoryId,
@@ -71,25 +68,30 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
         }
 
         [Fact]
-        public void PostEditShouldReturnViewWithModelWithInvalidModelState()
+        public void PostEditShouldReturnViewWithCorrectModelWithInvalidModelState()
         {
             MyController<ActivitiesController>
                 .Instance(x => x
                     .WithUser())
-                .Calling(a => a.Edit(2, new ActivityAdminEditViewModel()))
+                .Calling(a => a.Edit(2, new ActivityAdminEditViewModel
+                {
+                    Name = string.Empty,
+                }))
                 .ShouldHave()
                 .InvalidModelState()
                 .ActionAttributes(a => a.RestrictingForHttpMethod(System.Net.Http.HttpMethod.Post))
                 .AndAlso()
                 .ShouldReturn()
-                .View(v => v.WithModelOfType<ActivityAdminEditViewModel>());
+                .View(v => v.WithModelOfType<ActivityAdminEditViewModel>()
+                    .Passing(x => x.Name == string.Empty));
         }
 
         [Fact]
         public void GetDeleteShouldRedirect()
         {
             MyController<ActivitiesController>
-                .Instance(x => x.WithUser()
+                .Instance(x => x.
+                    WithUser()
                     .WithData(GetSingleActivity()))
                 .Calling(x => x.Delete(2))
                 .ShouldReturn()

@@ -1,7 +1,7 @@
-﻿using System.Linq;
-
-namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
+﻿namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
 {
+    using System.Linq;
+
     using MyTested.AspNetCore.Mvc;
     using WhazzupInTryavna.Web.Areas.Administration.Controllers;
     using WhazzupInTryavna.Web.ViewModels.Administration.Comments;
@@ -21,7 +21,7 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
                     .WithUser())
                 .Calling(x => x.All(2))
                 .ShouldReturn()
-                .View(x => x.WithModelOfType<CommentsAdminListingViewModel>()
+                .View(v => v.WithModelOfType<CommentsAdminListingViewModel>()
                     .Passing(x => x.ActivityId == 2 && x.ActivityName == "TestName" && x.Comments.Any(c => c.Content == "TestContent")));
         }
 

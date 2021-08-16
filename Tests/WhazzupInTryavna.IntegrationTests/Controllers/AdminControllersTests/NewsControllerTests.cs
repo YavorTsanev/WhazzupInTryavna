@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using WhazzupInTryavna.Data.Models.News;
-
-namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
+﻿namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
 {
+    using System;
+    using System.Linq;
+
     using MyTested.AspNetCore.Mvc;
+    using WhazzupInTryavna.Data.Models.News;
     using WhazzupInTryavna.Web.Areas.Administration.Controllers;
     using WhazzupInTryavna.Web.ViewModels.Administration.News;
     using Xunit;
@@ -62,8 +62,8 @@ namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
                 .ShouldHave()
                 .ActionAttributes(x => x.RestrictingForHttpMethod(System.Net.Http.HttpMethod.Post))
                 .ValidModelState()
-                .Data(x => x.WithSet<News>(x =>
-                    x.Any(n =>
+                .Data(x => x.WithSet<News>(s =>
+                    s.Any(n =>
                     n.Title == "TestTitle" &&
                     n.ImageUrl == "Test.png" &&
                     n.Date == new DateTime(2020, 1, 1) &&

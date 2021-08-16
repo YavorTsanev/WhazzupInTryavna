@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace WhazzupInTryavna.IntegrationTests.Data
+﻿namespace WhazzupInTryavna.IntegrationTests.Data
 {
+    using System.Collections.Generic;
+
     using WhazzupInTryavna.Data.Models.Activities;
 
     public static class CategoryData

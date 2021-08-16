@@ -1,9 +1,9 @@
-﻿using MyTested.AspNetCore.Mvc;
-using WhazzupInTryavna.Web.Areas.Administration.Controllers;
-using Xunit;
-
-namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
+﻿namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
 {
+    using MyTested.AspNetCore.Mvc;
+    using WhazzupInTryavna.Web.Areas.Administration.Controllers;
+    using Xunit;
+
     public class AdminBaseControllerTests
     {
         [Fact]

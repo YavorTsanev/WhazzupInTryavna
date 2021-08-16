@@ -1,14 +1,14 @@
-﻿using System.Linq;
-
-namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
+﻿namespace WhazzupInTryavna.IntegrationTests.Controllers.AdminControllersTests
 {
+    using System.Linq;
+
     using MyTested.AspNetCore.Mvc;
     using WhazzupInTryavna.Web.Areas.Administration.Controllers;
     using WhazzupInTryavna.Web.ViewModels.Administration.Users;
     using Xunit;
 
-    using static WhazzupInTryavna.IntegrationTests.Data.UserData;
     using static WhazzupInTryavna.IntegrationTests.Data.RolesData;
+    using static WhazzupInTryavna.IntegrationTests.Data.UserData;
 
     public class UsersControllerTests
     {

@@ -1,11 +1,8 @@
-﻿using System.Linq;
-
-namespace WhazzupInTryavna.IntegrationTests.Controllers
+﻿namespace WhazzupInTryavna.IntegrationTests.Controllers
 {
     using System;
 
     using MyTested.AspNetCore.Mvc;
-    using WhazzupInTryavna.Data.Models.News;
     using WhazzupInTryavna.Web.Controllers;
     using WhazzupInTryavna.Web.ViewModels.News;
     using Xunit;
