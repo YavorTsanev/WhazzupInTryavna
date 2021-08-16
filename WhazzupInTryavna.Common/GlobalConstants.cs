@@ -63,10 +63,10 @@
         public class ContactConst
         {
             public const int NameMinLength = 2;
-            public const int NameMaxLength = 10;
+            public const int NameMaxLength = 50;
             public const string EmailRegEx = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
             public const int SubjectMinLength = 3;
-            public const int SubjectMaxLength = 10;
+            public const int SubjectMaxLength = 100;
             public const int MessageMinLength = 3;
             public const int MessageMaxLength = 1000;
         }

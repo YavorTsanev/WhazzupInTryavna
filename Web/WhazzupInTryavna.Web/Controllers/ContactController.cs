@@ -30,7 +30,7 @@
                 return this.View(model);
             }
 
-            await this.emailSender.SendEmailAsync(model.Email, model.Name, AppConst.EmailForContact, model.Subject, model.Message);
+            await this.emailSender.SendEmailAsync(AdminConst.Email, model.Name, AppConst.EmailForContact, model.Subject, model.Message + " " + model.Email);
 
             this.TempData["SuccessSentEmail"] = "Message send successfully";
 
