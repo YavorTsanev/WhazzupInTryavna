@@ -2,11 +2,14 @@
 @using Microsoft.AspNetCore.Identity
 @using WhazzupInTryavna.Data.Models
 @using WhazzupInTryavna.Web.Infrastructure
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Hosting
 @inject UserManager<ApplicationUser> UserManager
+@inject IWebHostEnvironment environment
 
 @if (TempData.ContainsKey("UpdatedActivity"))
 {
-    <div id="successesAlert" class="alert alert-success">@this.TempData["UpdatedActivity"]</div>
+<div id="successesAlert" class="alert alert-success">@this.TempData["UpdatedActivity"]</div>
 }
 
 
@@ -20,7 +23,17 @@
         <div class="text-center">
             <ul class="entry-meta">
                 <li class="single-meta">
-                    <i class="far fa-calendar-alt"></i> create on @Model.CreatedOn.ToLocalTime()
+                    <i class="far fa-calendar-alt"></i> create on
+                    @{
+                        if (environment.IsProduction())
+                        {
+                        @Model.CreatedOn.AddHours(3)
+                        }
+                        else
+                        {
+                        @Model.CreatedOn.ToLocalTime()
+                        }
+                    }
                 </li>
                 <li class="single-meta">
                     <i class="fas fa-user"></i> by
@@ -81,17 +94,36 @@
                         <div class="media-body space-sm">
                             <div>
                                 @{
-                                    if (Model.StartTime > DateTime.Now)
+
+                                    var startTime = Model.StartTime;
+                                    var dateTimeNow = DateTime.Now;
+                                    if (environment.IsProduction())
                                     {
-                                        @:TIME TO START
+                                        startTime = startTime.AddHours(3);
+                                        dateTimeNow = dateTimeNow.Add(new TimeSpan(0,6,0,0));
+                                    }
+
+                                    if (startTime > dateTimeNow)
+                                    {
+                                    @:TIME TO START
                                     }
                                     else
                                     {
-                                        @:ACTIVITY ALREADY STARTED
+                                    @:ACTIVITY ALREADY STARTED
                                     }
                                 }
                             </div>
-                            <div class="feature-title">@Model.TimeLeft.Days d @Model.TimeLeft.Hours h @Model.TimeLeft.Minutes m</div>
+
+                            <div class="feature-title">
+                                @{
+                                    var timeLeft = Model.TimeLeft;
+                                    if (environment.IsProduction())
+                                    {
+                                        timeLeft = timeLeft.Subtract(new TimeSpan(0, 3, 0, 0));
+                                    }
+                                }
+                                @timeLeft.Days d @timeLeft.Hours h @timeLeft.Minutes m
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,9 +148,9 @@
             <div class="row">
                 @if (Model.Description != null)
                 {
-                    <div class="item-description text-break">
-                        @Model.Description
-                    </div>
+                <div class="item-description text-break">
+                    @Model.Description
+                </div>
                 }
             </div>
             <div class="container">
@@ -127,32 +159,32 @@
                     <label class="item-title">
                         @if (Model.UsersInActivity.Any())
                         {
-                            @string.Join(", ", Model.UsersInActivity.Select(x => x.Name))
+                        @string.Join(", ", Model.UsersInActivity.Select(x => x.Name))
                         }
                         else
                         {
-                            @:No joins for now, be brave and hit the join button.
+                        @:No joins for now, be brave and hit the join button.
                         }
                     </label>
                     <div>
                         @if (Model.UsersInActivity.Any(x => x.Name == User.Identity?.Name))
                         {
-                            <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="DisJoin" asp-route-id="@Model.Id" asp-route-information="@Model.GetInformation()" >DISJOIN</a>
+                        <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="DisJoin" asp-route-id="@Model.Id" asp-route-information="@Model.GetInformation()">DISJOIN</a>
                         }
                         else
                         {
-                            <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="Join" asp-route-id="@Model.Id" asp-route-information="@Model.GetInformation()">JOIN</a>
+                        <a class="btn btn-info" style="margin: 5px" asp-controller="Activities" asp-action="Join" asp-route-id="@Model.Id" asp-route-information="@Model.GetInformation()">JOIN</a>
                         }
                     </div>
                 </div>
                 @if (Model.AddedByUserId == UserManager.GetUserId(User))
                 {
-                    <a class="btn btn-info " style="margin: 5px" asp-controller="Activities" asp-action="Edit" asp-route-id="@Model.Id" asp-route-information="@Model.GetInformation()">Edit</a>
-                    <button type="button" style="margin: 5px" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                        Delete
-                    </button>
-                    <form method="post" asp-action="Delete" asp-route-id="@Model.Id" id="del">
-                    </form>
+                <a class="btn btn-info " style="margin: 5px" asp-controller="Activities" asp-action="Edit" asp-route-id="@Model.Id" asp-route-information="@Model.GetInformation()">Edit</a>
+                <button type="button" style="margin: 5px" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                    Delete
+                </button>
+                <form method="post" asp-action="Delete" asp-route-id="@Model.Id" id="del">
+                </form>
                 }
                 <button class="btn btn-primary" style="margin: 5px" onclick="window.print()">Print</button>
             </div>
@@ -197,7 +229,18 @@
         @foreach (var comment in Model.Comments)
         {
         <div class="card mb-4">
-            <small  class="text-center">@comment.CreatedOn.ToLocalTime().ToString("f")</small>
+            <small class="text-center">
+                @{
+                    if (environment.IsProduction())
+                    {
+                    @comment.CreatedOn.AddHours(3).ToString("f")
+                    }
+                    else
+                    {
+                    @comment.CreatedOn.ToLocalTime().ToString("f")
+                    }
+                }
+            </small>
             <div class="card-header">
                 @comment.UserUserName
             </div>

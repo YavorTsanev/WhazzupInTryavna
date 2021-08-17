@@ -1,4 +1,7 @@
-﻿@model CategoriesListingViewModel
+﻿@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Hosting
+@model CategoriesListingViewModel
+@inject IWebHostEnvironment environment
 @{
     ViewBag.Title = "Categories Administration";
 }
@@ -35,12 +38,27 @@
                     @item.Name
                 </td>
                 <td>
-                    @item.CreatedOn.ToLocalTime().ToString("g")
+                    @{
+                        var createdOn = item.CreatedOn;
+                        if (environment.IsProduction())
+                        {
+                            createdOn = createdOn.AddHours(3);
+                        }
+                    }
+
+                    @createdOn.ToLocalTime().ToString("g")
                 </td>
                 <td>
                     @if (item.ModifiedOn != null)
                     {
-                        @item.ModifiedOn.Value.ToLocalTime().ToString("g")
+                        var modifiedOn = item.ModifiedOn.Value;
+
+                        if (environment.IsProduction())
+                        {
+                            modifiedOn = modifiedOn.AddHours(3);
+                        }
+
+                        @modifiedOn.ToLocalTime().ToString("g")
                     }
                 </td>
                 <td>

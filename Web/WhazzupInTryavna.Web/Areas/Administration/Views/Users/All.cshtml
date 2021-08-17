@@ -1,5 +1,7 @@
-﻿@model UsersListingViewModel
-
+﻿@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Hosting
+@model UsersListingViewModel
+@inject IWebHostEnvironment environment
 @{
     ViewBag.Title = "Users Administration";
 }
@@ -38,7 +40,15 @@
                     @item.Email
                 </td>
                 <td>
-                    @item.CreatedOn.ToLocalTime().ToString("g")
+                    @{
+                        var createdOn = item.CreatedOn;
+                        if (environment.IsProduction())
+                        {
+                            createdOn = createdOn.AddHours(3);
+                        }
+                    }
+
+                    @createdOn.ToLocalTime().ToString("g")
                 </td>
                 <td>
                     @if (item.IsDeleted)

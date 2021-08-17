@@ -6,6 +6,7 @@
         {
             public const string SystemName = "Whazz up in Tryavna";
             public const string SiteUrl = "https://localhost:44319/";
+            public const string ProductionSiteUrl = "https://whazzupintryavna.azurewebsites.net/";
             public const string EmailForContact = "yavor.tsanev.1@gmail.com";
             public const string PhoneNumberForContact = "+359 0894 66 ** **";
         }
