@@ -95,13 +95,6 @@
             services.AddTransient<ICommentsService, CommentService>();
             services.AddTransient<ITryavnaNewsScraperService, TryavnaNewsScraperService>();
             services.AddTransient<IEmailSender>(_ => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
-
-            // Authentication
-            services.AddAuthentication().AddFacebook(facebookOptions =>
-            {
-                facebookOptions.AppId = this.configuration["Authentication:Facebook:AppId"];
-                facebookOptions.AppSecret = this.configuration["Authentication:Facebook:AppSecret"];
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
