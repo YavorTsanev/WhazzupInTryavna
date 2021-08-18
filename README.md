@@ -1,6 +1,6 @@
 # Whazz up in Tryavna
 "What's up" in slang "Wazz up" in Tryavna (my hometown) is a web application that allows you to add and find activities you like, read the latests news from town(taken from https://tryavna.bg/), 
-real time chat. And that's it, for more try it yourself here
+real time chat. And that's it, for more try it yourself [here](https://whazzupintryavna.azurewebsites.net/)
 
 ## :hammer_and_pick: Built With
 - ASP.NET Core Template(https://github.com/NikolayIT/ASP.NET-Core-Template)
