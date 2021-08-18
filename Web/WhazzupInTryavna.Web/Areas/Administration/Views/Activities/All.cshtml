@@ -1,4 +1,7 @@
-﻿@model ActivitiesAdminListingViewModel
+﻿@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Hosting
+@model ActivitiesAdminListingViewModel
+@inject IWebHostEnvironment environment
 @{
     ViewBag.Title = "Activities Administration";
 }
@@ -62,13 +65,22 @@
                 @item.Location
             </td>
             <td>
-                @if (item.StartTime > DateTime.Now)
-                {
-                    @item.StartTime@: (not started)
-                }
-                else
-                {
-                    @item.StartTime@: (started)
+                @{
+                    var startTime = item.StartTime;
+                    var dateTimeNow = DateTime.Now;
+                    if (environment.IsProduction())
+                    {
+                        dateTimeNow = dateTimeNow.Add(new TimeSpan(0, 3, 0, 0));
+                    }
+
+                    if (item.StartTime > dateTimeNow)
+                    {
+                        @startTime @: (not started)
+                    }
+                    else
+                    {
+                        @startTime @: (started)
+                    }
                 }
             </td>
             <td>
