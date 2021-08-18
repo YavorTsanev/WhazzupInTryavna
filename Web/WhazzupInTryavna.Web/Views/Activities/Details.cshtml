@@ -38,7 +38,14 @@
                 <li class="single-meta">
                     <i class="fas fa-user"></i> by
                     <span>
-                        @Model.AddedByUserUserName
+                       @{
+                           var userName = Model.AddedByUserUserName;
+                           if (userName == null)
+                           {
+                               userName = "banned user";
+                           }
+                       }
+                       @userName
                     </span>
                 </li>
                 <li class="single-meta">
@@ -158,7 +165,7 @@
                     <label class="item-title">
                         @if (Model.UsersInActivity.Any())
                         {
-                            @string.Join(", ", Model.UsersInActivity.Select(x => x.Name))
+                            @string.Join(", ", Model.UsersInActivity.Select(x => x.Name ?? "banned user"))
                         }
                         else
                         {
@@ -241,7 +248,10 @@
                     }
                 </small>
                 <div class="card-header">
-                    @comment.UserUserName
+                    @{
+                        var commentUserName = comment.UserUserName ?? "banned user";
+                    }
+                    @commentUserName
                 </div>
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">

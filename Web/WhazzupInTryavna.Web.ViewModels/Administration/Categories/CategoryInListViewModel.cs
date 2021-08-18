@@ -9,6 +9,8 @@
     {
         public int Id { get; set; }
 
+        public int ActivitiesCount { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }

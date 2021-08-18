@@ -84,7 +84,10 @@
                 }
             </td>
             <td>
-                @item.AddedByUserUserName
+                @{
+                    var addedByUserName = item.AddedByUserUserName ?? "banned user";
+                }
+                @addedByUserName
             </td>
             <td>
                 @item.UserActivitiesCount

@@ -7,9 +7,6 @@
     ViewBag.Title = Model.Comments.Any() ?"Comments for " + Model.ActivityName : "No comments for " + Model.ActivityName;
 }
 
-
-
-
 <div class="row container mb-2">
     <div class="text-xl-left col-2">
         <a class="btn btn-info" asp-controller="Activities" asp-action="All">BACK TO ACTIVITY LIST</a>
@@ -39,7 +36,10 @@
         {
         <tr>
             <td>
-                @item.UserUserName
+                @{
+                    var userName = item.UserUserName ?? "banned user";
+                }
+                @userName
             </td>
             <td>
                 @{

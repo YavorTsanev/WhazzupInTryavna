@@ -26,6 +26,9 @@
                 <th>
                     Modified On
                 </th>
+                <th>
+                    Activities in this category
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -33,41 +36,47 @@
     <tbody>
         @foreach (var item in Model.Categories)
         {
-            <tr>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @{
-                        var createdOn = item.CreatedOn;
-                        if (environment.IsProduction())
-                        {
-                            createdOn = createdOn.AddHours(3);
-                        }
-                    }
-
-                    @createdOn.ToLocalTime().ToString("g")
-                </td>
-                <td>
-                    @if (item.ModifiedOn != null)
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @{
+                    var createdOn = item.CreatedOn;
+                    if (environment.IsProduction())
                     {
-                        var modifiedOn = item.ModifiedOn.Value;
-
-                        if (environment.IsProduction())
-                        {
-                            modifiedOn = modifiedOn.AddHours(3);
-                        }
-
-                        @modifiedOn.ToLocalTime().ToString("g")
+                        createdOn = createdOn.AddHours(3);
                     }
-                </td>
-                <td>
-                    <div class="text-center">
-                        <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </div>
-                </td>
-            </tr>
+                }
+
+                @createdOn.ToLocalTime().ToString("g")
+            </td>
+            <td>
+                @if (item.ModifiedOn != null)
+                {
+                    var modifiedOn = item.ModifiedOn.Value;
+
+                    if (environment.IsProduction())
+                    {
+                        modifiedOn = modifiedOn.AddHours(3);
+                    }
+
+                    @modifiedOn.ToLocalTime().ToString("g")
+                }
+            </td>
+            <td>
+                @item.ActivitiesCount
+            </td>
+            <td>
+                <div class="text-center">
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    @if (item.ActivitiesCount == 0)
+                    {
+                        @:| @{<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>}
+                    }
+                </div>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
