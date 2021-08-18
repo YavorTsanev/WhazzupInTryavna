@@ -2,6 +2,17 @@
 "What's up" in slang "Wazz up" in Tryavna (my hometown) is a web application that allows you to add and find activities you like, read the latests news from town(taken from https://tryavna.bg/), 
 real time chat. And that's it, for more try it yourself [here](https://whazzupintryavna.azurewebsites.net/)
 
+If you download the app and started him locally, SendGrid will don't work(ApiKey cannot be made public) and you not be able get verification email. So use built-in users to login.
+## AdminUser Credentials
+  Username: Yavor
+  Password: 123456
+  
+  ## RegularUsers Credentials
+  Username: TestUser1
+  Password: TestUser1Pass
+  
+  Username: TestUser2
+  Password: TestUser2Pass
 ## :hammer_and_pick: Built With
 - ASP.NET Core Template(https://github.com/NikolayIT/ASP.NET-Core-Template)
 - ASP.NET 5
@@ -26,15 +37,3 @@ real time chat. And that's it, for more try it yourself [here](https://whazzupin
 - SendGrid
 - Microsoft Azure
 - SignalR
-
-  
-  ## AdminUser Credentials
-  Username: Yavor
-  Password: 123456
-  
-  ## RegularUsers Credentials
-  Username: TestUser1
-  Password: TestUser1Pass
-  
-  Username: TestUser2
-  Password: TestUser2Pass
