@@ -35,9 +35,16 @@
 
             foreach (var seeder in seeders)
             {
-                await seeder.SeedAsync(dbContext, serviceProvider);
-                await dbContext.SaveChangesAsync();
-                logger.LogInformation($"Seeder {seeder.GetType().Name} done.");
+                try
+                {
+                    await seeder.SeedAsync(dbContext, serviceProvider);
+                    await dbContext.SaveChangesAsync();
+                    logger.LogInformation($"Seeder {seeder.GetType().Name} done.");
+                }
+                catch (Exception)
+                {
+                    // ignored
+                }
             }
         }
     }
