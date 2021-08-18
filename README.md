@@ -14,7 +14,7 @@ If you download the app and started him locally, SendGrid will don't work(ApiKey
   Username: TestUser2
   Password: TestUser2Pass
 ## :hammer_and_pick: Built With
-- ASP.NET Core Template(https://github.com/NikolayIT/ASP.NET-Core-Template)
+- [ASP.NET Core Template](https://github.com/NikolayIT/ASP.NET-Core-Template)
 - ASP.NET 5
 - Entity Framework (EF) Core 5
 - Microsoft SQL Server Express
@@ -31,9 +31,12 @@ If you download the app and started him locally, SendGrid will don't work(ApiKey
 - Custom Validation Attributes
 - Responsive Design
 - AngleSharp
-- MyTested.AspNetCore.Mvc - Fluent Testing Library for ASP.NET Core MVC(https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc)
+- [MyTested.AspNetCore.Mvc - Fluent Testing Library for ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc)
 - Twitter Bootstrap 
 - jQuery
 - SendGrid
 - Microsoft Azure
 - SignalR
+
+### Dependencies:
+* [SendGrid](https://www.sendgrid.com/)
