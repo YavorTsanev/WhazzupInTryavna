@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Microsoft.Extensions.Caching.Memory;
     using WhazzupInTryavna.Data.Common.Repositories;
     using WhazzupInTryavna.Data.Models.News;
     using WhazzupInTryavna.Services.Mapping;
@@ -13,12 +12,10 @@
     public class NewsService : INewsService
     {
         private readonly IDeletableEntityRepository<News> newsRepository;
-        private readonly IMemoryCache memoryCache;
 
-        public NewsService(IDeletableEntityRepository<News> newsRepository, IMemoryCache memoryCache)
+        public NewsService(IDeletableEntityRepository<News> newsRepository)
         {
             this.newsRepository = newsRepository;
-            this.memoryCache = memoryCache;
         }
 
         public IEnumerable<T> GetAll<T>()
