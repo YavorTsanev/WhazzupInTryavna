@@ -4,7 +4,7 @@
 real time chat. And that's it for my first ASP.NET Core MVC deffense project in Software University(https://softuni.bg/)
 
 ## :hammer_and_pick: Built With
-
+- ASP.NET Core Template(https://github.com/NikolayIT/ASP.NET-Core-Template)
 - ASP.NET 5
 - Entity Framework (EF) Core 5
 - Microsoft SQL Server Express
@@ -20,7 +20,7 @@ real time chat. And that's it for my first ASP.NET Core MVC deffense project in 
 - Data Validation in the Models and Input View Models
 - Custom Validation Attributes
 - Responsive Design
-- MyTested.AspNetCore.Mvc.Universe for integration tests
+- MyTested.AspNetCore.Mvc - Fluent Testing Library for ASP.NET Core MVC(https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc)
 - Twitter Bootstrap 
 - jQuery
 - SendGrid
