@@ -22,7 +22,7 @@ If you download the app and started him locally, SendGrid will don't work(ApiKey
 - MVC Areas with Multiple Layouts
 - Razor Pages, Sections, Partial Views
 - Repository Pattern
-- Auto Мapping
+- [Auto Mapper](https://github.com/AutoMapper/AutoMapper)
 - Dependency Injection
 - Exception Handling Middleware
 - Sorting and Filtering with EF Core
@@ -30,13 +30,13 @@ If you download the app and started him locally, SendGrid will don't work(ApiKey
 - Data Validation in the Models and Input View Models
 - Custom Validation Attributes
 - Responsive Design
-- AngleSharp
+- [AngleSharp](https://github.com/AngleSharp/AngleSharp)
 - [MyTested.AspNetCore.Mvc - Fluent Testing Library for ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc)
-- Twitter Bootstrap 
-- jQuery
-- SendGrid
-- Microsoft Azure
-- SignalR
+- [Bootstrap](https://github.com/twbs/bootstrap) 
+- [jQuery](https://jquery.com/)
+- [SendGrid](https://www.sendgrid.com/)
+- [Microsoft Azure](https://github.com/Azure)
+- [SignalR](https://github.com/aspnet/SignalR)
 
 ### Dependencies:
 * [SendGrid](https://www.sendgrid.com/)
