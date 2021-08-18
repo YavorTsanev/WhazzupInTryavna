@@ -20,6 +20,7 @@ real time chat. And that's it for my first ASP.NET Core MVC deffense project in 
 - Data Validation in the Models and Input View Models
 - Custom Validation Attributes
 - Responsive Design
+- AngleSharp
 - MyTested.AspNetCore.Mvc - Fluent Testing Library for ASP.NET Core MVC(https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc)
 - Twitter Bootstrap 
 - jQuery
