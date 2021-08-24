@@ -15,8 +15,8 @@ If you download the app and started him locally, SendGrid will don't work(ApiKey
   Password: TestUser2Pass
 ## :hammer_and_pick: Built With
 - [ASP.NET Core Template](https://github.com/NikolayIT/ASP.NET-Core-Template)
-- ASP.NET 5
-- Entity Framework (EF) Core 5
+- ASP.NET Core 5
+- Entity Framework Core 5
 - Microsoft SQL Server Express
 - ASP.NET Identity System
 - MVC Areas with Multiple Layouts
